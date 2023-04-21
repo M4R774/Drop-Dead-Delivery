@@ -1,19 +1,16 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxat161gi2b7e"]
+[gd_scene load_steps=10 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/score_validator.gd" id="2_apfy6"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="3_dajg1"]
-[ext_resource type="Script" path="res://Scripts/Menus and highscore/pause_menu.gd" id="4_awf5l"]
-[ext_resource type="Script" path="res://Scripts/Menus and highscore/volume_slider.gd" id="5_ubhaj"]
-[ext_resource type="Script" path="res://Scripts/Menus and highscore/to_main_menu.gd" id="6_q1jp6"]
+[ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="4_gvk62"]
+[ext_resource type="Material" uid="uid://ckpr2drxvos7l" path="res://Materials/level_grid.tres" id="5_acbc1"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="6_e02fo"]
+[ext_resource type="Script" path="res://Scenes/Camera3D.gd" id="7_bacm8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
-bg_color = Color(0.25098, 0.184314, 0.168627, 1)
-corner_radius_top_left = 30
-corner_radius_top_right = 30
-corner_radius_bottom_right = 30
-corner_radius_bottom_left = 30
-shadow_size = 5
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -23,7 +20,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Gameplay" type="MarginContainer" parent="."]
+[node name="2D" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 645.0
@@ -32,13 +30,13 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Gameplay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="2D"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 50
 
-[node name="Explanation" type="Label" parent="Gameplay/VBoxContainer"]
+[node name="Explanation" type="Label" parent="2D/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 7
@@ -46,14 +44,14 @@ theme = ExtResource("3")
 text = "This scene represents typical gameplay scene. Set player score below (only integers are valid), and press \"Win game\" buton."
 autowrap_mode = 3
 
-[node name="Score" type="LineEdit" parent="Gameplay/VBoxContainer"]
+[node name="Score" type="LineEdit" parent="2D/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3")
 placeholder_text = "0"
 virtual_keyboard_type = 2
 script = ExtResource("2_apfy6")
 
-[node name="Submit" type="Button" parent="Gameplay/VBoxContainer"]
+[node name="Submit" type="Button" parent="2D/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -62,70 +60,41 @@ disabled = true
 text = "Win game"
 script = ExtResource("3_dajg1")
 
-[node name="Pause menu" type="PanelContainer" parent="."]
-process_mode = 3
-visible = false
+[node name="Pause menu" parent="." instance=ExtResource("4_gvk62")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("4_awf5l")
 
-[node name="PanelContainer" type="PanelContainer" parent="Pause menu"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_tu3wt")
+[node name="3D" type="Node" parent="."]
 
-[node name="MarginContainer" type="MarginContainer" parent="Pause menu/PanelContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="3D"]
+use_collision = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause menu/PanelContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 20
+[node name="CSGBox3D" type="CSGBox3D" parent="3D/CSGCombiner3D"]
+material_override = ExtResource("5_acbc1")
+size = Vector3(14, 1, 14)
+material = ExtResource("5_acbc1")
 
-[node name="Title" type="Label" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3")
-text = "PAUSED"
-horizontal_alignment = 1
+[node name="CharacterBody3D" type="CharacterBody3D" parent="3D" node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07792, 0.712813)
+script = ExtResource("6_e02fo")
+camera = NodePath("../Camera3D")
 
-[node name="HSeparator2" type="HSeparator" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3D/CharacterBody3D"]
+mesh = SubResource("CapsuleMesh_y7a3f")
 
-[node name="Volume" type="Label" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3")
-text = "Volume"
-horizontal_alignment = 1
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/CharacterBody3D"]
+shape = SubResource("CapsuleShape3D_1u61v")
 
-[node name="Volume slider" type="HSlider" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-value = 0.5
-script = ExtResource("5_ubhaj")
+[node name="OmniLight3D" type="OmniLight3D" parent="3D/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04541, 0)
+omni_range = 4.0
 
-[node name="HSeparator" type="HSeparator" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="SpotLight3D" type="SpotLight3D" parent="3D/CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0.925011, 0.379941, 0, -0.379941, 0.925011, 0, 0, -0.409474)
+light_energy = 5.0
+spot_range = 13.0
+spot_angle = 31.2775
 
-[node name="Back to main menu" type="Button" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3")
-text = " Return to main menu "
-script = ExtResource("6_q1jp6")
-
-[node name="Continue" type="Button" parent="Pause menu/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3")
-text = "Continue"
-
-[connection signal="pressed" from="Pause menu/PanelContainer/MarginContainer/VBoxContainer/Continue" to="Pause menu" method="_on_continue_pressed"]
+[node name="Camera3D" type="Camera3D" parent="3D" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 9, 3)
+script = ExtResource("7_bacm8")
+player = NodePath("../CharacterBody3D")

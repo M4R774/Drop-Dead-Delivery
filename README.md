@@ -4,11 +4,11 @@ Game jam repo, wohoo!
 
 ## TODO
 
-Tärkeät ja pienet:
-- test highscore chart
-
-Iso kuva:
-- 3D twin stick
+- Ukkelin ohjaaminen
+    * WASD
+    * Hiiri kääntää
+- Kamera seuraamaan pelaajaa
+- Testirata, jossa on ramppeja, seiniä ym.
 
 Ideoita:
 - Käytä json endpointtia

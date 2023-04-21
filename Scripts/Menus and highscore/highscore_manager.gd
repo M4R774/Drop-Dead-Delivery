@@ -93,7 +93,7 @@ func post_highscores_online():
 					"Authorization: "+auth]
 	var request = HTTPRequest.new()
 	add_child(request)
-	request.connect("request_completed",Callable(self,"_on_post_highscores_request_completed"))
+	request.connect("request_completed", Callable(self, "_on_post_highscores_request_completed"))
 	request.request(back_end_url, headers, 2, body)
 	HIGHSCORE_SINGLETON.SCORE = null
 	to_main_menu.grab_focus()
