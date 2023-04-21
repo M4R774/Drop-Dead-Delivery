@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="highscore-demo"
+config/name="Ludum Dare 53"
+config/description="Ludum Dare 53 game jam entry"
 run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
