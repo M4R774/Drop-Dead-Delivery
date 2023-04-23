@@ -94,3 +94,7 @@ func update_shooting():
 		if raycast.is_colliding():
 			if raycast.get_collider().is_in_group("enemy"):
 				raycast.get_collider().die()
+
+
+func got_shot():
+	print("I got shot! ", name)

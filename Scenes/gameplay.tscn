@@ -92,3 +92,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5692)
 
 [node name="Enemy" parent="." instance=ExtResource("11_jrkqs")]
 transform = Transform3D(0.409334, 0, -0.912385, 0, 1, 0, 0.912385, 0, 0.409334, 0.560024, 2.88168, -17.1698)
+
+[node name="Enemy2" parent="." instance=ExtResource("11_jrkqs")]
+transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, 19.6509, 1.00687, -20.2887)
