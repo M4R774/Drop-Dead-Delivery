@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://db46ovkr6eldi"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_pdfpy"]
+[ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_3jbwr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
+script = ExtResource("1_pdfpy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("CapsuleMesh_y7a3f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_1u61v")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04541, 0)
+omni_range = 4.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.925011, 0.379941, 0, -0.379941, 0.925011, 0, 0, -0.409474)
+light_energy = 5.0
+spot_range = 13.0
+spot_angle = 31.2775
+
+[node name="player" parent="." instance=ExtResource("2_3jbwr")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0, -0.945597, 0)
+
+[node name="Skeleton3D" parent="player/Armature001" index="0"]
+bones/8/position = Vector3(0.216443, 0.282238, -0.0873117)
+bones/8/rotation = Quaternion(-0.121739, 0.364219, -0.697172, 0.605372)
+bones/9/rotation = Quaternion(0.235879, -0.0475033, -0.37632, 0.8947)
+bones/10/rotation = Quaternion(0.0750319, 0.0950865, 0.0131255, 0.99255)
+bones/12/position = Vector3(0.00146881, 0.379919, -0.000993351)
+bones/12/rotation = Quaternion(-0.418595, -0.581084, 0.495843, 0.491182)
+bones/13/rotation = Quaternion(0.698592, -0.113627, 0.185643, 0.681613)
+bones/14/rotation = Quaternion(-0.0262817, -0.00995357, -0.0283283, 0.999204)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0.140474, 0.622101, -1.40058)
+target_position = Vector3(2.08165e-12, 2.08165e-12, 20)
+debug_shape_custom_color = Color(0.819608, 0, 0.968627, 1)
+
+[editable path="player"]

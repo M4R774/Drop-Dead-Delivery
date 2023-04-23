@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxmbo4lmunfpq"]
+
+[ext_resource type="Script" path="res://Scripts/fps_counter.gd" id="1_n5dn8"]
+[ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="2_igkrh"]
+
+[node name="fps_counter" type="Node"]
+script = ExtResource("1_n5dn8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_top = 2.0
+offset_right = 40.0
+offset_bottom = 38.0
+theme = ExtResource("2_igkrh")
+theme_override_colors/font_color = Color(0.858824, 0, 0.87451, 1)
+text = "0"

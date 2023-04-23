@@ -5,43 +5,63 @@ extends CharacterBody3D
 @export var jump_velocity = 4.5
 @export var camera: Camera3D
 
+var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
+@export var friction = 0.05
+var acceleration = 1
 
 # gamepad controls
 var is_using_gamepad = true
-const SPEED = 5
-var angle = 0
-# aiming with left trigger enables scheme 1 and moves the reticle with the right stick
-# control_schemes: 0 = rotate with right stick, 1 = move reticle with right stick
-var control_scheme = 0
-@onready var aim_reticle = $"../aim_reticle"
+var right_stick_look = Vector2(0,0)
+
+# shooting
+@onready var raycast = $RayCast3D
 
 
 func _ready():
 	# GuliKit Controller map for mac
 	Input.add_joy_mapping("03000000790000001c18000000010000,GuliKit Controller A,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b13,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)
-
+	if camera == null:
+		camera = get_viewport().get_camera_3d()
 
 func _physics_process(delta):
+	# player movement and rotation
 	update_position(delta)
 	if Input.get_connected_joypads().size() > 0 and is_using_gamepad:
 		update_gamepad_rotation(delta)
 	else:
 		update_rotation()
+	# player actions
+	update_shooting()
 
 
 func update_position(delta):
-	var horizontal_velocity = Input.get_vector("move_west","move_east","move_north","move_south").normalized() * speed
-	velocity.x = horizontal_velocity.x
-	velocity.z = horizontal_velocity.y
+	# old movement code
+	#var horizontal_velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized() * speed
+	#velocity.x = horizontal_velocity.x
+	#velocity.z = horizontal_velocity.y
+	
+	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed
+	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed
+	# jump
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
 			velocity_y = jump_velocity 
 		else: 
 			velocity_y = 0
+		
+		# slipperiness
+		# acceleration variable is meaningless when we are already using speed
+		if direction.length() > 0:
+			velocity = Vector3((velocity.x + (direction.x - velocity.x) * acceleration), velocity.y, (velocity.z + (direction.z - velocity.z) * acceleration))
+		else:
+			velocity = Vector3((velocity.x + (0 - velocity.x) * friction), velocity.y, (velocity.z + (0 - velocity.z) * friction))
 	else:
 		velocity_y -= gravity * delta
+		velocity.x = velocity.x + (direction.x - velocity.x) * acceleration
+		velocity.z = velocity.z + (direction.z - velocity.z) * acceleration
+
 	velocity.y = velocity_y
 	move_and_slide()
 
@@ -60,35 +80,17 @@ func update_rotation():
 	look_at(cursor_pos, Vector3.UP)
 
 
-func update_gamepad_rotation(delta):
-	if Input.is_action_pressed("aim"):
-		control_scheme = 1
-	if Input.is_action_just_released("aim"):
-		control_scheme = 0
+func update_gamepad_rotation(_delta):
+	right_stick_look.x = Input.get_axis("look_down", "look_up")#Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
+	right_stick_look.y = Input.get_axis("look_right", "look_left")#Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	if right_stick_look.length() >= 0.1:
+		# how to lerp this?
+		rotation.y = right_stick_look.angle()
+		#rotation.y = lerp(rotation.y, rs_look.angle(), delta * 2)
 
-	if control_scheme == 0:
-		# gamepad controls
-		angle+= SPEED * delta * delta 
-		angle = wrapf(angle, 0, 360)
-		
-		if Input.is_action_pressed("look_right"):
-			rotate_y(-SPEED * delta)
-		elif Input.is_action_pressed("look_left"):
-			rotate_y(+SPEED * delta)
-		elif Input.is_action_pressed("look_up"):
-			pass
-			#rotate_x(SPEED * delta)
-		elif Input.is_action_pressed("look_down"):
-			pass
-			#rotate_x(-SPEED * delta)
-	elif control_scheme == 1:
-		var horizontal_velocity = Input.get_vector("look_left", "look_right","look_up","look_down").normalized() * speed
-		aim_reticle.position.x += horizontal_velocity.x * delta
-		aim_reticle.position.y = get_global_transform().origin.y
-		aim_reticle.position.z += horizontal_velocity.y * delta
-		#aim_reticle.velocity.x = horizontal_velocity.x
-		#aim_reticle.velocity.z = horizontal_velocity.y
-		#aim_reticle.move_and_slide()
-		#var aim_pos = Vector3(aim_reticle.position.x,  get_global_transform().origin.y, aim_reticle.position.z)
-		look_at(aim_reticle.position, Vector3.UP)
 
+func update_shooting():
+	if Input.is_action_just_pressed("shoot"):
+		if raycast.is_colliding():
+			if raycast.get_collider().is_in_group("enemy"):
+				raycast.get_collider().die()
