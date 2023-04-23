@@ -9,7 +9,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
 
 # gamepad controls
-var is_using_gamepad = false
+var is_using_gamepad = true
 const SPEED = 5
 var angle = 0
 # aiming with left trigger enables scheme 1 and moves the reticle with the right stick
@@ -18,9 +18,14 @@ var control_scheme = 0
 @onready var aim_reticle = $"../aim_reticle"
 
 
+func _ready():
+	# GuliKit Controller map for mac
+	Input.add_joy_mapping("03000000790000001c18000000010000,GuliKit Controller A,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b13,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)
+
+
 func _physics_process(delta):
 	update_position(delta)
-	if Input.get_connected_joypads().size() > 0:
+	if Input.get_connected_joypads().size() > 0 and is_using_gamepad:
 		update_gamepad_rotation(delta)
 	else:
 		update_rotation()

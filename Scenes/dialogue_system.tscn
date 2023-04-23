@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbpgrlqqtu51d"]
+
+[ext_resource type="Script" path="res://scripts/DialogueSystem.gd" id="1_fquby"]
+[ext_resource type="Theme" uid="uid://dwyg7n4twvpkx" path="res://Scenes/dialogue_theme.tres" id="1_q1mqg"]
+
+[sub_resource type="Animation" id="1"]
+length = 0.001
+
+[sub_resource type="Animation" id="2"]
+resource_name = "indicator_blink"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_teh1y"]
+_data = {
+"RESET": SubResource("1"),
+"indicator_blink": SubResource("2")
+}
+
+[node name="Dialogue_system" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -300.0
+offset_right = 400.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_q1mqg")
+script = ExtResource("1_fquby")
+play_on_start = true
+dialogue_path = "res://Dialogue/intro.json"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.172549, 0.192157, 0.215686, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Name" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 3.0
+offset_bottom = 192.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "NAME"
+
+[node name="Text" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 169.0
+offset_bottom = 331.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "Congratulations! You are one of select few to have access to our new forestry tool."
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Continue" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -54.0
+offset_top = -154.0
+offset_right = -54.0
+offset_bottom = -154.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Indicator" type="Polygon2D" parent="Continue"]
+position = Vector2(12, 127)
+color = Color(0.87451, 0.592157, 0.0196078, 1)
+polygon = PackedVector2Array(-17, -21, 17, -21, 0, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Continue/Indicator"]
+autoplay = "indicator_blink"
+libraries = {
+"": SubResource("AnimationLibrary_teh1y")
+}
+
+[node name="continue" type="Button" parent="Continue/Indicator"]
+modulate = Color(1, 1, 1, 0)
+
+[connection signal="pressed" from="Continue/Indicator/continue" to="." method="_on_continue_pressed"]

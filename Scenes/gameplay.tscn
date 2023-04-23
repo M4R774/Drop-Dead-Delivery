@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bxat161gi2b7e"]
+[gd_scene load_steps=15 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/score_validator.gd" id="2_apfy6"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3"]
@@ -7,6 +7,8 @@
 [ext_resource type="Material" uid="uid://ckpr2drxvos7l" path="res://Materials/level_grid.tres" id="5_acbc1"]
 [ext_resource type="Texture2D" uid="uid://d26a5hwnho1po" path="res://Sprites/aim_reticle.jpg" id="5_rmskj"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="6_e02fo"]
+[ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
+[ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/test_level.tscn" id="9_lfx5y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k5vd"]
 albedo_texture = ExtResource("5_rmskj")
@@ -14,8 +16,6 @@ albedo_texture = ExtResource("5_rmskj")
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
-
-[sub_resource type="GDScript" id="GDScript_ymnt8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wovfm"]
 albedo_texture = ExtResource("5_rmskj")
@@ -76,37 +76,39 @@ layout_mode = 1
 [node name="3D" type="Node" parent="."]
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="3D"]
-use_collision = true
+visible = false
 
 [node name="CSGBox3D" type="CSGBox3D" parent="3D/CSGCombiner3D"]
 material_override = SubResource("StandardMaterial3D_6k5vd")
 size = Vector3(14, 1, 14)
 material = ExtResource("5_acbc1")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="3D" node_paths=PackedStringArray("camera")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07792, 0.712813)
+[node name="Player" type="CharacterBody3D" parent="3D" node_paths=PackedStringArray("camera")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
 script = ExtResource("6_e02fo")
 camera = NodePath("../Camera3D")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="3D/CharacterBody3D"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3D/Player"]
 mesh = SubResource("CapsuleMesh_y7a3f")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/Player"]
 shape = SubResource("CapsuleShape3D_1u61v")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="3D/CharacterBody3D"]
+[node name="OmniLight3D" type="OmniLight3D" parent="3D/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04541, 0)
 omni_range = 4.0
 
-[node name="SpotLight3D" type="SpotLight3D" parent="3D/CharacterBody3D"]
+[node name="SpotLight3D" type="SpotLight3D" parent="3D/Player"]
 transform = Transform3D(1, 0, 0, 0, 0.925011, 0.379941, 0, -0.379941, 0.925011, 0, 0, -0.409474)
 light_energy = 5.0
 spot_range = 13.0
 spot_angle = 31.2775
 
-[node name="Camera3D" type="Camera3D" parent="3D"]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 9, 3)
-script = SubResource("GDScript_ymnt8")
+[node name="Camera3D" type="Camera3D" parent="3D" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, -6.50845e-16, 1.74393e-16, 1.74393e-16, 0.5, 0.866026, -6.50845e-16, -0.866026, 0.5, 2.08165e-12, 7, 1)
+current = true
+script = ExtResource("8_e7b0r")
+player = NodePath("../Player")
 
 [node name="aim_reticle" type="CharacterBody3D" parent="3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07792, -2.60619)
@@ -115,4 +117,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.07792, -2.60619)
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_wovfm")
 mesh = SubResource("QuadMesh_7djna")
-skeleton = NodePath("../../CharacterBody3D")
+skeleton = NodePath("../../Player")
+
+[node name="Test_level" parent="3D" instance=ExtResource("9_lfx5y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5692)
