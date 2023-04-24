@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxuxu2vlfnyq3"]
+[gd_scene load_steps=8 format=3 uid="uid://dkdw76jglk3u5"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -64,5 +64,8 @@ bones/14/rotation = Quaternion(-0.0262817, -0.00995357, -0.0283283, 0.999204)
 transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0.140474, 0.622101, -1.40058)
 target_position = Vector3(2.08165e-12, 2.08165e-12, 20)
 debug_shape_custom_color = Color(0.819608, 0, 0.968627, 1)
+
+[node name="Shoot_cooldown" type="Timer" parent="."]
+one_shot = true
 
 [editable path="player"]

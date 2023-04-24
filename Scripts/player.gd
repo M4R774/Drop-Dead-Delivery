@@ -21,6 +21,8 @@ var right_stick_look = Vector2(0,0)
 # shooting
 @onready var raycast = $RayCast3D
 
+# rolling
+var is_rolling = false
 
 func _ready():
 	init_mac()
@@ -54,12 +56,21 @@ func update_position(delta):
 	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed
 	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed
 
-	# jump
+	
 	if is_on_floor():
+		# jump
 		if Input.is_action_just_pressed("jump"):
 			velocity_y = jump_velocity 
 		else: 
 			velocity_y = 0
+		# roll
+		if Input.is_action_just_pressed("roll") and !is_rolling:
+			is_rolling = true
+			var tween = create_tween()
+			tween.set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
+			tween.tween_callback(reset_rolling)
+			print("rolling")
 		
 		# slipperiness
 		# acceleration variable is meaningless when we are already using speed
@@ -75,6 +86,10 @@ func update_position(delta):
 	velocity.y = velocity_y
 	play_sound_if_moving()
 	move_and_slide()
+	
+
+func reset_rolling():
+	is_rolling = false
 
 
 func play_sound_if_moving():
@@ -100,15 +115,30 @@ func update_rotation():
 func update_gamepad_rotation(_delta):
 	right_stick_look.x = Input.get_axis("look_down", "look_up")
 	right_stick_look.y = Input.get_axis("look_right", "look_left")
+
 	if right_stick_look.length() >= 0.1:
 		# how to lerp this?
-		rotation.y = right_stick_look.angle()
-		#rotation.y = lerp(rotation.y, rs_look.angle(), delta * 2)
+		# these two methods end up feeling the same
+		#rotation.y = right_stick_look.angle()
+		rotation.y = atan2(right_stick_look.y, right_stick_look.x)
+		
+		# attempt to lerp with quaternion, not good
+		# Convert basis to quaternion, keep in mind scale is lost
+#		var a = Quaternion(transform.basis)
+#		var b = Quaternion(transform.basis)
+#		b.y = right_stick_look.angle()
+#		print(b.normalized())
+#		# Interpolate using spherical-linear interpolation (SLERP).
+#		var c = a.slerp(b.normalized(),0.1) # find halfway point between a and b
+#		# Apply back
+#		transform.basis = Basis(c)
+	
 
 
 func update_shooting():
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
 		shotgunSound.play()
+		$Shoot_cooldown.start()
 		if raycast.is_colliding():
 			if raycast.get_collider().is_in_group("enemy"):
 				raycast.get_collider().die()
@@ -122,6 +152,9 @@ func add_score(score: int):
 
 
 func got_shot():
+	# player has "i-frames"
+	if is_rolling:
+		return
 	damageSound.play()
 
 

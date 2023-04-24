@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://caxorjekdofh8"]
+[gd_scene load_steps=10 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/score.gd" id="2_ewkp8"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3"]
 [ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="4_gvk62"]
 [ext_resource type="PackedScene" uid="uid://dbcu4fwcmn5tg" path="res://Scenes/Levels/maze_level.tscn" id="5_iaswt"]
-[ext_resource type="PackedScene" uid="uid://cxuxu2vlfnyq3" path="res://Scenes/player.tscn" id="7_wps4a"]
+[ext_resource type="PackedScene" uid="uid://dkdw76jglk3u5" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
-[ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
-[ext_resource type="PackedScene" uid="uid://db46ovkr6eldi" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
+[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
+[ext_resource type="PackedScene" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
 
 [node name="Root" type="Control"]
 layout_mode = 3
@@ -48,6 +48,7 @@ layout_mode = 1
 [node name="3D" type="Node" parent="."]
 
 [node name="Player" parent="3D" instance=ExtResource("7_wps4a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, -1.33182)
 speed = 5
 
 [node name="Camera3D" type="Camera3D" parent="3D" node_paths=PackedStringArray("player")]
