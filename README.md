@@ -4,11 +4,11 @@ Game jam repo, wohoo!
 
 ## TODO
 
-- Damage ääni pelaajalle
 - score näkyviin ruudulle
 - projektiilit näkyville
 - Liikkuminen on outo
 - itch.io web release pipeline
+- Resoluutio vähän pienemmäksi
 
 Ideoita:
 - AI-pathfinding

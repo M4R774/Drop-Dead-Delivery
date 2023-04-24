@@ -6,6 +6,7 @@ extends CharacterBody3D
 @export var camera: Camera3D
 @export var shotgunSound: AudioStreamPlayer3D
 @export var movementSound: AudioStreamPlayer3D
+@export var damageSound: AudioStreamPlayer3D
 
 var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -25,6 +26,7 @@ func _ready():
 	init_mac()
 	if camera == null:
 		camera = get_viewport().get_camera_3d()
+
 
 func _physics_process(delta):
 	# player movement and rotation
@@ -74,12 +76,14 @@ func update_position(delta):
 	play_sound_if_moving()
 	move_and_slide()
 
+
 func play_sound_if_moving():
 	if velocity.length() > 1:
 		if !movementSound.is_playing():
 			movementSound.play()
 	else:
 		movementSound.stop()
+
 
 func update_rotation():
 	var player_pos = global_transform.origin
@@ -111,7 +115,7 @@ func update_shooting():
 
 
 func got_shot():
-	print("I got shot! ", name)
+	damageSound.play()
 
 
 func init_mac():

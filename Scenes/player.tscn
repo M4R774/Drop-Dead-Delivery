@@ -1,20 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxuxu2vlfnyq3"]
+[gd_scene load_steps=8 format=3 uid="uid://cxuxu2vlfnyq3"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
 [ext_resource type="AudioStream" uid="uid://dnbnje5gvbgbi" path="res://Sounds/Doom_Shotgun_Firing.mp3" id="2_awasp"]
 [ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
+[ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "shotgunSound", "movementSound") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "shotgunSound", "movementSound", "damageSound") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
 script = ExtResource("1_1m6ih")
 camera = NodePath("../Camera3D")
 shotgunSound = NodePath("WeaponSound")
 movementSound = NodePath("MovementSound")
+damageSound = NodePath("DamageSound")
 
 [node name="WeaponSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)
@@ -22,6 +24,10 @@ stream = ExtResource("2_awasp")
 
 [node name="MovementSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("3_dwpwh")
+volume_db = -10.766
+
+[node name="DamageSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("4_aru3c")
 volume_db = -10.766
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
