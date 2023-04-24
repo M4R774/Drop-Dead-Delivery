@@ -4,11 +4,13 @@ extends CharacterBody3D
 @export var speed = 10
 @export var jump_velocity = 4.5
 @export var camera: Camera3D
+@export var shotgunSound: AudioStreamPlayer3D
+@export var movementSound: AudioStreamPlayer3D
 
 var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
-@export var friction = 0.05
+@export var friction = 0.2
 var acceleration = 1
 
 # gamepad controls
@@ -20,8 +22,7 @@ var right_stick_look = Vector2(0,0)
 
 
 func _ready():
-	# GuliKit Controller map for mac
-	Input.add_joy_mapping("03000000790000001c18000000010000,GuliKit Controller A,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,leftstick:b13,rightstick:b14,leftshoulder:b6,rightshoulder:b7,dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)
+	init_mac()
 	if camera == null:
 		camera = get_viewport().get_camera_3d()
 
@@ -48,13 +49,9 @@ func _input(event):
 
 
 func update_position(delta):
-	# old movement code
-	#var horizontal_velocity = Input.get_vector("move_left","move_right","move_up","move_down").normalized() * speed
-	#velocity.x = horizontal_velocity.x
-	#velocity.z = horizontal_velocity.y
-	
 	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed
 	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed
+
 	# jump
 	if is_on_floor():
 		if Input.is_action_just_pressed("jump"):
@@ -74,8 +71,15 @@ func update_position(delta):
 		velocity.z = velocity.z + (direction.z - velocity.z) * acceleration
 
 	velocity.y = velocity_y
+	play_sound_if_moving()
 	move_and_slide()
 
+func play_sound_if_moving():
+	if velocity.length() > 1:
+		if !movementSound.is_playing():
+			movementSound.play()
+	else:
+		movementSound.stop()
 
 func update_rotation():
 	var player_pos = global_transform.origin
@@ -86,14 +90,12 @@ func update_rotation():
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var cursor_pos = dropPlane.intersects_ray(from, to)
 
-	#cursor.global_transfrom.origin = cursor_pos + Vector3(0,1,0)
-
 	look_at(cursor_pos, Vector3.UP)
 
 
 func update_gamepad_rotation(_delta):
-	right_stick_look.x = Input.get_axis("look_down", "look_up")#Input.get_action_strength("look_up") - Input.get_action_strength("look_down")
-	right_stick_look.y = Input.get_axis("look_right", "look_left")#Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	right_stick_look.x = Input.get_axis("look_down", "look_up")
+	right_stick_look.y = Input.get_axis("look_right", "look_left")
 	if right_stick_look.length() >= 0.1:
 		# how to lerp this?
 		rotation.y = right_stick_look.angle()
@@ -102,6 +104,7 @@ func update_gamepad_rotation(_delta):
 
 func update_shooting():
 	if Input.is_action_just_pressed("shoot"):
+		shotgunSound.play()
 		if raycast.is_colliding():
 			if raycast.get_collider().is_in_group("enemy"):
 				raycast.get_collider().die()
@@ -109,3 +112,12 @@ func update_shooting():
 
 func got_shot():
 	print("I got shot! ", name)
+
+
+func init_mac():
+	# GuliKit Controller map for mac
+	Input.add_joy_mapping("03000000790000001c18000000010000,
+		GuliKit Controller A,a:b0,b:b1,y:b4,x:b3,start:b11,back:b10,
+		leftstick:b13,rightstick:b14,leftshoulder:b6,rightshoulder:b7,
+		dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2
+		,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)

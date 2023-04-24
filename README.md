@@ -4,11 +4,18 @@ Game jam repo, wohoo!
 
 ## TODO
 
-- Ukkelin ohjaaminen
-    * WASD
-    * Hiiri kääntää
-- Kamera seuraamaan pelaajaa
-- Testirata, jossa on ramppeja, seiniä ym.
+- Damage ääni pelaajalle
+- score näkyviin ruudulle
+- projektiilit näkyville
+- Liikkuminen on outo
+- itch.io web release pipeline
 
 Ideoita:
+- AI-pathfinding
 - Käytä json endpointtia
+
+
+Doned tässä istunnossa: 
+- Pelaajalle lisää kitkaa
+- Labyrintti rata
+- Place holder äänet

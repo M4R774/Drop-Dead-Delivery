@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbpgrlqqtu51d"]
+[gd_scene load_steps=6 format=3 uid="uid://dods2ycq586wi"]
 
 [ext_resource type="Script" path="res://scripts/DialogueSystem.gd" id="1_fquby"]
-[ext_resource type="Theme" uid="uid://dwyg7n4twvpkx" path="res://Scenes/dialogue_theme.tres" id="1_q1mqg"]
+[ext_resource type="Theme" uid="uid://dwyg7n4twvpkx" path="res://dialogue_theme.tres" id="1_tuedk"]
 
 [sub_resource type="Animation" id="1"]
 length = 0.001
@@ -29,7 +29,7 @@ offset_right = 400.0
 offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_q1mqg")
+theme = ExtResource("1_tuedk")
 script = ExtResource("1_fquby")
 play_on_start = true
 dialogue_path = "res://Dialogue/intro.json"

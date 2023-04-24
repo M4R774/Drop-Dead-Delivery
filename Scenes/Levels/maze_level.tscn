@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3 uid="uid://dbcu4fwcmn5tg"]
+
+[ext_resource type="Texture2D" uid="uid://d26a5hwnho1po" path="res://Sprites/aim_reticle.jpg" id="1_sv3y3"]
+[ext_resource type="Material" uid="uid://ckpr2drxvos7l" path="res://Materials/level_grid.tres" id="2_tki8b"]
+[ext_resource type="Texture2D" uid="uid://cyuib3yma8vk6" path="res://Sprites/kenney_prototype-textures/PNG/Light/texture_12.png" id="3_x15op"]
+[ext_resource type="Texture2D" uid="uid://b4vf68edsbpqg" path="res://Sprites/kenney_prototype-textures/PNG/Orange/texture_01.png" id="4_y5fg7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k5vd"]
+albedo_texture = ExtResource("1_sv3y3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coe7k"]
+albedo_texture = ExtResource("3_x15op")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yaap"]
+albedo_texture = ExtResource("4_y5fg7")
+uv1_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Maze_level" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.7826, 0, -4.85062)
+use_collision = true
+
+[node name="Maze_mother_block" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 2, -29)
+material_override = SubResource("StandardMaterial3D_6k5vd")
+size = Vector3(64, 8, 72)
+material = ExtResource("2_tki8b")
+
+[node name="maze-cutout" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -14)
+operation = 2
+size = Vector3(42, 4, 8)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout2" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -27, 4, -31)
+operation = 2
+size = Vector3(42, 4, 4)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout3" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 5, -50)
+operation = 2
+size = Vector3(42, 6, 4)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout4" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -19, 5, -41)
+operation = 2
+size = Vector3(42, 6, 8)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout5" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -24)
+operation = 2
+size = Vector3(38, 6, 8)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout6" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11, 5, -34)
+operation = 2
+size = Vector3(14, 6, 8)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="maze-cutout7" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -36)
+operation = 2
+size = Vector3(20, 6, 10)
+material = SubResource("StandardMaterial3D_coe7k")
+
+[node name="obstacle-union" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, -12)
+material_override = ExtResource("2_tki8b")
+size = Vector3(4, 2, 4)
+material = SubResource("StandardMaterial3D_7yaap")
+
+[node name="obstacle-union2" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 3, -17)
+material_override = ExtResource("2_tki8b")
+size = Vector3(4, 2, 4)
+material = SubResource("StandardMaterial3D_7yaap")
+
+[node name="obstacle-union3" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -12)
+material_override = ExtResource("2_tki8b")
+size = Vector3(4, 4, 4)
+material = SubResource("StandardMaterial3D_7yaap")
+
+[node name="obstacle-union4" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 2, -14)
+material_override = ExtResource("2_tki8b")
+size = Vector3(4, 2, 4)
+material = SubResource("StandardMaterial3D_7yaap")
+
+[node name="obstacle-union5" type="CSGBox3D" parent="Maze_level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2, -37)
+material_override = ExtResource("2_tki8b")
+size = Vector3(4, 2, 4)
+material = SubResource("StandardMaterial3D_7yaap")

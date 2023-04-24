@@ -3,16 +3,16 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d26a5hwnho1po"
-path.etc2="res://.godot/imported/aim_reticle.jpg-10f02aff644927d411fdee400695ed55.etc2.ctex"
+path.s3tc="res://.godot/imported/aim_reticle.jpg-10f02aff644927d411fdee400695ed55.s3tc.ctex"
 metadata={
-"imported_formats": ["etc2_astc"],
+"imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://Sprites/aim_reticle.jpg"
-dest_files=["res://.godot/imported/aim_reticle.jpg-10f02aff644927d411fdee400695ed55.etc2.ctex"]
+dest_files=["res://.godot/imported/aim_reticle.jpg-10f02aff644927d411fdee400695ed55.s3tc.ctex"]
 
 [params]
 
