@@ -93,8 +93,8 @@ func update_rotation():
 	var from = camera.project_ray_origin(mouse_pos)
 	var to = from + camera.project_ray_normal(mouse_pos) * ray_length
 	var cursor_pos = dropPlane.intersects_ray(from, to)
-
-	look_at(cursor_pos, Vector3.UP)
+	if (cursor_pos != null):
+		look_at(cursor_pos, Vector3.UP)
 
 
 func update_gamepad_rotation(_delta):
@@ -112,6 +112,13 @@ func update_shooting():
 		if raycast.is_colliding():
 			if raycast.get_collider().is_in_group("enemy"):
 				raycast.get_collider().die()
+				add_score(10)
+
+
+func add_score(score: int):
+	if HIGHSCORE_SINGLETON.SCORE == null:
+		HIGHSCORE_SINGLETON.SCORE = 0
+	HIGHSCORE_SINGLETON.SCORE += score
 
 
 func got_shot():

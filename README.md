@@ -4,18 +4,20 @@ Game jam repo, wohoo!
 
 ## TODO
 
-- score näkyviin ruudulle
-- projektiilit näkyville
-- Liikkuminen on outo
 - itch.io web release pipeline
-- Resoluutio vähän pienemmäksi
+- E2E, eli kuoleminen ja siirtyminen score ruutuun
+- projektiilit näkyville
+- Vihollisen ampumiselle ääni
+- Vihollisen kuolemiselle/damagelle ääni
 
 Ideoita:
 - AI-pathfinding
+- Tutoriaali
 - Käytä json endpointtia
 
-
 Doned tässä istunnossa: 
+- Resoluutio vähän pienemmäksi
+- score näkyviin ruudulle
 - Pelaajalle lisää kitkaa
 - Labyrintti rata
 - Place holder äänet

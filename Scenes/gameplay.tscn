@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://caxorjekdofh8"]
+[gd_scene load_steps=10 format=3 uid="uid://caxorjekdofh8"]
 
-[ext_resource type="Script" path="res://Scripts/Menus and highscore/score_validator.gd" id="2_apfy6"]
+[ext_resource type="Script" path="res://Scripts/score.gd" id="2_ewkp8"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3"]
-[ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="3_dajg1"]
 [ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="4_gvk62"]
 [ext_resource type="PackedScene" uid="uid://dbcu4fwcmn5tg" path="res://Scenes/Levels/maze_level.tscn" id="5_iaswt"]
 [ext_resource type="PackedScene" uid="uid://cxuxu2vlfnyq3" path="res://Scenes/player.tscn" id="7_wps4a"]
@@ -19,45 +18,29 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="2D" type="MarginContainer" parent="."]
-visible = false
-layout_mode = 0
+[node name="HUD" type="Control" parent="."]
+anchors_preset = 0
 offset_right = 1155.0
 offset_bottom = 645.0
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
 
-[node name="VBoxContainer" type="VBoxContainer" parent="2D"]
+[node name="Score Centerer" type="Control" parent="HUD"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 50
+anchors_preset = 0
+offset_left = 507.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 81.0
 
-[node name="Explanation" type="Label" parent="2D/VBoxContainer"]
+[node name="Score" type="Label" parent="HUD/Score Centerer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 7
+offset_right = 1155.0
+offset_bottom = 36.0
+size_flags_vertical = 0
 theme = ExtResource("3")
-text = "This scene represents typical gameplay scene. Set player score below (only integers are valid), and press \"Win game\" buton."
-autowrap_mode = 3
+text = "Score: 0"
+script = ExtResource("2_ewkp8")
 
-[node name="Score" type="LineEdit" parent="2D/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("3")
-placeholder_text = "0"
-virtual_keyboard_type = 2
-script = ExtResource("2_apfy6")
-
-[node name="Submit" type="Button" parent="2D/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("3")
-disabled = true
-text = "Win game"
-script = ExtResource("3_dajg1")
+[node name="fps_counter" parent="HUD" instance=ExtResource("10_q6k2v")]
 
 [node name="Pause menu" parent="." instance=ExtResource("4_gvk62")]
 layout_mode = 1
@@ -83,5 +66,3 @@ transform = Transform3D(0.409334, 0, -0.912385, 0, 1, 0, 0.912385, 0, 0.409334, 
 
 [node name="Enemy2" parent="3D" instance=ExtResource("11_jrkqs")]
 transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, 19.6509, 1.00687, -20.2887)
-
-[node name="fps_counter" parent="." instance=ExtResource("10_q6k2v")]
