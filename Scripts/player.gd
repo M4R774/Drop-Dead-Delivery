@@ -28,12 +28,23 @@ func _ready():
 func _physics_process(delta):
 	# player movement and rotation
 	update_position(delta)
-	if Input.get_connected_joypads().size() > 0 and is_using_gamepad:
+	if is_using_gamepad:
 		update_gamepad_rotation(delta)
 	else:
 		update_rotation()
 	# player actions
 	update_shooting()
+
+
+# checking if player is using kb and mouse or gamepad
+# this should only be run for player 1, as player 2 is always on gamepad
+# player 1 might be on kb and player 2 on gamepad on the same device
+# this needs to be resolved, perhaps with a is_multiplayer boolean or smt
+func _input(event):
+	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
+		is_using_gamepad = true
+	else:
+		is_using_gamepad = false
 
 
 func update_position(delta):
