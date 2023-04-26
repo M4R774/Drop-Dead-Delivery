@@ -68,4 +68,8 @@ debug_shape_custom_color = Color(0.819608, 0, 0.968627, 1)
 [node name="Shoot_cooldown" type="Timer" parent="."]
 one_shot = true
 
+[node name="Roll_cooldown" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
 [editable path="player"]

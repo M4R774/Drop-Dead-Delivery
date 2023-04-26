@@ -16,6 +16,7 @@ var acceleration = 1
 
 # gamepad controls
 var is_using_gamepad = true
+var left_stick_turn = Vector2(0,0)
 var right_stick_look = Vector2(0,0)
 
 # shooting
@@ -23,6 +24,7 @@ var right_stick_look = Vector2(0,0)
 
 # rolling
 var is_rolling = false
+var roll_factor = 1
 
 func _ready():
 	init_mac()
@@ -53,8 +55,8 @@ func _input(event):
 
 
 func update_position(delta):
-	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed
-	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed
+	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed * roll_factor
+	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed * roll_factor
 
 	
 	if is_on_floor():
@@ -64,13 +66,13 @@ func update_position(delta):
 		else: 
 			velocity_y = 0
 		# roll
-		if Input.is_action_just_pressed("roll") and !is_rolling:
+		if Input.is_action_just_pressed("roll") and !is_rolling and $Roll_cooldown.time_left == 0:
 			is_rolling = true
+			roll_factor = 2
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
 			tween.tween_callback(reset_rolling)
-			print("rolling")
 		
 		# slipperiness
 		# acceleration variable is meaningless when we are already using speed
@@ -90,6 +92,8 @@ func update_position(delta):
 
 func reset_rolling():
 	is_rolling = false
+	roll_factor = 1                                               
+	$Roll_cooldown.start()
 
 
 func play_sound_if_moving():
@@ -113,9 +117,13 @@ func update_rotation():
 
 
 func update_gamepad_rotation(_delta):
+	left_stick_turn.x = Input.get_axis("move_down", "move_up")
+	left_stick_turn.y = Input.get_axis("move_right", "move_left")
 	right_stick_look.x = Input.get_axis("look_down", "look_up")
 	right_stick_look.y = Input.get_axis("look_right", "look_left")
-
+	
+	if left_stick_turn.length() >= 0.1:
+		rotation.y = atan2(left_stick_turn.y, left_stick_turn.x)
 	if right_stick_look.length() >= 0.1:
 		# how to lerp this?
 		# these two methods end up feeling the same
@@ -165,3 +173,4 @@ func init_mac():
 		leftstick:b13,rightstick:b14,leftshoulder:b6,rightshoulder:b7,
 		dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2
 		,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)
+
