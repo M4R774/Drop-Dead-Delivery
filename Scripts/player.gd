@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+signal player_died
 
 @export var speed = 10
 @export var jump_velocity = 4.5
@@ -8,10 +9,11 @@ extends CharacterBody3D
 @export var movementSound: AudioStreamPlayer3D
 @export var damageSound: AudioStreamPlayer3D
 
+@export var friction = 0.2
+
 var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
-@export var friction = 0.2
 var acceleration = 1
 
 # gamepad controls
@@ -33,6 +35,9 @@ func _ready():
 
 
 func _physics_process(delta):
+	if out_of_bounds():
+		die()
+
 	# player movement and rotation
 	update_position(delta)
 	if is_using_gamepad:
@@ -41,6 +46,16 @@ func _physics_process(delta):
 		update_rotation()
 	# player actions
 	update_shooting()
+
+
+func out_of_bounds():
+	return self.position.y < -10
+
+
+func die():
+	if !damageSound.is_playing():
+		damageSound.play()
+	emit_signal("player_died")
 
 
 # checking if player is using kb and mouse or gamepad

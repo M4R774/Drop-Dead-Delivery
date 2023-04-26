@@ -8,7 +8,7 @@ extends CharacterBody3D
 
 @onready var raycast = $RayCast3D
 var target
-@onready var reload = $Reload
+@onready var reload_timer = $ReloadTimer
 
 var attack_cooldown = 1
 
@@ -17,7 +17,7 @@ func _process(_delta):
 	if target != null:
 		look_at(target.position, Vector3.UP)
 		if raycast.is_colliding() and raycast.get_collider().is_in_group("player"):
-			if reload.time_left == 0:
+			if reload_timer.time_left == 0:
 				shoot(raycast.get_collider())
 
 
@@ -33,5 +33,5 @@ func die():
 
 func shoot(victim):
 	victim.got_shot()
-	reload.start(1)
+	reload_timer.start(1)
 	
