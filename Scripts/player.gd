@@ -159,6 +159,7 @@ func update_gamepad_rotation(_delta):
 
 
 func update_shooting():
+	# add melee with raycast range 0.1?
 	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
 		shotgunSound.play()
 		$Shoot_cooldown.start()

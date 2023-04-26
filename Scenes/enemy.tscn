@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://db46ovkr6eldi"]
+[gd_scene load_steps=6 format=3 uid="uid://mer2dxv4hg4w"]
 
 [ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_pdfpy"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_3jbwr"]
@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
+height = 2.70091
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sdsyx"]
 size = Vector3(2.51494, 2.94946, 5.10564)
@@ -19,6 +20,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_y7a3f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.389512, 0)
 shape = SubResource("CapsuleShape3D_1u61v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
@@ -60,6 +62,13 @@ shape = SubResource("BoxShape3D_sdsyx")
 [node name="ReloadTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 3.0
+target_desired_distance = 2.0
+avoidance_enabled = true
+radius = 1.0
+
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 
 [editable path="player"]

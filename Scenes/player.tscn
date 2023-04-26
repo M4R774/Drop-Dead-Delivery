@@ -9,6 +9,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
+height = 2.61878
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "shotgunSound", "movementSound", "damageSound") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
@@ -35,6 +36,7 @@ visible = false
 mesh = SubResource("CapsuleMesh_y7a3f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33672, 0)
 shape = SubResource("CapsuleShape3D_1u61v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
