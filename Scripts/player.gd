@@ -6,6 +6,7 @@ signal player_died
 @export var jump_velocity = 4.5
 @export var camera: Camera3D
 @export var shotgunSound: AudioStreamPlayer3D
+@export var meleeSound: AudioStreamPlayer3D
 @export var movementSound: AudioStreamPlayer3D
 @export var damageSound: AudioStreamPlayer3D
 
@@ -23,6 +24,10 @@ var right_stick_look = Vector2(0,0)
 
 # shooting
 @onready var raycast = $RayCast3D
+var shotgunRaycastPos = Vector3(0.14, 0.622, -1.401)
+var shotgun_range = 10
+var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
+var melee_range = 1.5
 
 # rolling
 var is_rolling = false
@@ -161,12 +166,32 @@ func update_gamepad_rotation(_delta):
 func update_shooting():
 	# add melee with raycast range 0.1?
 	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
+		raycast.position = shotgunRaycastPos
 		shotgunSound.play()
 		$Shoot_cooldown.start()
-		if raycast.is_colliding():
-			if raycast.get_collider().is_in_group("enemy"):
-				raycast.get_collider().die()
-				add_score(10)
+		# uses a combination of three different raycasts
+		var collided_bodies = raycast.get_colliding_bodies()
+		if collided_bodies.size() > 0:
+			for body in collided_bodies:
+				if global_position.distance_to(body.position) <= shotgun_range:
+					body.die()
+					add_score(10)
+	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
+		raycast.position = meleeRaycastPos
+		meleeSound.play()
+		$Melee_cooldown.start()
+		var collided_bodies = raycast.get_colliding_bodies()
+		if collided_bodies.size() > 0:
+			for body in collided_bodies:
+				if global_position.distance_to(body.position) <= melee_range:
+					body.die()
+					add_score(10)
+		# old way of doing it here:
+#		if raycast.is_colliding():
+#			if raycast.get_collision_point().distance_to(global_position) <= melee_range:
+#				if raycast.get_collider().is_in_group("enemy"):
+#					raycast.get_collider().die()
+#					add_score(10)
 
 
 func add_score(score: int):

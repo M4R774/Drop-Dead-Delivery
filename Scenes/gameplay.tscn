@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_3ffrm"]
 [ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="4_gvk62"]
 [ext_resource type="PackedScene" uid="uid://dbcu4fwcmn5tg" path="res://Scenes/Levels/maze_level.tscn" id="5_iaswt"]
-[ext_resource type="PackedScene" uid="uid://dkdw76jglk3u5" path="res://Scenes/player.tscn" id="7_wps4a"]
+[ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
