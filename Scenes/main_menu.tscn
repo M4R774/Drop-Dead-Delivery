@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://jrehjpxel356"]
+[gd_scene load_steps=7 format=3 uid="uid://jrehjpxel356"]
 
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/reset.gd" id="1_5ew53"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_gameplay.gd" id="3_a6di8"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_d3a0q"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/volume_slider.gd" id="5_psdlo"]
+[ext_resource type="AudioStream" uid="uid://c3ftrgpv0sfaf" path="res://Sounds/Rites of chrome and leather.mp3" id="6_vgk47"]
 
 [node name="Main menu" type="Control"]
 layout_mode = 3
@@ -73,3 +74,7 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 script = ExtResource("5_psdlo")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_vgk47")
+autoplay = true

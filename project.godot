@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 
 HIGHSCORE_SINGLETON="*res://Scripts/Menus and highscore/HIGHSCORE_SINGLETON.gd"
 SECRETS="*res://SECRETS.gd"
+BackgroundMusic="*res://Scenes/background_music.tscn"
 
 [display]
 
