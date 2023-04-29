@@ -9,6 +9,7 @@ var health = 5
 
 
 func _ready():
+	$WalkAnimationOffset.start(randf_range(0, 1.5))
 	$Melee_cooldown.start()
 
 
@@ -49,3 +50,9 @@ func _on_hands_body_entered(body:Node3D):
 	if body.is_in_group("player") and $Melee_cooldown.time_left == 0:
 		$Melee_cooldown.start()
 		body.add_health(-10)
+
+
+func _on_walk_animation_offset_timeout():
+	var animation_player = $ghoul.get_node("AnimationPlayer")
+	animation_player.play("ghoul_walk")
+	animation_player.speed_scale = randf_range(0.75, 1.25)
