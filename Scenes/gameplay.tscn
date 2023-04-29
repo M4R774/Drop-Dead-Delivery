@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://64lrjbh76pmx"]
+[gd_scene load_steps=9 format=3 uid="uid://64lrjbh76pmx"]
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
@@ -9,20 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 
-[sub_resource type="Curve3D" id="Curve3D_7178q"]
-_data = {
-"points": PackedVector3Array(-3.45417, 0, -0.130346, 3.45417, 0, 0.130346, -16.6105, 0, -17.2688, 0, 0, 0, 0, 0, 0, 16.8589, 0, -16.8776, 0, 0, 0, 0, 0, 0, 16.803, 0, 17.3181, 0, 0, 0, 0, 0, 0, -17.0575, 0, 17.2064, -3.45417, 0, -0.130346, 3.45417, 0, 0.130346, -16.6105, 0, -17.2688),
-"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
-}
-point_count = 5
-
 [node name="play_field" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_tr1y1")
 player = NodePath("Player")
 zombie_scene = ExtResource("10_inqas")
 ammo_box_scene = ExtResource("14_qbaql")
 health_kit_scene = ExtResource("4_7ho7q")
-map_tiles = Array[PackedScene]([ExtResource("8_r6l27")])
+map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27")])
 
 [node name="HUD" parent="." instance=ExtResource("1_o5006")]
 
@@ -35,12 +28,6 @@ ammo = 0
 transform = Transform3D(1, -6.50845e-16, 1.74393e-16, 1.74393e-16, 0.5, 0.866026, -6.50845e-16, -0.866026, 0.5, 2.08165e-12, 7, 1)
 script = ExtResource("8_e7b0r")
 player = NodePath("../Player")
-
-[node name="ZombieSpawnPath" type="Path3D" parent="."]
-curve = SubResource("Curve3D_7178q")
-
-[node name="ZombieSpawnLocation" type="PathFollow3D" parent="ZombieSpawnPath"]
-transform = Transform3D(0.0377089, 0, 0.999288, 0, 1, 0, -0.999288, 0, 0.0377089, -16.6105, 0, -17.2688)
 
 [node name="ZombieSpawnTimer" type="Timer" parent="."]
 wait_time = 5.0
