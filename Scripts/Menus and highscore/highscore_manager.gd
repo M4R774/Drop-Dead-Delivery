@@ -18,6 +18,7 @@ var back_end_url = ""
 
 
 func _ready():
+	get_tree().paused = false
 	back_end_url = "https://" + SECRETS.DOMAIN + "/highscores/" + HIGHSCORE_SINGLETON.GAME_NAME
 	playername_prompt.visible = false
 	to_main_menu.grab_focus()

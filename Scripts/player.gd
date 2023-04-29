@@ -66,6 +66,7 @@ func die():
 	if !damageSound.is_playing():
 		damageSound.play()
 	emit_signal("player_died")
+	get_tree().paused = true
 
 
 # checking if player is using kb and mouse or gamepad
@@ -195,7 +196,7 @@ func add_ammo(ammo_to_add: int):
 
 func add_health(health_to_add: int):
 	health_percentage += health_to_add
-	if health_percentage < 0:
+	if health_percentage <= 0:
 		die()
 	elif health_percentage > 100:
 		health_percentage = 100
