@@ -33,6 +33,7 @@ var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
 @export var ammo: int = 10
 var rng = RandomNumberGenerator.new()
+var projectile_prefab = preload("res://Scenes/shotgun_projectile.tscn")
 
 # rolling
 var is_rolling = false
@@ -193,7 +194,7 @@ func update_shooting():
 
 
 func instantiate_projectile():
-	var projectile = load("res://Scenes/shotgun_projectile.tscn").instantiate()
+	var projectile = projectile_prefab.instantiate()
 	projectile.rotation = global_rotation + Vector3(rng.randf_range(-inaccuracy, inaccuracy), rng.randf_range(-inaccuracy, inaccuracy), 0)
 	projectile.position += $player/Shotgun.global_position
 	add_sibling(projectile)
