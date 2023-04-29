@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bxat161gi2b7e"]
+[gd_scene load_steps=17 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/score.gd" id="2_ewkp8"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/death_screen.gd" id="2_rhw2i"]
@@ -11,8 +11,9 @@
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
-[ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
+[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
 [ext_resource type="PackedScene" uid="uid://mer2dxv4hg4w" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
+[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="14_7v7t3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
 bg_color = Color(0.25098, 0.184314, 0.168627, 1)
@@ -183,6 +184,9 @@ navigation_mesh = SubResource("NavigationMesh_lddtv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5692)
 
 [node name="Maze_level" parent="3D/NavigationRegion3D" instance=ExtResource("5_iaswt")]
+
+[node name="item" parent="." instance=ExtResource("14_7v7t3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.332334, 0.565859, -7.45486)
 
 [connection signal="player_ammo_updated" from="3D/Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
 [connection signal="player_died" from="3D/Player" to="HUD/Death screen" method="_on_player_player_died"]

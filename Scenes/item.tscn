@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://4kf6p5qfixrw"]
+
+[ext_resource type="Script" path="res://Scripts/item.gd" id="1_r7rht"]
+[ext_resource type="Material" uid="uid://bnlqmle4xnl4q" path="res://Materials/item.tres" id="2_dmh1y"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yjlve"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_axyt5"]
+
+[node name="item" type="Area3D" groups=["item"]]
+script = ExtResource("1_r7rht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_yjlve")
+surface_material_override/0 = ExtResource("2_dmh1y")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_axyt5")
