@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=15 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -7,9 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
 [ext_resource type="AudioStream" uid="uid://dubk30fs6kdlu" path="res://Sounds/dspunch.wav" id="3_ystsp"]
 [ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
-[ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
+[ext_resource type="AudioStream" uid="uid://cb1kjxr8w8a7p" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
 [ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="7_osesm"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
+[ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
@@ -50,6 +51,9 @@ volume_db = -10.766
 [node name="DamageSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("4_aru3c")
 volume_db = -10.766
+
+[node name="HealthSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_c5jeb")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

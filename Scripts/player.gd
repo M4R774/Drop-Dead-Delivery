@@ -200,6 +200,8 @@ func add_ammo(ammo_to_add: int):
 
 
 func add_health(health_to_add: int):
+	if health_to_add > 0:
+		$HealthSound.play()
 	health_percentage += health_to_add
 	if health_percentage <= 0:
 		die()

@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ioybgujxnqw3"]
+
+[ext_resource type="Script" path="res://Scripts/health_kit.gd" id="1_aeaaw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6vq2s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acuxi"]
+albedo_color = Color(0.490196, 0.054902, 0.0627451, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kwk66"]
+
+[node name="HealthKit" type="Node3D" groups=["ammo_box"]]
+script = ExtResource("1_aeaaw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6vq2s")
+surface_material_override/0 = SubResource("StandardMaterial3D_acuxi")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_kwk66")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
