@@ -15,7 +15,7 @@ size = Vector3(1, 0.454495, 1.25305)
 [sub_resource type="BoxMesh" id="BoxMesh_k31jl"]
 
 [node name="Zombie" type="CharacterBody3D" groups=["enemy"]]
-transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, -22.3491, 3.00687, -40.2887)
+transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, 0, 0, 0)
 script = ExtResource("1_m5o5n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
