@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxat161gi2b7e"]
+[gd_scene load_steps=16 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/score.gd" id="2_ewkp8"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/death_screen.gd" id="2_rhw2i"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_3ffrm"]
 [ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="4_gvk62"]
 [ext_resource type="PackedScene" uid="uid://dbcu4fwcmn5tg" path="res://Scenes/Levels/maze_level.tscn" id="5_iaswt"]
+[ext_resource type="Script" path="res://Scripts/ammo_hud.gd" id="7_8rtqg"]
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
@@ -34,9 +35,12 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HUD" type="Control" parent="."]
-anchors_preset = 0
-offset_right = 1155.0
-offset_bottom = 645.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="fps_counter" parent="HUD" instance=ExtResource("10_q6k2v")]
 
@@ -94,12 +98,27 @@ offset_bottom = 81.0
 
 [node name="Score" type="Label" parent="HUD/Score Centerer"]
 layout_mode = 2
-offset_right = 1155.0
+offset_right = 491.0
 offset_bottom = 36.0
 size_flags_vertical = 0
 theme = ExtResource("3")
 text = "Score: 0"
 script = ExtResource("2_ewkp8")
+
+[node name="Ammo" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3")
+text = "Ammo: 10 "
+script = ExtResource("7_8rtqg")
 
 [node name="3D" type="Node" parent="."]
 
@@ -165,4 +184,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10.5692)
 
 [node name="Maze_level" parent="3D/NavigationRegion3D" instance=ExtResource("5_iaswt")]
 
+[connection signal="player_ammo_updated" from="3D/Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
 [connection signal="player_died" from="3D/Player" to="HUD/Death screen" method="_on_player_player_died"]

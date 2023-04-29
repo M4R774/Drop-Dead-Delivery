@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 signal player_died
+signal player_ammo_updated
 
 @export var speed = 10
 @export var jump_velocity = 4.5
@@ -28,6 +29,7 @@ var shotgunRaycastPos = Vector3(0.14, 0.622, -1.401)
 var shotgun_range = 10
 var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
+var ammo: int = 10
 
 # rolling
 var is_rolling = false
@@ -145,27 +147,15 @@ func update_gamepad_rotation(_delta):
 	if left_stick_turn.length() >= 0.1:
 		rotation.y = atan2(left_stick_turn.y, left_stick_turn.x)
 	if right_stick_look.length() >= 0.1:
-		# how to lerp this?
-		# these two methods end up feeling the same
-		#rotation.y = right_stick_look.angle()
 		rotation.y = atan2(right_stick_look.y, right_stick_look.x)
 		
-		# attempt to lerp with quaternion, not good
-		# Convert basis to quaternion, keep in mind scale is lost
-#		var a = Quaternion(transform.basis)
-#		var b = Quaternion(transform.basis)
-#		b.y = right_stick_look.angle()
-#		print(b.normalized())
-#		# Interpolate using spherical-linear interpolation (SLERP).
-#		var c = a.slerp(b.normalized(),0.1) # find halfway point between a and b
-#		# Apply back
-#		transform.basis = Basis(c)
-	
 
 
 func update_shooting():
 	# add melee with raycast range 0.1?
-	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
+	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0 and ammo > 0:
+		ammo -= 1
+		emit_signal("player_ammo_updated", ammo)
 		raycast.position = shotgunRaycastPos
 		shotgunSound.play()
 		$Shoot_cooldown.start()
@@ -186,12 +176,6 @@ func update_shooting():
 				if global_position.distance_to(body.position) <= melee_range:
 					body.die()
 					add_score(10)
-		# old way of doing it here:
-#		if raycast.is_colliding():
-#			if raycast.get_collision_point().distance_to(global_position) <= melee_range:
-#				if raycast.get_collider().is_in_group("enemy"):
-#					raycast.get_collider().die()
-#					add_score(10)
 
 
 func add_score(score: int):
