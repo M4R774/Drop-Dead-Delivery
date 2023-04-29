@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
 var SPEED = 3.0
+var health = 5
 
 
 func _ready():
@@ -35,6 +36,13 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 func die():
 	queue_free()
+	# TODO: Dying sounds?
+
+
+func add_health(health_to_add: int):
+	health += health_to_add
+	if health <= 0:
+		die()
 
 
 func _on_hands_body_entered(body:Node3D):

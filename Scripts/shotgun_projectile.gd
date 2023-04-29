@@ -14,9 +14,7 @@ func _physics_process(_delta):
 
 	
 
-func _on_area_3d_body_entered(_body:Node3D):
-	pass 
-	# TODO: Deal damage to enemy
-	# TODO: Check hitting to wall
-	# TODO: Particle effect
-	# TODO: Small change for deflection
+func _on_area_3d_body_entered(body:Node3D):
+	if body.is_in_group("enemy"):
+		body.add_health(-2)
+		self.queue_free()
