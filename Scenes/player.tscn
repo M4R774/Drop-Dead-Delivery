@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 [gd_scene load_steps=15 format=3 uid="uid://b76y018lotvep"]
-=======
-[gd_scene load_steps=13 format=3 uid="uid://b76y018lotvep"]
->>>>>>> 3787786b60b7d3168ca64491887f21b34006c155
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -11,12 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
 [ext_resource type="AudioStream" uid="uid://dubk30fs6kdlu" path="res://Sounds/dspunch.wav" id="3_ystsp"]
 [ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
-<<<<<<< HEAD
-[ext_resource type="AudioStream" uid="uid://cb1kjxr8w8a7p" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
-[ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="7_osesm"]
-=======
 [ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
->>>>>>> 3787786b60b7d3168ca64491887f21b34006c155
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
 [ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
 
