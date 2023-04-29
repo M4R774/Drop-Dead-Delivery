@@ -45,6 +45,8 @@ func _ready():
 
 
 func _physics_process(delta):
+	if health_percentage <= 0:
+		get_tree().paused = true
 	if out_of_bounds():
 		die()
 
