@@ -29,7 +29,7 @@ var shotgunRaycastPos = Vector3(0.14, 0.622, -1.401)
 var shotgun_range = 10
 var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
-var ammo: int = 10
+@export var ammo: int = 10
 
 # rolling
 var is_rolling = false
@@ -38,6 +38,7 @@ var roll_factor = 1
 var health_percentage = 100
 
 func _ready():
+	emit_signal("player_ammo_updated", ammo)
 	init_mac()
 	if camera == null:
 		camera = get_viewport().get_camera_3d()
