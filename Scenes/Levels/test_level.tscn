@@ -19,9 +19,9 @@ size = Vector3(8, 2, 4)
 material = ExtResource("1_ehwte")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Ground"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 2)
 operation = 2
-size = Vector3(4, 2, 12)
+size = Vector3(4, 4, 12)
 material = ExtResource("1_ehwte")
 
 [node name="2" type="CSGPolygon3D" parent="CSGCombiner3D/Ground"]

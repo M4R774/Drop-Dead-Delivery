@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
-[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
+[ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
 [ext_resource type="PackedScene" uid="uid://mer2dxv4hg4w" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
