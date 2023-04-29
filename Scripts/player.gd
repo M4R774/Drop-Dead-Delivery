@@ -184,6 +184,12 @@ func add_score(score: int):
 	HIGHSCORE_SINGLETON.SCORE += score
 
 
+func add_ammo(ammo_to_add: int):
+	ammo += ammo_to_add
+	emit_signal("player_ammo_updated", ammo)
+	$ReloadSound.play()
+
+
 func got_shot():
 	# player has "i-frames"
 	if is_rolling:
