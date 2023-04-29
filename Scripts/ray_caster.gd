@@ -12,5 +12,4 @@ func get_colliding_bodies():
 	if $RayCast3.is_colliding() and $RayCast3.get_collider().is_in_group("enemy"):
 		if bodies.size()  == 0 or !bodies.has($RayCast3.get_collider()):
 			bodies.append($RayCast3.get_collider())
-	print(bodies)
 	return(bodies)

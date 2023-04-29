@@ -8,6 +8,8 @@ var SPEED = 3.0
 var health = 5
 var dead: bool = false
 
+var current_target
+
 func _ready():
 	$WalkAnimationOffset.start(randf_range(0, 1.5))
 	$Melee_cooldown.start()
@@ -52,10 +54,16 @@ func add_health(health_to_add: int):
 func _on_hands_body_entered(body:Node3D):
 	if body.is_in_group("player") and $Melee_cooldown.time_left == 0:
 		$Melee_cooldown.start()
-		body.add_health(-10)
+		$MeleeHitDelay.start()
+		current_target = body
 
 
 func _on_walk_animation_offset_timeout():
 	var animation_player = $ghoul.get_node("AnimationPlayer")
 	animation_player.play("ghoul_walk")
 	animation_player.speed_scale = randf_range(0.75, 1.25)
+
+
+# Enemy only hits after a short delay, giving the player a chance to kill the enemy first
+func _on_melee_hit_delay_timeout():
+	current_target.add_health(-10)
