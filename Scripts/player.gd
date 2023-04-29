@@ -118,6 +118,7 @@ func update_position(delta):
 		velocity_y -= gravity * delta
 		velocity.x = velocity.x + (direction.x - velocity.x) * acceleration
 		velocity.z = velocity.z + (direction.z - velocity.z) * acceleration
+		velocity = velocity.normalized()
 
 	velocity.y = velocity_y
 	play_sound_if_moving()

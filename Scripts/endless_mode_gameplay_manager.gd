@@ -6,52 +6,37 @@ extends Node3D
 @export var zombie_scene: PackedScene
 @export var ammo_box_scene: PackedScene
 @export var health_kit_scene: PackedScene
+@export var map_size: int = 3
+@export var map_tile_scenes: Array[PackedScene]
 
+var map_tiles = []
 
 func _ready():
-	for spawns in range(6):
+	generate_map()
+	for i in range(6):
 		spawn_zombie()
 	spawn_loot_box()
 	$LootBoxSpawner.start()
 	$ZombieSpawnTimer.start()
 
 
-func _process(_delta):
-	pass
+func generate_map():
+	for i in range(map_size):
+		for j in range(map_size):
+			var new_tile = map_tile_scenes.pick_random().instantiate()
+			new_tile.player = player
+			map_tiles.append(new_tile)
+			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			add_child(new_tile)
 
 
 func spawn_zombie():
-	# first check if can spawn
-	# first get place
-	# then spawn zombie
-	# add player as their target
-	var zombie = zombie_scene.instantiate()
-	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
-	zombie_spawn_location.progress_ratio = randf()
-	zombie.position = zombie_spawn_location.position
-	zombie.target = player
-	add_child(zombie)
+	map_tiles.pick_random().spawn_zombie()
 
 
 func spawn_loot_box():
-	var spawn_probability = 49 # 0-49 = ammo, 50-100 = health
-	# allow health spawning only after player is under 50 health
-	if player.health_percentage <= 50:
-		spawn_probability = 100
-	var loot_box
-	var spawned_item = int(randf_range(0, spawn_probability))
-	print(spawned_item)
-	if spawned_item < 50:
-		loot_box = ammo_box_scene.instantiate()
-		loot_box.ammo = 1
-	else:
-		loot_box = health_kit_scene.instantiate()
-	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
-	zombie_spawn_location.progress_ratio = randf()
-	loot_box.position = zombie_spawn_location.position
-	loot_box.position.y = 1
-	add_child(loot_box)
-	print("added loot box")
+	map_tiles.pick_random().spawn_loot_box()
+
 
 func _on_zombie_spawn_timer_timeout():
 	spawn_zombie()

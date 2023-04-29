@@ -157,6 +157,10 @@ script = ExtResource("8_2deog")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Inventory/Area3D"]
 shape = SubResource("BoxShape3D_jrest")
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0193153, 0.628882, -1.10632)
+target_position = Vector3(0, -1.5, 0)
+
 [connection signal="area_entered" from="Inventory/Area3D" to="Inventory" method="_on_area_3d_area_entered"]
 
 [editable path="player"]
