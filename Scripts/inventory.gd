@@ -16,6 +16,7 @@ func _process(delta):
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("item"):
-		inventory_items.append(area)
+		inventory_items.append(area.item_name)
 		area.queue_free()
-		#print(inventory_items)
+		print(inventory_items)
+

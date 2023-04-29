@@ -1,12 +1,5 @@
 extends Area3D
 
-# Contains the items type eg. ammo, deliverable, etc
+# Contains the items name
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+@export var item_name = "item_name_here"
