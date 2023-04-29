@@ -13,6 +13,7 @@ signal player_health_updated
 @export var damageSound: AudioStreamPlayer3D
 @export var friction = 0.2
 
+
 var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
@@ -24,12 +25,14 @@ var left_stick_turn = Vector2(0,0)
 var right_stick_look = Vector2(0,0)
 
 # shooting
-@onready var raycast = $RayCast3D
 var shotgunRaycastPos = Vector3(0.14, 0.622, -1.401)
 var shotgun_range = 10
+var projectile_count = 10
+var inaccuracy = .2
 var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
 @export var ammo: int = 10
+var rng = RandomNumberGenerator.new()
 
 # rolling
 var is_rolling = false
@@ -165,14 +168,16 @@ func update_shooting():
 			emit_signal("player_ammo_updated", ammo)
 			#raycast.position = shotgunRaycastPos
 			shotgunSound.play()
+			for i in range(projectile_count):
+				instantiate_projectile()
 			$Shoot_cooldown.start()
 			# uses a combination of three different raycasts
-			var collided_bodies = raycast.get_colliding_bodies()
-			if collided_bodies.size() > 0:
-				for body in collided_bodies:
-					if global_position.distance_to(body.position) <= shotgun_range:
-						body.die()
-						add_score(10)
+			#var collided_bodies = raycast.get_colliding_bodies()
+			#if collided_bodies.size() > 0:
+			#	for body in collided_bodies:
+			#		if global_position.distance_to(body.position) <= shotgun_range:
+			#			body.die()
+			#			add_score(10)
 		else:
 			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
@@ -185,6 +190,13 @@ func update_shooting():
 				if global_position.distance_to(body.position) <= melee_range:
 					body.die()
 					add_score(10)
+
+
+func instantiate_projectile():
+	var projectile = load("res://Scenes/shotgun_projectile.tscn").instantiate()
+	projectile.rotation = global_rotation + Vector3(rng.randf_range(-inaccuracy, inaccuracy), rng.randf_range(-inaccuracy, inaccuracy), 0)
+	projectile.position += $player/Shotgun.global_position
+	add_sibling(projectile)
 
 
 func add_score(score: int):
