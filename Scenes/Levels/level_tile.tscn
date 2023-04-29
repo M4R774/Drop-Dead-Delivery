@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://qejm0te461yf"]
+[gd_scene load_steps=6 format=3 uid="uid://cbgwu8n3woi80"]
 
 [ext_resource type="PackedScene" uid="uid://bbtbmjmnyxgb" path="res://3D/level_tile_0.glb" id="1_4tgem"]
 [ext_resource type="Texture2D" uid="uid://dejra7dcst60v" path="res://3D/level_tile_0_Rocky_hill_000.png" id="2_1d72d"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ns3po"]
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n641j"]
 albedo_texture = ExtResource("2_1d72d")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ns3po"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7eom7"]
 size = Vector3(15.9679, 1.00811, 16.0399)
@@ -15,11 +15,11 @@ size = Vector3(15.9679, 1.00811, 16.0399)
 
 [node name="level_tile_0" parent="." instance=ExtResource("1_4tgem")]
 
+[node name="ground" parent="level_tile_0" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n641j")
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0"]
 shape = SubResource("BoxShape3D_ns3po")
-
-[node name="ground" parent="level_tile_0" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_n641j")
 
 [node name="Ground" type="StaticBody3D" parent="."]
 transform = Transform3D(2.51939, 0, 0, 0, 1, 0, 0, 0, 2.49095, 0, 0, 0)

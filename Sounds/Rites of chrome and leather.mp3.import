@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c3ftrgpv0sfaf"
+path="res://.godot/imported/Rites of chrome and leather.mp3-816ca6dea90501dfe0b423076439d0a7.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Rites of chrome and leather.mp3"
+dest_files=["res://.godot/imported/Rites of chrome and leather.mp3-816ca6dea90501dfe0b423076439d0a7.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
