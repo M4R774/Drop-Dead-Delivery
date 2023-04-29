@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 var SPEED = 3.0
 var health = 5
-
+var dead: bool = false
 
 func _ready():
 	$WalkAnimationOffset.start(randf_range(0, 1.5))
@@ -36,13 +36,15 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 
 func die():
+	HIGHSCORE_SINGLETON.SCORE += 1
+	dead = true
 	queue_free()
 	# TODO: Dying sounds?
 
 
 func add_health(health_to_add: int):
 	health += health_to_add
-	if health <= 0:
+	if health <= 0 and !dead:
 		die()
 
 
