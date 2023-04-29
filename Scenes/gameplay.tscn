@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
-[ext_resource type="PackedScene" path="res://Scenes/health_kit.tscn" id="4_7ho7q"]
+[ext_resource type="PackedScene" uid="uid://ioybgujxnqw3" path="res://Scenes/health_kit.tscn" id="4_7ho7q"]
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
-[ext_resource type="PackedScene" uid="uid://cbgwu8n3woi80" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
+[ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 

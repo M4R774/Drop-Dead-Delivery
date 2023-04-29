@@ -1,15 +1,32 @@
-[gd_scene load_steps=14 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=21 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
 [ext_resource type="AudioStream" uid="uid://4g8wlr6g7krq" path="res://Sounds/Reload.mp3" id="2_4shje"]
 [ext_resource type="AudioStream" uid="uid://dnbnje5gvbgbi" path="res://Sounds/Doom_Shotgun_Firing.mp3" id="2_awasp"]
 [ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
+[ext_resource type="AnimationLibrary" uid="uid://bvg578aonl4ae" path="res://Animations/player.res" id="3_t1maq"]
+[ext_resource type="Texture2D" uid="uid://d7r5fyy364ef" path="res://3D/player_mom_face_texture.png" id="3_taefb"]
 [ext_resource type="AudioStream" uid="uid://dubk30fs6kdlu" path="res://Sounds/dspunch.wav" id="3_ystsp"]
 [ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
 [ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
 [ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0my1"]
+albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3c0f"]
+albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsjn0"]
+albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s578"]
+albedo_texture = ExtResource("3_taefb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onvub"]
+albedo_color = Color(1, 0.501961, 0, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
@@ -27,6 +44,54 @@ shotgunSound = NodePath("WeaponSound")
 meleeSound = NodePath("MeleeSound")
 movementSound = NodePath("MovementSound")
 damageSound = NodePath("DamageSound")
+
+[node name="player" parent="." instance=ExtResource("2_0mtul")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.957168, 0)
+
+[node name="Skeleton3D" parent="player/player_rig" index="0"]
+bones/1/rotation = Quaternion(-0.0644758, 0.00362514, -0.000688871, 0.997912)
+bones/2/rotation = Quaternion(-0.0762237, -1.80885e-10, -3.33702e-12, 0.997091)
+bones/5/rotation = Quaternion(0.0262836, 1.25194e-07, -1.41306e-09, 0.999655)
+bones/8/position = Vector3(0.051948, 0.355255, -0.0858192)
+bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
+bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
+bones/10/rotation = Quaternion(-0.0773399, 0.0852253, -0.159011, 0.980546)
+bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
+bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
+bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
+bones/18/position = Vector3(0.217635, -0.0733226, 0.124063)
+bones/18/rotation = Quaternion(0.923253, -0.0218979, -0.031643, 0.382259)
+bones/19/rotation = Quaternion(0.319701, -0.0788165, -0.065587, 0.941954)
+bones/21/rotation = Quaternion(0.15462, -0.766933, 0.60024, 0.16619)
+bones/23/position = Vector3(-0.217635, -0.014492, 0.0719663)
+bones/23/rotation = Quaternion(0.998021, 0.00624565, 0.0379709, -0.0497284)
+bones/24/rotation = Quaternion(0.180332, 0.0817699, 0.0439044, 0.979217)
+bones/25/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
+bones/26/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
+
+[node name="spas121001" parent="player/player_rig/Skeleton3D" index="0"]
+transform = Transform3D(0.0346144, -0.38189, 0.000103629, 0.0139937, 0.00116443, -0.383198, 0.381633, 0.0345949, 0.0140417, -0.326438, 1.49735, 0.136386)
+bone_idx = 15
+
+[node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_m0my1")
+
+[node name="Hat002" parent="player/player_rig/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_g3c0f")
+
+[node name="player_rigged" parent="player/player_rig/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vsjn0")
+surface_material_override/1 = SubResource("StandardMaterial3D_2s578")
+surface_material_override/2 = SubResource("StandardMaterial3D_onvub")
+
+[node name="AnimationPlayer" parent="player" index="1"]
+autoplay = "player_walk"
+libraries = {
+"": ExtResource("3_t1maq")
+}
+
+[node name="Shotgun" type="Node3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219428, 1.66321, 1.45216)
 
 [node name="WeaponSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)
@@ -72,19 +137,6 @@ transform = Transform3D(1, 0, 0, 0, 0.925011, 0.379941, 0, -0.379941, 0.925011, 
 light_energy = 5.0
 spot_range = 18.0
 spot_angle = 31.2775
-
-[node name="player" parent="." instance=ExtResource("2_0mtul")]
-transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0, -0.945597, 0)
-
-[node name="Skeleton3D" parent="player/Armature001" index="0"]
-bones/8/position = Vector3(0.216443, 0.282238, -0.0873117)
-bones/8/rotation = Quaternion(-0.121739, 0.364219, -0.697172, 0.605372)
-bones/9/rotation = Quaternion(0.235879, -0.0475033, -0.37632, 0.8947)
-bones/10/rotation = Quaternion(0.0750319, 0.0950865, 0.0131255, 0.99255)
-bones/12/position = Vector3(0.00146881, 0.379919, -0.000993351)
-bones/12/rotation = Quaternion(-0.418595, -0.581084, 0.495843, 0.491182)
-bones/13/rotation = Quaternion(0.698592, -0.113627, 0.185643, 0.681612)
-bones/14/rotation = Quaternion(-0.0262817, -0.00995357, -0.0283283, 0.999204)
 
 [node name="Shoot_cooldown" type="Timer" parent="."]
 one_shot = true
