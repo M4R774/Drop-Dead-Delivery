@@ -11,10 +11,11 @@ func _ready():
 	for spawns in range(6):
 		spawn_zombie()
 	spawn_loot_box()
+	$LootBoxSpawner.start()
 	$ZombieSpawnTimer.start()
 
 
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -38,6 +39,7 @@ func spawn_loot_box():
 	loot_box.position = zombie_spawn_location.position
 	loot_box.position.y = 1
 	add_child(loot_box)
+	print("added loot box")
 
 func _on_zombie_spawn_timer_timeout():
 	spawn_zombie()
