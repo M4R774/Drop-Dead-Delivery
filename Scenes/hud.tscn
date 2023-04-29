@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cbb6a30ry1x18"]
+[gd_scene load_steps=11 format=3 uid="uid://cfe4g377ukyhm"]
 
-[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="1_kvxj0"]
+[ext_resource type="Script" path="res://Scripts/hud.gd" id="1_2o21q"]
+[ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="1_kvxj0"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/death_screen.gd" id="2_lwjr7"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3_ugxd5"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_mawh8"]
@@ -24,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_2o21q")
 
 [node name="fps_counter" parent="." instance=ExtResource("1_kvxj0")]
 
