@@ -211,6 +211,3 @@ wanted_item_name = "item_0"
 [node name="Delivery_point2" parent="." instance=ExtResource("16_u25tg")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -7.748, 3, -19.55)
 wanted_item_name = "item_1"
-
-[connection signal="player_ammo_updated" from="3D/Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
-[connection signal="player_died" from="3D/Player" to="HUD/Death screen" method="_on_player_player_died"]

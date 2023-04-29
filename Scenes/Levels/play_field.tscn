@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://64lrjbh76pmx"]
+
+[ext_resource type="Texture2D" uid="uid://tqc837sr7juf" path="res://Sprites/automatto.jpg" id="1_yu7ac"]
+[ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="2_cyjyp"]
+[ext_resource type="Script" path="res://Scripts/camera3D.gd" id="3_eydwq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cl0w0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lh8r"]
+albedo_texture = ExtResource("1_yu7ac")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_486vp"]
+size = Vector3(1.98533, 0.24992, 2.00227)
+
+[node name="play_field" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(-8.74228e-07, 0, 35.868, 0, 20, 0, -20, 0, -1.56784e-06, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_cl0w0")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_4lh8r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, -1.77636e-15, 0, 1, 0, -0.126561, 0)
+shape = SubResource("BoxShape3D_486vp")
+
+[node name="Player" parent="." instance=ExtResource("2_cyjyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)
+
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
+transform = Transform3D(1, -6.50845e-16, 1.74393e-16, 1.74393e-16, 0.5, 0.866026, -6.50845e-16, -0.866026, 0.5, 2.08165e-12, 7, 1)
+current = true
+script = ExtResource("3_eydwq")
+player = NodePath("../Player")
