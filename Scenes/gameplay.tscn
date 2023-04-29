@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bxat161gi2b7e"]
+[gd_scene load_steps=20 format=3 uid="uid://bxat161gi2b7e"]
 
 [ext_resource type="Script" path="res://Scripts/score.gd" id="2_ewkp8"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/death_screen.gd" id="2_rhw2i"]
@@ -14,11 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
 [ext_resource type="PackedScene" uid="uid://mer2dxv4hg4w" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
-[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="14_7v7t3"]
-[ext_resource type="PackedScene" uid="uid://d0gi7tuyxsnhw" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
-[ext_resource type="PackedScene" uid="uid://6x8fcpafkvoq" path="res://Scenes/delivery_point.tscn" id="16_u25tg"]
 [ext_resource type="PackedScene" path="res://Scenes/item.tscn" id="14_7v7t3"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
+[ext_resource type="PackedScene" path="res://Scenes/delivery_point.tscn" id="16_u25tg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
 bg_color = Color(0.25098, 0.184314, 0.168627, 1)
@@ -229,3 +227,4 @@ wanted_item_name = "item_1"
 
 [connection signal="player_ammo_updated" from="3D/Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
 [connection signal="player_died" from="3D/Player" to="HUD/Death screen" method="_on_player_player_died"]
+[connection signal="player_health_updated" from="3D/Player" to="HUD/Health" method="_on_player_player_health_updated"]

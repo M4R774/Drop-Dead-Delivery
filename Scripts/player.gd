@@ -206,6 +206,7 @@ func got_shot():
 	# player has "i-frames"
 	if is_rolling:
 		return
+	add_health(-10)
 	damageSound.play()
 
 
