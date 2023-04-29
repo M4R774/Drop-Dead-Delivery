@@ -7,6 +7,10 @@ extends CharacterBody3D
 var SPEED = 3.0
 
 
+func _ready():
+	$Melee_cooldown.start()
+
+
 func _physics_process(_delta):
 	nav_agent.set_target_position(target.global_position)
 	if nav_agent.is_target_reachable():
@@ -34,5 +38,6 @@ func die():
 
 
 func _on_hands_body_entered(body:Node3D):
-	if body.is_in_group("player"):
+	if body.is_in_group("player") and $Melee_cooldown.time_left == 0:
+		$Melee_cooldown.start()
 		body.add_health(-10)

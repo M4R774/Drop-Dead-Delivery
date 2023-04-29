@@ -48,5 +48,9 @@ transform = Transform3D(1, 0, 0, 0, 0.425, 0, 0, 0, 1.256, 0.0193291, 1.23292, 0
 mesh = SubResource("BoxMesh_k31jl")
 skeleton = NodePath("../..")
 
+[node name="Melee_cooldown" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="Hands" to="." method="_on_hands_body_entered"]
