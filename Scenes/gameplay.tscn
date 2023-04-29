@@ -25,7 +25,7 @@ speed = 5
 ammo = 0
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, -6.50845e-16, 1.74393e-16, 1.74393e-16, 0.5, 0.866026, -6.50845e-16, -0.866026, 0.5, 2.08165e-12, 7, 1)
+transform = Transform3D(1, -6.50845e-16, 1.74394e-16, 7.85077e-17, 0.369601, 0.929191, -6.69215e-16, -0.929191, 0.369601, 2.08165e-12, 7, 1)
 script = ExtResource("8_e7b0r")
 player = NodePath("../Player")
 
