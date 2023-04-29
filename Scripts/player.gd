@@ -184,12 +184,12 @@ func update_shooting():
 		#raycast.position = meleeRaycastPos
 		meleeSound.play()
 		$Melee_cooldown.start()
-		var collided_bodies = raycast.get_colliding_bodies()
-		if collided_bodies.size() > 0:
-			for body in collided_bodies:
-				if global_position.distance_to(body.position) <= melee_range:
-					body.die()
-					add_score(10)
+		#var collided_bodies = raycast.get_colliding_bodies()
+		#if collided_bodies.size() > 0:
+	#		for body in collided_bodies:
+#				if global_position.distance_to(body.position) <= melee_range:
+#					body.die()#
+#					add_score(10)
 
 
 func instantiate_projectile():
