@@ -25,11 +25,10 @@ var left_stick_turn = Vector2(0,0)
 var right_stick_look = Vector2(0,0)
 
 # shooting
-var shotgunRaycastPos = Vector3(0.14, 0.622, -1.401)
+@export var raycast : RayCast3D
 var shotgun_range = 10
 var projectile_count = 10
 var inaccuracy = .2
-var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
 @export var ammo: int = 10
 var rng = RandomNumberGenerator.new()
@@ -39,7 +38,7 @@ var projectile_prefab
 var is_rolling = false
 var roll_factor = 1
 
-var health_percentage = 100
+@export var health_percentage = 100
 
 
 func _ready():
@@ -180,12 +179,12 @@ func update_shooting():
 		#raycast.position = meleeRaycastPos
 		meleeSound.play()
 		$Melee_cooldown.start()
-		#var collided_bodies = raycast.get_colliding_bodies()
-		#if collided_bodies.size() > 0:
-	#		for body in collided_bodies:
-#				if global_position.distance_to(body.position) <= melee_range:
-#					body.die()#
-#					add_score(10)
+		var collided_bodies = raycast.get_colliding_bodies()
+		if collided_bodies.size() > 0:
+			for body in collided_bodies:
+				if global_position.distance_to(body.position) <= melee_range:
+					body.die()
+					add_score(10)
 
 
 func instantiate_projectile():

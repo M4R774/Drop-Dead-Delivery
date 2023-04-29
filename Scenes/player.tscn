@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=22 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
 [ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
+[ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="13_eay2p"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0my1"]
 albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
@@ -36,7 +37,7 @@ height = 2.61878
 [sub_resource type="BoxShape3D" id="BoxShape3D_jrest"]
 size = Vector3(1.85345, 2.00503, 1.63513)
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "shotgunSound", "meleeSound", "movementSound", "damageSound") groups=["player"]]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "shotgunSound", "meleeSound", "movementSound", "damageSound", "raycast") groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
 script = ExtResource("1_1m6ih")
 camera = NodePath("../Camera3D")
@@ -44,6 +45,7 @@ shotgunSound = NodePath("WeaponSound")
 meleeSound = NodePath("MeleeSound")
 movementSound = NodePath("MovementSound")
 damageSound = NodePath("DamageSound")
+raycast = NodePath("RayCast")
 
 [node name="player" parent="." instance=ExtResource("2_0mtul")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.957168, 0)
@@ -157,8 +159,17 @@ script = ExtResource("8_2deog")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Inventory/Area3D"]
 shape = SubResource("BoxShape3D_jrest")
 
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0193153, 0.628882, -1.10632)
+[node name="RayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0193153, 0.628882, -0.285576)
+target_position = Vector3(0, -1.5, 0)
+script = ExtResource("13_eay2p")
+
+[node name="RayCast2" type="RayCast3D" parent="RayCast"]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -1.5, 0)
+
+[node name="RayCast3" type="RayCast3D" parent="RayCast"]
+transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, -1.5, 0)
 
 [connection signal="area_entered" from="Inventory/Area3D" to="Inventory" method="_on_area_3d_area_entered"]
