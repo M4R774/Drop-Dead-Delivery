@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://6x8fcpafkvoq"]
+
+[ext_resource type="Texture2D" uid="uid://crhqcv7nq1eah" path="res://Sprites/ring_shape.png" id="1_dd1r3"]
+[ext_resource type="Script" path="res://Scripts/delivery_point.gd" id="1_geewr"]
+[ext_resource type="AudioStream" uid="uid://dbvvexie2xs08" path="res://Sounds/smb_coin.wav" id="3_aaw5b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vwngp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_27752"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebf2s"]
+transparency = 1
+albedo_color = Color(1, 0, 1, 1)
+albedo_texture = ExtResource("1_dd1r3")
+
+[node name="Delivery_point" type="Area3D"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.00811, 0)
+script = ExtResource("1_geewr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_vwngp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.488717, 0, 0, 0, 0.995501, 0, 0, 0, 0.488717, 0, -0.436593, 0)
+mesh = SubResource("PlaneMesh_27752")
+surface_material_override/0 = SubResource("StandardMaterial3D_ebf2s")
+
+[node name="Item_delivered" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_aaw5b")
+
+[node name="Remover" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Remover" to="." method="_on_remover_timeout"]
