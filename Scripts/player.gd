@@ -159,19 +159,22 @@ func update_gamepad_rotation(_delta):
 
 func update_shooting():
 	# add melee with raycast range 0.1?
-	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0 and ammo > 0:
-		ammo -= 1
-		emit_signal("player_ammo_updated", ammo)
-		#raycast.position = shotgunRaycastPos
-		shotgunSound.play()
-		$Shoot_cooldown.start()
-		# uses a combination of three different raycasts
-		var collided_bodies = raycast.get_colliding_bodies()
-		if collided_bodies.size() > 0:
-			for body in collided_bodies:
-				if global_position.distance_to(body.position) <= shotgun_range:
-					body.die()
-					add_score(10)
+	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
+		if ammo > 0:
+			ammo -= 1
+			emit_signal("player_ammo_updated", ammo)
+			#raycast.position = shotgunRaycastPos
+			shotgunSound.play()
+			$Shoot_cooldown.start()
+			# uses a combination of three different raycasts
+			var collided_bodies = raycast.get_colliding_bodies()
+			if collided_bodies.size() > 0:
+				for body in collided_bodies:
+					if global_position.distance_to(body.position) <= shotgun_range:
+						body.die()
+						add_score(10)
+		else:
+			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
 		#raycast.position = meleeRaycastPos
 		meleeSound.play()
