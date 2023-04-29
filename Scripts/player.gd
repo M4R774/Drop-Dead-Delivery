@@ -33,7 +33,7 @@ var meleeRaycastPos = Vector3(0.14, 0.622, -0.38)
 var melee_range = 1.5
 @export var ammo: int = 10
 var rng = RandomNumberGenerator.new()
-var projectile_prefab = preload("res://Scenes/shotgun_projectile.tscn")
+var projectile_prefab
 
 # rolling
 var is_rolling = false
@@ -41,7 +41,9 @@ var roll_factor = 1
 
 var health_percentage = 100
 
+
 func _ready():
+	projectile_prefab = preload("res://Scenes/shotgun_projectile.tscn")
 	emit_signal("player_ammo_updated", ammo)
 	init_mac()
 	if camera == null:
@@ -167,18 +169,10 @@ func update_shooting():
 		if ammo > 0:
 			ammo -= 1
 			emit_signal("player_ammo_updated", ammo)
-			#raycast.position = shotgunRaycastPos
 			shotgunSound.play()
 			for i in range(projectile_count):
-				instantiate_projectile()
+				call_deferred("instantiate_projectile")
 			$Shoot_cooldown.start()
-			# uses a combination of three different raycasts
-			#var collided_bodies = raycast.get_colliding_bodies()
-			#if collided_bodies.size() > 0:
-			#	for body in collided_bodies:
-			#		if global_position.distance_to(body.position) <= shotgun_range:
-			#			body.die()
-			#			add_score(10)
 		else:
 			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
