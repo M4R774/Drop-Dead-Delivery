@@ -64,12 +64,13 @@ shape = SubResource("CapsuleShape3D_1u61v")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.04541, 0)
-omni_range = 4.0
+light_energy = 0.1
+omni_range = 15.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.925011, 0.379941, 0, -0.379941, 0.925011, 0, 0, -0.409474)
 light_energy = 5.0
-spot_range = 13.0
+spot_range = 18.0
 spot_angle = 31.2775
 
 [node name="player" parent="." instance=ExtResource("2_0mtul")]
