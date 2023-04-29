@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 signal player_died
 signal player_ammo_updated
+signal player_health_updated
 
 @export var speed = 10
 @export var jump_velocity = 4.5
@@ -10,7 +11,6 @@ signal player_ammo_updated
 @export var meleeSound: AudioStreamPlayer3D
 @export var movementSound: AudioStreamPlayer3D
 @export var damageSound: AudioStreamPlayer3D
-
 @export var friction = 0.2
 
 var direction = Vector3.ZERO
@@ -34,6 +34,8 @@ var ammo: int = 10
 # rolling
 var is_rolling = false
 var roll_factor = 1
+
+var health_percentage = 100
 
 func _ready():
 	init_mac()
@@ -188,6 +190,16 @@ func add_ammo(ammo_to_add: int):
 	ammo += ammo_to_add
 	emit_signal("player_ammo_updated", ammo)
 	$ReloadSound.play()
+
+
+func add_health(health_to_add: int):
+	health_percentage += health_to_add
+	if health_percentage < 0:
+		die()
+		queue_free()
+	elif health_percentage > 100:
+		health_percentage = 100
+	emit_signal("player_health_updated", health_percentage)
 
 
 func got_shot():

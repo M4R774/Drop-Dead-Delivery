@@ -9,13 +9,16 @@
 [ext_resource type="Script" path="res://Scripts/ammo_hud.gd" id="7_8rtqg"]
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
+[ext_resource type="Script" path="res://Scripts/health_hud.gd" id="8_s512e"]
 [ext_resource type="PackedScene" uid="uid://dmdjvujj2b2dh" path="res://Scenes/Levels/test_level.tscn" id="9_lfx5y"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
-[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
+[ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="10_q6k2v"]
 [ext_resource type="PackedScene" uid="uid://mer2dxv4hg4w" path="res://Scenes/enemy.tscn" id="11_jrkqs"]
 [ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="14_7v7t3"]
 [ext_resource type="PackedScene" uid="uid://d0gi7tuyxsnhw" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 [ext_resource type="PackedScene" uid="uid://6x8fcpafkvoq" path="res://Scenes/delivery_point.tscn" id="16_u25tg"]
+[ext_resource type="PackedScene" path="res://Scenes/item.tscn" id="14_7v7t3"]
+[ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
 bg_color = Color(0.25098, 0.184314, 0.168627, 1)
@@ -122,6 +125,18 @@ grow_vertical = 0
 theme = ExtResource("3")
 text = "Ammo: 10 "
 script = ExtResource("7_8rtqg")
+
+[node name="Health" type="Label" parent="HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 106.0
+grow_vertical = 0
+theme = ExtResource("3")
+text = " Health: 100 %"
+script = ExtResource("8_s512e")
 
 [node name="3D" type="Node" parent="."]
 
