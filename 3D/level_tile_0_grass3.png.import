@@ -2,9 +2,9 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dejra7dcst60v"
-path.s3tc="res://.godot/imported/level_tile_0_Rocky_hill_000.png-c9f2918637e32e94213c64b928327c92.s3tc.ctex"
-path.etc2="res://.godot/imported/level_tile_0_Rocky_hill_000.png-c9f2918637e32e94213c64b928327c92.etc2.ctex"
+uid="uid://p31qskc1yafx"
+path.s3tc="res://.godot/imported/level_tile_0_grass3.png-783ec508d86080e85f9f819624d2af53.s3tc.ctex"
+path.etc2="res://.godot/imported/level_tile_0_grass3.png-783ec508d86080e85f9f819624d2af53.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -13,15 +13,15 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://3D/level_tile_0_Rocky_hill_000.png"
-dest_files=["res://.godot/imported/level_tile_0_Rocky_hill_000.png-c9f2918637e32e94213c64b928327c92.s3tc.ctex", "res://.godot/imported/level_tile_0_Rocky_hill_000.png-c9f2918637e32e94213c64b928327c92.etc2.ctex"]
+source_file="res://3D/level_tile_0_grass3.png"
+dest_files=["res://.godot/imported/level_tile_0_grass3.png-783ec508d86080e85f9f819624d2af53.s3tc.ctex", "res://.godot/imported/level_tile_0_grass3.png-783ec508d86080e85f9f819624d2af53.etc2.ctex"]
 
 [params]
 
 compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_compression=0
+compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true

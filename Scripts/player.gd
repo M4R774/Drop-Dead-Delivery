@@ -29,7 +29,7 @@ var right_stick_look = Vector2(0,0)
 var shotgun_range = 10
 var projectile_count = 10
 var inaccuracy = .2
-var melee_range = 1.5
+var melee_range = 2
 @export var ammo: int = 10
 var rng = RandomNumberGenerator.new()
 var projectile_prefab
@@ -182,9 +182,12 @@ func update_shooting():
 		var collided_bodies = raycast.get_colliding_bodies()
 		if collided_bodies.size() > 0:
 			for body in collided_bodies:
-				if global_position.distance_to(body.position) <= melee_range:
+				if global_position.distance_to(body.global_position) <= melee_range:
+					print("meleed enemy")
 					body.die()
 					add_score(10)
+				else:
+					print("enemy too far for melee :-()")
 
 
 func instantiate_projectile():

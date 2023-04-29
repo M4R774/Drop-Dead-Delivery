@@ -6,7 +6,7 @@ extends Node3D
 @export var zombie_scene: PackedScene
 @export var ammo_box_scene: PackedScene
 @export var health_kit_scene: PackedScene
-@export var map_size: int = 3
+@export var map_size: int = 0
 @export var map_tile_scenes: Array[PackedScene]
 
 var map_tiles = []
@@ -26,7 +26,7 @@ func generate_map():
 			var new_tile = map_tile_scenes.pick_random().instantiate()
 			new_tile.player = player
 			map_tiles.append(new_tile)
-			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			new_tile.position = Vector3(j * 40 - 40, 0, i * 40 - 40)
 			add_child(new_tile)
 
 

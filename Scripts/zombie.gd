@@ -23,7 +23,8 @@ func _physics_process(_delta):
 		# var direction = global_position.direction_to(next_location)
 		# global_position += direction * _delta
 	else:
-		print("target unreachable")
+		pass
+		#print("target unreachable")
 
 
 func _on_navigation_agent_3d_target_reached():
