@@ -6,9 +6,13 @@ extends Node3D
 @export var zombie_scene: PackedScene
 @export var ammo_box_scene: PackedScene
 @export var health_kit_scene: PackedScene
+@export var map_size: int = 3
+@export var map_tiles: Array[PackedScene]
 
 
 func _ready():
+	generate_map()
+
 	for spawns in range(6):
 		spawn_zombie()
 	spawn_loot_box()
@@ -16,8 +20,12 @@ func _ready():
 	$ZombieSpawnTimer.start()
 
 
-func _process(_delta):
-	pass
+func generate_map():
+	for i in range(map_size):
+		for j in range(map_size):
+			var new_tile = map_tiles.pick_random().instantiate()
+			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			add_child(new_tile)
 
 
 func spawn_zombie():
