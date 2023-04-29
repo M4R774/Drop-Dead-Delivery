@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbb6a30ry1x18"]
+
+[ext_resource type="PackedScene" path="res://Scenes/fps_counter.tscn" id="1_kvxj0"]
+[ext_resource type="Script" path="res://Scripts/Menus and highscore/death_screen.gd" id="2_lwjr7"]
+[ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3_ugxd5"]
+[ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_mawh8"]
+[ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="5_imu2b"]
+[ext_resource type="Script" path="res://Scripts/score.gd" id="6_i5ybc"]
+[ext_resource type="Script" path="res://Scripts/ammo_hud.gd" id="7_vv6mr"]
+[ext_resource type="Script" path="res://Scripts/health_hud.gd" id="8_k0cc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
+bg_color = Color(0.25098, 0.184314, 0.168627, 1)
+corner_radius_top_left = 30
+corner_radius_top_right = 30
+corner_radius_bottom_right = 30
+corner_radius_bottom_left = 30
+shadow_size = 5
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fps_counter" parent="." instance=ExtResource("1_kvxj0")]
+
+[node name="Death screen" type="PanelContainer" parent="."]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_lwjr7")
+
+[node name="PanelContainer" type="PanelContainer" parent="Death screen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tu3wt")
+
+[node name="MarginContainer" type="MarginContainer" parent="Death screen/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Death screen/PanelContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="Death screen/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="Continue" type="Button" parent="Death screen/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+text = "Continue"
+script = ExtResource("4_mawh8")
+
+[node name="Pause menu" parent="." instance=ExtResource("5_imu2b")]
+layout_mode = 1
+
+[node name="Score Centerer" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 507.0
+offset_top = 2.0
+offset_right = 1151.0
+offset_bottom = 81.0
+
+[node name="Score" type="Label" parent="Score Centerer"]
+layout_mode = 2
+offset_right = 491.0
+offset_bottom = 36.0
+size_flags_vertical = 0
+theme = ExtResource("3_ugxd5")
+text = "Score: 0"
+script = ExtResource("6_i5ybc")
+
+[node name="Ammo" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -136.0
+offset_top = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("3_ugxd5")
+text = "Ammo: 10 "
+script = ExtResource("7_vv6mr")
+
+[node name="Health" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 106.0
+grow_vertical = 0
+theme = ExtResource("3_ugxd5")
+text = " Health: 100 %"
+script = ExtResource("8_k0cc7")
