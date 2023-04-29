@@ -13,10 +13,12 @@ func _physics_process(_delta):
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - global_position).normalized() * SPEED
 		nav_agent.set_velocity(new_velocity)
+		rotation.y = atan2(-velocity.x, -velocity.z)
 		# var direction = global_position.direction_to(next_location)
 		# global_position += direction * _delta
 	else:
 		print("target unreachable")
+
 
 func _on_navigation_agent_3d_target_reached():
 	print("target reached")
@@ -29,3 +31,8 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 func die():
 	queue_free()
+
+
+func _on_hands_body_entered(body:Node3D):
+	if body.is_in_group("player"):
+		body.add_health(-10)

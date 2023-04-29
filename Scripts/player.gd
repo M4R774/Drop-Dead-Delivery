@@ -196,7 +196,6 @@ func add_health(health_to_add: int):
 	health_percentage += health_to_add
 	if health_percentage < 0:
 		die()
-		queue_free()
 	elif health_percentage > 100:
 		health_percentage = 100
 	emit_signal("player_health_updated", health_percentage)

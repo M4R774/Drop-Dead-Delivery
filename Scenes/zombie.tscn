@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://05cyvmw8hi4c"]
+[gd_scene load_steps=7 format=3 uid="uid://05cyvmw8hi4c"]
 
 [ext_resource type="Script" path="res://Scripts/zombie.gd" id="1_m5o5n"]
 
@@ -8,6 +8,11 @@
 albedo_color = Color(0.0117647, 0.65098, 0, 1)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jp5tl"]
+size = Vector3(1, 0.454495, 1.25305)
+
+[sub_resource type="BoxMesh" id="BoxMesh_k31jl"]
 
 [node name="Zombie" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, -22.3491, 3.00687, -40.2887)
@@ -31,4 +36,17 @@ target_desired_distance = 2.0
 avoidance_enabled = true
 radius = 1.0
 
+[node name="Hands" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0405464, -0.168838, -1.43987)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hands"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0193291, 1.23292, 0.686655)
+shape = SubResource("BoxShape3D_jp5tl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hands"]
+transform = Transform3D(1, 0, 0, 0, 0.425, 0, 0, 0, 1.256, 0.0193291, 1.23292, 0.686655)
+mesh = SubResource("BoxMesh_k31jl")
+skeleton = NodePath("../..")
+
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
+[connection signal="body_entered" from="Hands" to="." method="_on_hands_body_entered"]
