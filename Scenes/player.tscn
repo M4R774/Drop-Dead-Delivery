@@ -1,33 +1,20 @@
-[gd_scene load_steps=22 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=19 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
 [ext_resource type="AudioStream" uid="uid://4g8wlr6g7krq" path="res://Sounds/Reload.mp3" id="2_4shje"]
 [ext_resource type="AudioStream" uid="uid://dnbnje5gvbgbi" path="res://Sounds/Doom_Shotgun_Firing.mp3" id="2_awasp"]
 [ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
-[ext_resource type="AnimationLibrary" uid="uid://bvg578aonl4ae" path="res://Animations/player.res" id="3_t1maq"]
-[ext_resource type="Texture2D" uid="uid://d7r5fyy364ef" path="res://3D/player_mom_face_texture.png" id="3_taefb"]
+[ext_resource type="Material" uid="uid://byihab8uxagmr" path="res://Materials/player_orange.tres" id="3_vbigf"]
 [ext_resource type="AudioStream" uid="uid://dubk30fs6kdlu" path="res://Sounds/dspunch.wav" id="3_ystsp"]
+[ext_resource type="Material" uid="uid://c132lbg0ntc8i" path="res://Materials/player_black.tres" id="4_84c65"]
 [ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
 [ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
+[ext_resource type="Material" uid="uid://bpmh1u8eodxq5" path="res://Materials/player_face.tres" id="5_wf777"]
+[ext_resource type="Material" uid="uid://x50ofetpatma" path="res://Materials/player_overall.tres" id="6_3eq67"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
 [ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
 [ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="13_eay2p"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m0my1"]
-albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3c0f"]
-albedo_color = Color(1, 0.501961, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsjn0"]
-albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2s578"]
-albedo_texture = ExtResource("3_taefb")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onvub"]
-albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
@@ -48,40 +35,32 @@ damageSound = NodePath("DamageSound")
 raycast = NodePath("RayCast")
 
 [node name="player" parent="." instance=ExtResource("2_0mtul")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.957168, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.00583, 0)
 
-[node name="Skeleton3D" parent="player/player_rig" index="0"]
-bones/8/position = Vector3(0.051948, 0.355255, -0.0858192)
-bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
-bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
-bones/10/rotation = Quaternion(-0.0773399, 0.0852253, -0.159011, 0.980546)
-bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
-bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
-bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
-
-[node name="spas121001" parent="player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.031797, -0.382134, 0, 0.0149439, 0.00124349, -0.383162, 0.381842, 0.0317726, 0.0149956, -0.329943, 1.49847, 0.133941)
+[node name="Backpack" parent="player/player_rig/Skeleton3D" index="0"]
+transform = Transform3D(0.336252, 0, 0, 0, 0.875908, -1.67638e-08, 0, 2.98023e-08, 1, -6.98492e-10, 1.50354, -0.537708)
 bone_idx = 15
 
+[node name="Backpack" parent="player/player_rig/Skeleton3D/Backpack" index="0"]
+material_override = ExtResource("3_vbigf")
+
+[node name="spas121001" parent="player/player_rig/Skeleton3D" index="1"]
+transform = Transform3D(0.031797, -0.382134, 0, 0.0149439, 0.00124349, -0.383162, 0.381842, 0.0317726, 0.0149956, -0.329943, 1.49847, 0.133941)
+bone_idx = 16
+
 [node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_m0my1")
+material_overlay = ExtResource("4_84c65")
 
-[node name="Hat002" parent="player/player_rig/Skeleton3D" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_g3c0f")
+[node name="Hat002" parent="player/player_rig/Skeleton3D" index="2"]
+material_override = ExtResource("3_vbigf")
 
-[node name="player_rigged" parent="player/player_rig/Skeleton3D" index="2"]
-surface_material_override/0 = SubResource("StandardMaterial3D_vsjn0")
-surface_material_override/1 = SubResource("StandardMaterial3D_2s578")
-surface_material_override/2 = SubResource("StandardMaterial3D_onvub")
-
-[node name="AnimationPlayer" parent="player" index="1"]
-autoplay = "player_walk"
-libraries = {
-"": ExtResource("3_t1maq")
-}
+[node name="player_rigged" parent="player/player_rig/Skeleton3D" index="3"]
+surface_material_override/0 = ExtResource("4_84c65")
+surface_material_override/1 = ExtResource("5_wf777")
+surface_material_override/2 = ExtResource("6_3eq67")
 
 [node name="Shotgun" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.219428, 1.66321, 1.45216)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.272962, 1.64567, 1.44407)
 
 [node name="WeaponSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)

@@ -18,6 +18,7 @@ func _ready():
 	spawn_loot_box()
 	$LootBoxSpawner.start()
 	$ZombieSpawnTimer.start()
+	$DeliverableItemSpawner.start()
 
 
 func generate_map():
@@ -27,6 +28,7 @@ func generate_map():
 			new_tile.player = player
 			map_tiles.append(new_tile)
 			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			print(j)
 			add_child(new_tile)
 
 
@@ -38,9 +40,17 @@ func spawn_loot_box():
 	map_tiles.pick_random().spawn_loot_box()
 
 
+func spawn_deliverable_item():
+	map_tiles.pick_random().spawn_deliverable_item()
+
+
 func _on_zombie_spawn_timer_timeout():
 	spawn_zombie()
 
 
 func _on_loot_box_spawner_timeout():
 	spawn_loot_box()
+
+
+func _on_deliverable_item_spawner_timeout():
+	spawn_deliverable_item()

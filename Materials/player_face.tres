@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bpmh1u8eodxq5"]
+
+[ext_resource type="Texture2D" uid="uid://d7r5fyy364ef" path="res://3D/player_mom_face_texture.png" id="1_ay2s3"]
+
+[resource]
+albedo_texture = ExtResource("1_ay2s3")

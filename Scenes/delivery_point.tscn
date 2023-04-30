@@ -10,7 +10,7 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebf2s"]
 transparency = 1
-albedo_color = Color(1, 0, 1, 1)
+albedo_color = Color(0.0823529, 0.560784, 0.34902, 1)
 albedo_texture = ExtResource("1_dd1r3")
 
 [node name="Delivery_point" type="Area3D"]

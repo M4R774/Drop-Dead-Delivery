@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://64lrjbh76pmx"]
+[gd_scene load_steps=11 format=3 uid="uid://64lrjbh76pmx"]
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
+[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="9_s07wd"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 
@@ -42,15 +43,22 @@ wait_time = 5.0
 wait_time = 10.0
 
 [node name="Ammo Box" parent="." instance=ExtResource("14_qbaql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.266, 1, -4.042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36984, 1, -4.042)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o8jcn")
+
+[node name="item" parent="." instance=ExtResource("9_s07wd")]
+transform = Transform3D(0.839629, 0, -0.54316, 0, 1, 0, 0.54316, 0, 0.839629, 2.35439, 0.450553, -4.22484)
+
+[node name="DeliverableItemSpawner" type="Timer" parent="."]
+wait_time = 20.0
 
 [connection signal="player_ammo_updated" from="Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
 [connection signal="player_died" from="Player" to="HUD/Death screen" method="_on_player_player_died"]
 [connection signal="player_health_updated" from="Player" to="HUD/Health" method="_on_player_player_health_updated"]
 [connection signal="timeout" from="ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
 [connection signal="timeout" from="LootBoxSpawner" to="." method="_on_loot_box_spawner_timeout"]
+[connection signal="timeout" from="DeliverableItemSpawner" to="." method="_on_deliverable_item_spawner_timeout"]
 
 [editable path="HUD"]

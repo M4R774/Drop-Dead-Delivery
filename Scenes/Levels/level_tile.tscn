@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://qejm0te461yf"]
+[gd_scene load_steps=14 format=3 uid="uid://qejm0te461yf"]
 
 [ext_resource type="PackedScene" uid="uid://bbtbmjmnyxgb" path="res://3D/level_tile_0.glb" id="1_4tgem"]
 [ext_resource type="Script" path="res://Scripts/level_tile_park.gd" id="1_hpgt0"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="2_q8ins"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="3_hkeyl"]
 [ext_resource type="PackedScene" uid="uid://ioybgujxnqw3" path="res://Scenes/health_kit.tscn" id="4_3cmu6"]
+[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="5_pv30l"]
+[ext_resource type="PackedScene" uid="uid://6x8fcpafkvoq" path="res://Scenes/delivery_point.tscn" id="6_ldvrw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ji4g"]
 vertices = PackedVector3Array(-19.5458, 0.467535, -11.2744, -19.5458, 0.467535, -8.52437, -18.5458, 0.467535, -8.27437, -18.5458, 0.467535, -11.5244, -18.5458, 0.467535, 8.47563, -19.5458, 0.467535, 8.72563, -19.5458, 0.467535, 11.4756, -18.5458, 0.467535, 11.7256, -11.5458, 0.467535, 18.4756, -11.2958, 0.467535, 19.4756, -8.54582, 0.467535, 19.4756, 8.45418, 0.467535, 18.4756, 8.70418, 0.467535, 19.4756, 11.4542, 0.467535, 19.4756, 11.7042, 0.467535, 18.4756, 18.4542, 0.467535, 11.7256, 19.4542, 0.467535, 11.4756, 19.4542, 0.467535, 8.72563, 18.4542, 0.467535, -8.27437, 19.4542, 0.467535, -8.52437, 19.4542, 0.467535, -11.2744, 18.4542, 0.467535, -11.5244, 11.7042, 0.467535, -18.5244, 11.4542, 0.467535, -19.5244, 8.70418, 0.467535, -19.5244, -8.29582, 0.467535, -18.5244, -8.54582, 0.467535, -19.5244, -11.2958, 0.467535, -19.5244, -11.5458, 0.467535, -18.5244, -0.0458241, 0.467535, -18.5244, -8.29582, 0.467535, -18.5244, -18.5458, 0.467535, -8.27437, -18.5458, 0.467535, -0.0243664, -11.5458, 0.467535, 18.4756, -8.54582, 0.467535, 19.4756, -8.29582, 0.467535, 18.4756, -18.5458, 0.467535, 8.47563, -18.5458, 0.467535, 11.7256, -8.29582, 0.467535, -18.5244, -11.5458, 0.467535, -18.5244, -18.5458, 0.467535, -11.5244, -18.5458, 0.467535, -8.27437, 18.4542, 0.467535, 11.7256, 19.4542, 0.467535, 8.72563, 18.4542, 0.467535, 8.47563, -0.0458241, 0.467535, 18.4756, 8.45418, 0.467535, 18.4756, 18.4542, 0.467535, -0.0243664, -0.0458241, 0.467535, -18.5244, -18.5458, 0.467535, -0.0243664, -18.5458, 0.467535, 8.47563, -0.0458241, 0.467535, 18.4756, 18.4542, 0.467535, 8.47563, 11.7042, 0.467535, -18.5244, 8.70418, 0.467535, -19.5244, 8.45418, 0.467535, -18.5244, 18.4542, 0.467535, -8.27437, 18.4542, 0.467535, -11.5244, -18.5458, 0.467535, 8.47563, -8.29582, 0.467535, 18.4756, -0.0458241, 0.467535, 18.4756, 18.4542, 0.467535, -0.0243664, 18.4542, 0.467535, -8.27437, 8.45418, 0.467535, -18.5244, -0.0458241, 0.467535, -18.5244, 11.7042, 0.467535, 18.4756, 18.4542, 0.467535, 18.4756, 18.4542, 0.467535, 11.7256, -18.5458, 0.467535, 11.7256, -18.5458, 0.467535, 18.4756, -11.5458, 0.467535, 18.4756, 18.4542, 0.467535, -11.5244, 18.4542, 0.467535, -18.5244, 11.7042, 0.467535, -18.5244, -11.5458, 0.467535, -18.5244, -18.5458, 0.467535, -18.5244, -18.5458, 0.467535, -11.5244, 8.45418, 0.467535, 18.4756, 11.7042, 0.467535, 18.4756, 18.4542, 0.467535, 11.7256)
@@ -35,6 +37,7 @@ script = ExtResource("1_hpgt0")
 zombie_scene = ExtResource("2_q8ins")
 ammo_box_scene = ExtResource("3_hkeyl")
 health_kit_scene = ExtResource("4_3cmu6")
+deliverable_item = ExtResource("5_pv30l")
 
 [node name="level_tile_0" parent="." instance=ExtResource("1_4tgem")]
 
@@ -66,5 +69,32 @@ curve = SubResource("Curve3D_hxtbs")
 
 [node name="ZombieSpawnLocation" type="PathFollow3D" parent="ZombieSpawnPath"]
 transform = Transform3D(0.0377089, 0, 0.999288, 0, 1, 0, -0.999288, 0, 0.0377089, -16.6105, 0, -17.2688)
+
+[node name="Delivery_point" parent="." instance=ExtResource("6_ldvrw")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1.91998, 0, 0.971939, 0, 1.51627, 0, -0.971449, 0, 1.92095, -2.42871, 0.77015, 17.471)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(2.13361, 0, -0.278915, 0, 4.86208, 0, 0.278774, 0, 2.13469, 4.81929, 2.37655, -8.16343)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(2.09643, 0, 0.485015, 0, 4.86208, 0, -0.48477, 0, 2.09749, -7.38505, 2.37655, 6.0128)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(2.22669, 0, -0.887124, 0, 2.49021, 0, 0.745169, 0, 2.65087, 13.5595, 1.29119, -2.8873)
+use_collision = true
+size = Vector3(1.51866, 1, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(0.826197, 2.57849, 0.00324481, 0, 0.0263607, -0.999983, -0.563382, 3.78135, 0.0047585, -9.38143, 0.304847, -6.15012)
+use_collision = true
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-0.0544172, 3.17148, 0.00574112, 2.6665e-10, 0.0182928, -0.998221, -1.01495, -0.170041, -0.000307813, 5.61857, 0.304847, 8.84988)
+use_collision = true
 
 [editable path="level_tile_0"]

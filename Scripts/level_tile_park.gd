@@ -5,6 +5,7 @@ extends NavigationRegion3D
 @export var zombie_scene: PackedScene
 @export var ammo_box_scene: PackedScene
 @export var health_kit_scene: PackedScene
+@export var deliverable_item: PackedScene
 
 
 func spawn_zombie():
@@ -38,4 +39,13 @@ func spawn_loot_box():
 	loot_box.position = zombie_spawn_location.position
 	loot_box.position.y = 1
 	add_child(loot_box)
+	print("added loot box")
+
+func spawn_deliverable_item():
+	var item = deliverable_item.instantiate()
+	var spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
+	spawn_location.progress_ratio = randf()
+	item.position =spawn_location.position
+	item.position.y = 1
+	add_child(item)
 	print("added loot box")
