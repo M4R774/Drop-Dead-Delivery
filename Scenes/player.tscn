@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=20 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://cs6scv2otaylv" path="res://Sounds/Doom_Death.wav" id="12_qondo"]
 [ext_resource type="AudioStream" uid="uid://jxb5gbhj3hm1" path="res://Sounds/medshot.wav" id="13_824f4"]
 [ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="13_eay2p"]
+[ext_resource type="AudioStream" uid="uid://bo7mmyp8ce31q" path="res://Sounds/blip.wav" id="15_k42co"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
@@ -120,6 +121,9 @@ one_shot = true
 
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("8_2deog")
+
+[node name="blip" type="AudioStreamPlayer3D" parent="Inventory"]
+stream = ExtResource("15_k42co")
 
 [node name="Area3D" type="Area3D" parent="Inventory"]
 
