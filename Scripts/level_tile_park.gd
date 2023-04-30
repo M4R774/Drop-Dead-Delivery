@@ -8,6 +8,8 @@ extends NavigationRegion3D
 @export var deliverable_item: PackedScene
 @onready var delivery_points = [$Delivery_points/Delivery_point, $Delivery_points/Delivery_point3, $Delivery_points/Delivery_point2]
 
+var active_delivery_point: DeliveryPoint
+
 
 func spawn_zombie():
 	# first check if can spawn
@@ -53,5 +55,6 @@ func spawn_deliverable_item():
 
 
 func activate_delivery_point():
-	var current_point = delivery_points.pick_random()
-	current_point.activate_delivery_point()
+	active_delivery_point = delivery_points.pick_random()
+	active_delivery_point.activate_delivery_point()
+	return active_delivery_point

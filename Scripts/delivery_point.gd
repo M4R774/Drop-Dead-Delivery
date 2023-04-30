@@ -1,5 +1,7 @@
 extends Area3D
 
+class_name DeliveryPoint
+
 # Items get delivered here
 # Checks if player's inventory has a wanted item and gives points
 # Checking with name and having to write the name into two places correctly is dumb
@@ -89,7 +91,7 @@ func _on_deliver_timeout():
 		player.add_score(100)
 		visible = false
 		can_deliver_to = false
-		get_tree().get_current_scene().remove_delivery_point(self.owner)
+		get_tree().get_current_scene().remove_delivery_map_tile(self.owner)
 	$Control.visible = player_near and can_deliver_to
 	
 
