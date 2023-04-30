@@ -41,17 +41,26 @@ deliverable_item = ExtResource("5_11cy3")
 
 [node name="level_tile_0" parent="." instance=ExtResource("1_4tgem")]
 
+[node name="wall001" parent="level_tile_0" index="0"]
+layers = 3
+
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall001" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_mfsr7")
 
+[node name="wall_nubs002" parent="level_tile_0" index="2"]
+layers = 3
+
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall_nubs002" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall_nubs002/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_xoq03")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall_nubs003" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall_nubs003/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ldl5p")
@@ -73,37 +82,43 @@ transform = Transform3D(0.0377089, 0, 0.999288, 0, 1, 0, -0.999288, 0, 0.0377089
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1.91998, 0, 0.971939, 0, 1.51627, 0, -0.971449, 0, 1.92095, -2.42871, 0.77015, 17.471)
 use_collision = true
+collision_layer = 3
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="."]
 transform = Transform3D(2.13361, 0, -0.278915, 0, 4.86208, 0, 0.278774, 0, 2.13469, 4.81929, 2.37655, -8.16343)
 use_collision = true
+collision_layer = 3
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="."]
 transform = Transform3D(2.09643, 0, 0.485015, 0, 4.86208, 0, -0.48477, 0, 2.09749, -7.38505, 2.37655, 6.0128)
 use_collision = true
+collision_layer = 3
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(2.22669, 0, -0.887124, 0, 2.49021, 0, 0.745169, 0, 2.65087, 13.5595, 1.29119, -2.8873)
 use_collision = true
+collision_layer = 3
 size = Vector3(1.51866, 1, 1)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
 transform = Transform3D(0.826197, 2.57849, 0.00324481, 0, 0.0263607, -0.999983, -0.563382, 3.78135, 0.0047585, -9.38143, 0.304847, -6.15012)
 use_collision = true
+collision_layer = 3
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(-0.0544172, 3.17148, 0.00574112, 2.6665e-10, 0.0182928, -0.998221, -1.01495, -0.170041, -0.000307813, 5.61857, 0.304847, 8.84988)
 use_collision = true
+collision_layer = 3
 
 [node name="Delivery_points" type="Node3D" parent="."]
 
 [node name="Delivery_point" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
-transform = Transform3D(-1.32672, -4.55157e-05, 1.4966, -3.24247e-05, 2, 3.20814e-05, -1.4966, -2.98316e-06, -1.32672, -8.52705, 1.00811, 8.1007)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.52705, 1.00811, 8.1007)
 
 [node name="Delivery_point2" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.3361, 1.00811, -5.00964)
 
 [node name="Delivery_point3" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
-transform = Transform3D(-1.72665, 0, -1.0093, 0, 2, 0, 1.0093, 0, -1.72665, -12.0445, 1.00811, -11.0852)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.0445, 1.00811, -11.0852)
 
 [editable path="level_tile_0"]

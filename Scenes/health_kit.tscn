@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ioybgujxnqw3"]
+[gd_scene load_steps=5 format=3 uid="uid://ioybgujxnqw3"]
 
 [ext_resource type="Script" path="res://Scripts/health_kit.gd" id="1_aeaaw"]
-[ext_resource type="PackedScene" uid="uid://b307d6gu76kh4" path="res://3D/health_kit.glb" id="2_ni6ru"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6vq2s"]
 
@@ -13,11 +12,7 @@ albedo_color = Color(0.490196, 0.054902, 0.0627451, 1)
 [node name="HealthKit" type="Node3D" groups=["ammo_box"]]
 script = ExtResource("1_aeaaw")
 
-[node name="health_kit" parent="." instance=ExtResource("2_ni6ru")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.50509, 0)
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_6vq2s")
 surface_material_override/0 = SubResource("StandardMaterial3D_acuxi")
 

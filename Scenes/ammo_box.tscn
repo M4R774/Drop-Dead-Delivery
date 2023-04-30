@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://w5m47vn4ccfq"]
+[gd_scene load_steps=5 format=3 uid="uid://w5m47vn4ccfq"]
 
 [ext_resource type="Script" path="res://Scripts/ammo_box.gd" id="1_d3qyk"]
-[ext_resource type="PackedScene" uid="uid://bch5a43k8er3m" path="res://3D/ammo_box.glb" id="2_dkb8h"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_6vq2s"]
 
@@ -14,7 +13,6 @@ albedo_color = Color(0.494118, 0.321569, 0.054902, 1)
 script = ExtResource("1_d3qyk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_6vq2s")
 surface_material_override/0 = SubResource("StandardMaterial3D_acuxi")
 
@@ -22,8 +20,5 @@ surface_material_override/0 = SubResource("StandardMaterial3D_acuxi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_kwk66")
-
-[node name="ammo_box" parent="." instance=ExtResource("2_dkb8h")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.567589, 0)
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
