@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://6x8fcpafkvoq"]
+[gd_scene load_steps=10 format=3 uid="uid://6x8fcpafkvoq"]
 
 [ext_resource type="Texture2D" uid="uid://crhqcv7nq1eah" path="res://Sprites/ring_shape.png" id="1_dd1r3"]
 [ext_resource type="Script" path="res://Scripts/delivery_point.gd" id="1_geewr"]
 [ext_resource type="AudioStream" uid="uid://dbvvexie2xs08" path="res://Sounds/smb_coin.wav" id="3_aaw5b"]
+[ext_resource type="Texture2D" uid="uid://d20feoyt2rlca" path="res://Sprites/e-key-background.png" id="4_3um8i"]
+[ext_resource type="Texture2D" uid="uid://q7xfg2qbd1nr" path="res://Sprites/e-key-filled-background.png" id="5_inott"]
+[ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="6_7xl5t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vwngp"]
 
@@ -13,10 +16,12 @@ transparency = 1
 albedo_color = Color(0.0823529, 0.560784, 0.34902, 1)
 albedo_texture = ExtResource("1_dd1r3")
 
-[node name="Delivery_point" type="Area3D"]
+[node name="Delivery_point" type="Area3D" node_paths=PackedStringArray("keycap_1", "keycap_2")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.00811, 0)
 visible = false
 script = ExtResource("1_geewr")
+keycap_1 = NodePath("Keycap")
+keycap_2 = NodePath("Keycap2")
 can_deliver_to = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -35,8 +40,79 @@ one_shot = true
 
 [node name="Deliver" type="Timer" parent="."]
 wait_time = 3.0
+one_shot = true
+
+[node name="Keycap" type="Sprite3D" parent="."]
+pixel_size = 0.005
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 5
+render_priority = 1
+texture = ExtResource("4_3um8i")
+
+[node name="Keycap2" type="Sprite3D" parent="."]
+pixel_size = 0.005
+billboard = 1
+double_sided = false
+no_depth_test = true
+texture_filter = 5
+render_priority = 1
+texture = ExtResource("5_inott")
+
+[node name="KeycapBlinker" type="Timer" parent="."]
+autostart = true
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.0
+offset_top = -292.0
+offset_right = 217.0
+offset_bottom = -256.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_7xl5t")
+text = "Hold E to deliver package"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -244.0
+offset_right = 65.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+fill_mode = 4
+nine_patch_stretch = true
+texture_under = ExtResource("1_dd1r3")
+texture_over = ExtResource("1_dd1r3")
+texture_progress = ExtResource("1_dd1r3")
+tint_under = Color(0, 1, 0, 1)
+tint_over = Color(1, 1, 1, 0)
+tint_progress = Color(1, 0, 0, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Remover" to="." method="_on_remover_timeout"]
 [connection signal="timeout" from="Deliver" to="." method="_on_deliver_timeout"]
+[connection signal="timeout" from="KeycapBlinker" to="." method="_on_keycap_blinker_timeout"]

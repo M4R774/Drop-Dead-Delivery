@@ -38,15 +38,13 @@ spot_angle = 31.2775
 [node name="player" parent="." instance=ExtResource("2_3jbwr")]
 transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0, -0.945597, 0)
 
-[node name="Skeleton3D" parent="player/Armature001" index="0"]
-bones/8/position = Vector3(0.216443, 0.282238, -0.0873117)
-bones/8/rotation = Quaternion(-0.121739, 0.364219, -0.697172, 0.605372)
-bones/9/rotation = Quaternion(0.235879, -0.0475033, -0.37632, 0.8947)
-bones/10/rotation = Quaternion(0.0750319, 0.0950865, 0.0131255, 0.99255)
-bones/12/position = Vector3(0.00146881, 0.379919, -0.000993351)
-bones/12/rotation = Quaternion(-0.418595, -0.581084, 0.495843, 0.491182)
-bones/13/rotation = Quaternion(0.698592, -0.113627, 0.185643, 0.681613)
-bones/14/rotation = Quaternion(-0.0262817, -0.00995357, -0.0283283, 0.999204)
+[node name="Backpack" parent="player/player_rig/Skeleton3D" index="0"]
+transform = Transform3D(0.336252, 0, 0, 0, 0.875908, -1.67638e-08, 0, 2.98023e-08, 1, -6.98492e-10, 1.50354, -0.537708)
+bone_idx = 15
+
+[node name="spas121001" parent="player/player_rig/Skeleton3D" index="1"]
+transform = Transform3D(0.031797, -0.382134, 0, 0.0149439, 0.00124349, -0.383162, 0.381842, 0.0317726, 0.0149956, -0.329943, 1.49847, 0.133941)
+bone_idx = 16
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 0.140474, 0.622101, -1.40058)
