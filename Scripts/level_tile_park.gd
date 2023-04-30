@@ -32,7 +32,7 @@ func spawn_loot_box():
 	print(spawned_item)
 	if spawned_item < 50:
 		loot_box = ammo_box_scene.instantiate()
-		loot_box.ammo = 3
+		loot_box.ammo = 2
 	else:
 		loot_box = health_kit_scene.instantiate()
 	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation

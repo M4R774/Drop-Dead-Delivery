@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://4kf6p5qfixrw"]
+[gd_scene load_steps=7 format=3 uid="uid://4kf6p5qfixrw"]
 
 [ext_resource type="Script" path="res://Scripts/item.gd" id="1_r7rht"]
 [ext_resource type="Texture2D" uid="uid://bfvlrlsnk643d" path="res://Sprites/kenney_prototype-textures/PNG/Green/texture_01.png" id="2_eo6xc"]
+[ext_resource type="PackedScene" uid="uid://cxx68e24kw2gj" path="res://3D/package.glb" id="2_fcsrg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_yjlve"]
 
@@ -15,7 +16,11 @@ uv1_world_triplanar = true
 [node name="item" type="Area3D" groups=["item"]]
 script = ExtResource("1_r7rht")
 
+[node name="package" parent="." instance=ExtResource("2_fcsrg")]
+transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 0, -0.475994, 0)
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_yjlve")
 surface_material_override/0 = SubResource("StandardMaterial3D_j6hwk")
 
