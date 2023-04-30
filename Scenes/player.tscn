@@ -18,7 +18,7 @@
 albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g3c0f"]
-albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
+albedo_color = Color(1, 0.501961, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vsjn0"]
 albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
@@ -27,7 +27,7 @@ albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
 albedo_texture = ExtResource("3_taefb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_onvub"]
-albedo_color = Color(1, 0.501961, 0, 1)
+albedo_color = Color(0.12549, 0.12549, 0.12549, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 

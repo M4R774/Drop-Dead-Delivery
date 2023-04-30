@@ -26,7 +26,7 @@ func generate_map():
 			var new_tile = map_tile_scenes.pick_random().instantiate()
 			new_tile.player = player
 			map_tiles.append(new_tile)
-			new_tile.position = Vector3(j * 40 - 40, 0, i * 40 - 40)
+			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
 			add_child(new_tile)
 
 
