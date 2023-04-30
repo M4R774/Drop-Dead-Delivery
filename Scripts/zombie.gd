@@ -47,10 +47,6 @@ func die():
 	# TODO: Dying sounds?
 
 
-func got_pushed(push_direction):
-	velocity = push_direction * 2
-
-
 func add_health(health_to_add: int):
 	health += health_to_add
 	if health <= 0 and !dead:

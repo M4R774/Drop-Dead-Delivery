@@ -89,8 +89,12 @@ func die():
 # this needs to be resolved, perhaps with a is_multiplayer boolean or smt
 func _input(event):
 	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
+		if !is_using_gamepad:
+			get_parent().change_delivery_prompt_icons(true)
 		is_using_gamepad = true
 	else:
+		if is_using_gamepad:
+			get_parent().change_delivery_prompt_icons(false)
 		is_using_gamepad = false
 
 

@@ -6,6 +6,10 @@ extends Area3D
 
 @export var keycap_1: Sprite3D
 @export var keycap_2: Sprite3D
+@export var e_key_background: Texture
+@export var e_key_filled: Texture
+@export var b_button_background: Texture
+@export var b_button_filled: Texture
 
 @export var delivery_id = ""
 @export var can_deliver_to = true
@@ -82,3 +86,12 @@ func _on_deliver_timeout():
 func _on_keycap_blinker_timeout():
 	keycap_1.visible = !keycap_1.visible
 	keycap_2.visible = !keycap_2.visible
+
+
+func switch_keycap_icons(is_button):
+	if is_button:
+		keycap_1.texture = b_button_background
+		keycap_2.texture = b_button_filled
+	else:
+		keycap_1.texture = e_key_background
+		keycap_2.texture = e_key_filled

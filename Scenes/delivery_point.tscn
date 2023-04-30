@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://6x8fcpafkvoq"]
+[gd_scene load_steps=12 format=3 uid="uid://6x8fcpafkvoq"]
 
 [ext_resource type="Texture2D" uid="uid://crhqcv7nq1eah" path="res://Sprites/ring_shape.png" id="1_dd1r3"]
 [ext_resource type="Script" path="res://Scripts/delivery_point.gd" id="1_geewr"]
 [ext_resource type="AudioStream" uid="uid://dbvvexie2xs08" path="res://Sounds/smb_coin.wav" id="3_aaw5b"]
 [ext_resource type="Texture2D" uid="uid://d20feoyt2rlca" path="res://Sprites/e-key-background.png" id="4_3um8i"]
+[ext_resource type="Texture2D" uid="uid://blvidtm74eyeu" path="res://Sprites/b_button_background.png" id="4_7at5y"]
+[ext_resource type="Texture2D" uid="uid://cuesbov5j2ht3" path="res://Sprites/b_button_filled.png" id="5_dfrtn"]
 [ext_resource type="Texture2D" uid="uid://q7xfg2qbd1nr" path="res://Sprites/e-key-filled-background.png" id="5_inott"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="6_7xl5t"]
 
@@ -22,6 +24,10 @@ visible = false
 script = ExtResource("1_geewr")
 keycap_1 = NodePath("Keycap")
 keycap_2 = NodePath("Keycap2")
+e_key_background = ExtResource("4_3um8i")
+e_key_filled = ExtResource("5_inott")
+b_button_background = ExtResource("4_7at5y")
+b_button_filled = ExtResource("5_dfrtn")
 can_deliver_to = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

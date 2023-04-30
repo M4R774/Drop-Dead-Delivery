@@ -85,3 +85,10 @@ func _on_loot_box_spawner_timeout():
 
 func _on_deliverable_item_spawner_timeout():
 	spawn_small_deliverable_item()
+
+
+func change_delivery_prompt_icons(is_button):
+	for map_tile in map_tiles:
+		var delivery_points = map_tile.get_node("Delivery_points").get_children()
+		for d_p in delivery_points:
+			d_p.switch_keycap_icons(is_button)
