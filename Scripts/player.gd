@@ -194,9 +194,9 @@ func update_shooting():
 		if collided_bodies.size() > 0:
 			for body in collided_bodies:
 				if global_position.distance_to(body.global_position) <= melee_range:
-					body.got_pushed(transform.basis.z * push_force * -1)
-					#add_score(1)
-
+					body.set_velocity(-get_global_transform().basis.z * 10)
+					body.add_health(-1)
+					add_score(1)
 
 func instantiate_projectile():
 	var projectile = projectile_prefab.instantiate()
