@@ -38,7 +38,7 @@ can_deliver_to = false
 shape = SubResource("BoxShape3D_vwngp")
 
 [node name="post_box" parent="." instance=ExtResource("6_2d8bb")]
-transform = Transform3D(-0.562106, 0, -0.543655, 0, 0.391, 0, 0.543655, 0, -0.562106, 0, -0.49776, 0)
+transform = Transform3D(-0.369145, 0, -0.354231, 0, 0.42746, 0, 0.357028, 0, -0.366254, 0, -0.49776, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="post_box/Cylinder" index="0"]
 
@@ -62,6 +62,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Keycap" type="Sprite3D" parent="."]
+transform = Transform3D(0.999999, -0.00139044, 0.000924598, 0.00138799, 0.999996, 0.0026411, -0.000928272, -0.00263981, 0.999996, 0, 0, 0)
 pixel_size = 0.005
 billboard = 1
 double_sided = false
