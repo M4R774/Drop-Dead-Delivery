@@ -1451,6 +1451,9 @@ script = ExtResource("1_m5o5n")
 transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
 script = ExtResource("2_y14bb")
 
+[node name="BarkDelay" type="Timer" parent="."]
+one_shot = true
+
 [node name="ghoul" type="Node3D" parent="."]
 transform = Transform3D(-1.00364, 0, 1.47149e-07, 0, 0.776821, 0, -1.47149e-07, 0, -1.00364, 0, 0, 0)
 
@@ -1706,6 +1709,7 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[connection signal="timeout" from="BarkDelay" to="AudioStreamPlayer3D" method="_on_bark_delay_timeout"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="Hands" to="." method="_on_hands_body_entered"]
 [connection signal="timeout" from="WalkAnimationOffset" to="." method="_on_walk_animation_offset_timeout"]
