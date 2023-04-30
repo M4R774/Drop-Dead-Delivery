@@ -2,18 +2,18 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
-[ext_resource type="AudioStream" uid="uid://4g8wlr6g7krq" path="res://Sounds/Reload.mp3" id="2_4shje"]
-[ext_resource type="AudioStream" uid="uid://dnbnje5gvbgbi" path="res://Sounds/Doom_Shotgun_Firing.mp3" id="2_awasp"]
-[ext_resource type="AudioStream" uid="uid://cgi5ofxlammwm" path="res://Sounds/step.mp3" id="3_dwpwh"]
 [ext_resource type="Material" uid="uid://byihab8uxagmr" path="res://Materials/player_orange.tres" id="3_vbigf"]
 [ext_resource type="AudioStream" uid="uid://dubk30fs6kdlu" path="res://Sounds/dspunch.wav" id="3_ystsp"]
 [ext_resource type="Material" uid="uid://c132lbg0ntc8i" path="res://Materials/player_black.tres" id="4_84c65"]
-[ext_resource type="AudioStream" uid="uid://com7qmf48nllt" path="res://Sounds/Doom_Death.mp3" id="4_aru3c"]
 [ext_resource type="AudioStream" uid="uid://cqb82yc6lyba" path="res://Sounds/empty-gun.wav" id="5_jk7tx"]
 [ext_resource type="Material" uid="uid://bpmh1u8eodxq5" path="res://Materials/player_face.tres" id="5_wf777"]
 [ext_resource type="Material" uid="uid://x50ofetpatma" path="res://Materials/player_overall.tres" id="6_3eq67"]
+[ext_resource type="AudioStream" uid="uid://dhlgxast0dqu7" path="res://Sounds/Doom_Shotgun_Firing.wav" id="7_ghq6w"]
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
-[ext_resource type="AudioStream" uid="uid://cvvx43hn4xp0c" path="res://Sounds/medshot.mp3" id="8_c5jeb"]
+[ext_resource type="AudioStream" uid="uid://d3mfnbhrfwf6w" path="res://Sounds/Reload.wav" id="9_qw5wn"]
+[ext_resource type="AudioStream" uid="uid://crkpofoexjn8k" path="res://Sounds/step.wav" id="11_g82vp"]
+[ext_resource type="AudioStream" uid="uid://cs6scv2otaylv" path="res://Sounds/Doom_Death.wav" id="12_qondo"]
+[ext_resource type="AudioStream" uid="uid://jxb5gbhj3hm1" path="res://Sounds/medshot.wav" id="13_824f4"]
 [ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="13_eay2p"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
@@ -64,7 +64,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.272
 
 [node name="WeaponSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)
-stream = ExtResource("2_awasp")
+stream = ExtResource("7_ghq6w")
 
 [node name="MeleeSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)
@@ -72,21 +72,21 @@ stream = ExtResource("3_ystsp")
 
 [node name="ReloadSound" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, -4.02216e-24, 0, 4.02216e-24, 1, 2.64698e-23, 0, -2.64698e-23, 1, -2.08165e-12, 0, -2.08165e-12)
-stream = ExtResource("2_4shje")
+stream = ExtResource("9_qw5wn")
 
 [node name="EmptyGunSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_jk7tx")
 
 [node name="MovementSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("3_dwpwh")
+stream = ExtResource("11_g82vp")
 volume_db = -10.766
 
 [node name="DamageSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("4_aru3c")
+stream = ExtResource("12_qondo")
 volume_db = -10.766
 
 [node name="HealthSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("8_c5jeb")
+stream = ExtResource("13_824f4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false
