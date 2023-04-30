@@ -12,6 +12,7 @@ var dead: bool = false
 
 var current_target
 
+
 func _ready():
 	$WalkAnimationOffset.start(randf_range(0, 1.5))
 	$Melee_cooldown.start()
@@ -19,16 +20,11 @@ func _ready():
 
 func _physics_process(_delta):
 	nav_agent.set_target_position(target.global_position)
-	if nav_agent.is_target_reachable():
-		var next_location = nav_agent.get_next_path_position()
-		var new_velocity = (next_location - global_position).normalized() * SPEED
-		nav_agent.set_velocity(new_velocity)
-		rotation.y = atan2(-velocity.x, -velocity.z)
-		# var direction = global_position.direction_to(next_location)
-		# global_position += direction * _delta
-	else:
-		pass
-		#print("target unreachable")
+	#if nav_agent.is_target_reachable():
+	var next_location = nav_agent.get_next_path_position()
+	var new_velocity = (next_location - global_position).normalized() * SPEED
+	nav_agent.set_velocity(new_velocity)
+	rotation.y = atan2(-velocity.x, -velocity.z)
 
 
 func _on_navigation_agent_3d_target_reached():
@@ -56,19 +52,10 @@ func add_health(health_to_add: int):
 func _on_hands_body_entered(body:Node3D):
 	if body.is_in_group("player") and $Melee_cooldown.time_left == 0:
 		$Melee_cooldown.start()
-		$MeleeHitDelay.start()
-		current_target = body
+		#$MeleeHitDelay.start()
+		body.add_health(-10)
 
 
 func _on_walk_animation_offset_timeout():
 	animation_player.play("ghoul_walk")
 	animation_player.speed_scale = randf_range(0.75, 1.25)
-
-
-# Enemy only hits after a short delay, giving the player a chance to kill the enemy first
-func _on_melee_hit_delay_timeout():
-	var bodies_in_melee_range = $Hands.get_overlapping_bodies()
-	for body in bodies_in_melee_range:
-		if body.is_in_group("player"):
-			current_target.add_health(-10)
-	#animation_player.play("ghoul_melee")

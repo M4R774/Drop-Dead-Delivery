@@ -29,7 +29,7 @@ var right_stick_look = Vector2(0,0)
 var shotgun_range = 10
 var projectile_count = 10
 var inaccuracy = .2
-var melee_range = 2
+var melee_range = 10
 @export var ammo: int = 10
 var rng = RandomNumberGenerator.new()
 var projectile_prefab
@@ -174,7 +174,6 @@ func update_gamepad_rotation(_delta):
 		rotation.y = atan2(left_stick_turn.y, left_stick_turn.x)
 	if right_stick_look.length() >= 0.1:
 		rotation.y = atan2(right_stick_look.y, right_stick_look.x)
-		
 
 
 func update_shooting():
@@ -192,15 +191,17 @@ func update_shooting():
 			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
 		#animation_player.play("melee")
+		
 		meleeSound.play()
 		$Melee_cooldown.start()
 		var collided_bodies = raycast.get_colliding_bodies()
+		#var collided_bodies = $MeleeBox.get_overlapping_bodies()
 		if collided_bodies.size() > 0:
 			for body in collided_bodies:
 				if global_position.distance_to(body.global_position) <= melee_range:
 					body.set_velocity(-get_global_transform().basis.z * 10)
 					body.add_health(-1)
-					add_score(1)
+
 
 func instantiate_projectile():
 	var projectile = projectile_prefab.instantiate()
@@ -230,14 +231,8 @@ func add_health(health_to_add: int):
 	elif health_percentage > 100:
 		health_percentage = 100
 	emit_signal("player_health_updated", health_percentage)
-
-
-func got_shot():
-	# player has "i-frames"
-	if is_rolling:
-		return
-	add_health(-10)
-	damageSound.play()
+	if health_to_add < 0:
+		damageSound.play()
 
 
 func init_mac():

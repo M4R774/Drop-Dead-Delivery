@@ -132,16 +132,16 @@ shape = SubResource("BoxShape3D_jrest")
 
 [node name="RayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -0.0193153, 0.628882, -0.285576)
-target_position = Vector3(0, -1.5, 0)
+target_position = Vector3(0, -2, 0)
 script = ExtResource("13_eay2p")
 
 [node name="RayCast2" type="RayCast3D" parent="RayCast"]
 transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
-target_position = Vector3(0, -1.5, 0)
+target_position = Vector3(0, -2, 0)
 
 [node name="RayCast3" type="RayCast3D" parent="RayCast"]
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
-target_position = Vector3(0, -1.5, 0)
+target_position = Vector3(0, -2, 0)
 
 [connection signal="area_entered" from="Inventory/Area3D" to="Inventory" method="_on_area_3d_area_entered"]
 

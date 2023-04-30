@@ -1439,7 +1439,7 @@ albedo_color = Color(0.0117647, 0.65098, 0, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp5tl"]
-size = Vector3(1, 0.454495, 1.25305)
+size = Vector3(1.07324, 0.454495, 1.44642)
 
 [sub_resource type="BoxMesh" id="BoxMesh_k31jl"]
 
@@ -1680,16 +1680,20 @@ shape = SubResource("CapsuleShape3D_1u61v")
 one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 3.0
-target_desired_distance = 2.0
+path_desired_distance = 2.0
+target_desired_distance = 0.5
+path_max_distance = 10.01
 avoidance_enabled = true
-radius = 1.0
+radius = 0.8
+neighbor_distance = 5.0
+max_neighbors = 5
+max_speed = 12.0
 
 [node name="Hands" type="Area3D" parent="."]
 transform = Transform3D(0.990332, 0, 5.58794e-09, 0, 1, 0, 0, 0, 0.656683, -0.0294635, -0.168838, -1.0463)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0193291, 1.23292, 0.686655)
+transform = Transform3D(0.999999, 0, -7.45058e-09, 0, 1, 0, 0, 0, 0.999998, 0.0294707, 1.23292, 1.41318)
 shape = SubResource("BoxShape3D_jp5tl")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="Hands"]

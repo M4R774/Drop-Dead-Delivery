@@ -11,7 +11,7 @@ extends NavigationRegion3D
 var active_delivery_point: DeliveryPoint
 
 
-func spawn_zombie():
+func spawn_zombie(zombie_speed):
 	# first check if can spawn
 	# first get place
 	# then spawn zombie
@@ -21,6 +21,7 @@ func spawn_zombie():
 	zombie_spawn_location.progress_ratio = randf()
 	zombie.position = zombie_spawn_location.position
 	zombie.target = player
+	zombie.SPEED = zombie_speed
 	add_child(zombie)
 
 
@@ -34,7 +35,7 @@ func spawn_loot_box():
 	print(spawned_item)
 	if spawned_item < 50:
 		loot_box = ammo_box_scene.instantiate()
-		loot_box.ammo = 2
+		loot_box.ammo = 3
 	else:
 		loot_box = health_kit_scene.instantiate()
 	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
@@ -42,7 +43,7 @@ func spawn_loot_box():
 	loot_box.position = zombie_spawn_location.position
 	loot_box.position.y = 1
 	add_child(loot_box)
-	print("added loot box")
+
 
 func spawn_deliverable_item():
 	var item = deliverable_item.instantiate()
@@ -51,7 +52,6 @@ func spawn_deliverable_item():
 	item.position =spawn_location.position
 	item.position.y = 1
 	add_child(item)
-	print("added loot box")
 
 
 func activate_delivery_point():

@@ -1,7 +1,7 @@
 extends Node3D
 
 var rotation_speed: float = 1.5
-var ammo: int = 10
+@export var ammo: int = 5
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

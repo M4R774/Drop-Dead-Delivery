@@ -15,6 +15,7 @@ var map_tiles = []
 @export var item_bundle_spawn_location: Vector3
 @export var item_bundle: PackedScene
 var active_delivery_map_tiles = []
+var zombie_speed = 2.5
 
 
 func get_active_delivery_point():
@@ -34,15 +35,12 @@ func get_active_delivery_points():
 func _ready():
 	$HUD.set_player_for_compass($Player)
 	generate_map()
-	for i in range(6):
-		spawn_zombie()
+	spawn_zombie()
 	spawn_loot_box()
 	$LootBoxSpawner.start()
 	$ZombieSpawnTimer.start()
 	$DeliverableItemSpawner.start()
 	spawn_item_bundle()
-
-	#create_delivery_order()
 
 
 func generate_map():
@@ -67,6 +65,12 @@ func create_delivery_order():
 	$HUD.set_compass_target(get_active_delivery_point())
 
 
+func increase_difficulty():
+	$LootBoxSpawner.wait_time = $LootBoxSpawner.wait_time + 2
+	$ZombieSpawnTimer.wait_time = $ZombieSpawnTimer.wait_time * 0.9
+	zombie_speed += 0.2
+
+
 func remove_delivery_map_tile(map_tile):
 	active_delivery_map_tiles.erase(map_tile)
 	if active_delivery_map_tiles.size() == 0: # next round
@@ -76,7 +80,7 @@ func remove_delivery_map_tile(map_tile):
 
 
 func spawn_zombie():
-	map_tiles.pick_random().spawn_zombie()
+	map_tiles.pick_random().spawn_zombie(zombie_speed)
 
 
 func spawn_loot_box():
@@ -111,3 +115,7 @@ func change_delivery_prompt_icons(is_button):
 		var delivery_points = map_tile.get_node("Delivery_points").get_children()
 		for d_p in delivery_points:
 			d_p.switch_keycap_icons(is_button)
+
+
+func _on_increase_difficulty_timeout():
+	increase_difficulty()

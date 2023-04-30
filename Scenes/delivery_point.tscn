@@ -39,7 +39,7 @@ stream = ExtResource("3_aaw5b")
 one_shot = true
 
 [node name="Deliver" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 4.0
 one_shot = true
 
 [node name="Keycap" type="Sprite3D" parent="."]
