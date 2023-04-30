@@ -47,6 +47,10 @@ func die():
 	# TODO: Dying sounds?
 
 
+func got_pushed(push_direction):
+	velocity = push_direction * 2
+
+
 func add_health(health_to_add: int):
 	health += health_to_add
 	if health <= 0 and !dead:
@@ -67,5 +71,8 @@ func _on_walk_animation_offset_timeout():
 
 # Enemy only hits after a short delay, giving the player a chance to kill the enemy first
 func _on_melee_hit_delay_timeout():
-	current_target.add_health(-10)
+	var bodies_in_melee_range = $Hands.get_overlapping_bodies()
+	for body in bodies_in_melee_range:
+		if body.is_in_group("player"):
+			current_target.add_health(-10)
 	#animation_player.play("ghoul_melee")

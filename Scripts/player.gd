@@ -34,6 +34,9 @@ var melee_range = 2
 var rng = RandomNumberGenerator.new()
 var projectile_prefab
 
+# melee
+@export var push_force = 5
+
 # rolling
 var is_rolling = false
 var roll_factor = 1
@@ -191,8 +194,8 @@ func update_shooting():
 		if collided_bodies.size() > 0:
 			for body in collided_bodies:
 				if global_position.distance_to(body.global_position) <= melee_range:
-					body.die()
-					add_score(1)
+					body.got_pushed(transform.basis.z * push_force * -1)
+					#add_score(1)
 
 
 func instantiate_projectile():
