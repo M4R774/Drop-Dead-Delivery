@@ -10,6 +10,7 @@ extends Area3D
 @export var e_key_filled: Texture
 @export var b_button_background: Texture
 @export var b_button_filled: Texture
+var can_blink = true
 
 @export var delivery_id = ""
 @export var can_deliver_to = true
@@ -20,8 +21,8 @@ var inventory
 
 
 func _ready():
-	keycap_1.visible = true
-	keycap_2.visible = false
+	print($Control/TextureProgressBar.size)
+	reset_blinking()
 
 
 func _physics_process(_delta):
@@ -30,6 +31,10 @@ func _physics_process(_delta):
 		$Control/TextureProgressBar.visible = false
 	else:
 		$Control/TextureProgressBar.visible = true
+		$Control/TextureProgressBar.position = get_viewport().get_camera_3d().unproject_position(keycap_1.global_transform.origin)
+		#print($Control/TextureProgressBar.position)
+		$Control/TextureProgressBar.position -= $Control/TextureProgressBar.size / 2
+		#print($Control/TextureProgressBar.position)
 
 
 func activate_delivery_point():
@@ -55,9 +60,15 @@ func _on_body_exited(body):
 func _input(event):
 	if event.is_action_pressed("deliver_item") and player_near and can_deliver_to:
 		print("Started delivering")
+		$KeycapBlinker.stop()
+		can_blink = false
+		keycap_1.visible = false
+		keycap_2.visible = false
 		$Deliver.start()
 	if event.is_action_released("deliver_item") and player_near:
 		$Deliver.stop()
+		reset_blinking()
+		
 
 
 # gives time for the sound effect to play
@@ -82,10 +93,17 @@ func _on_deliver_timeout():
 	$Control.visible = player_near and can_deliver_to
 	
 
+func reset_blinking():
+	can_blink = true
+	$KeycapBlinker.start()
+	keycap_1.visible = true
+	keycap_2.visible = false
+
 
 func _on_keycap_blinker_timeout():
-	keycap_1.visible = !keycap_1.visible
-	keycap_2.visible = !keycap_2.visible
+	if can_blink:
+		keycap_1.visible = !keycap_1.visible
+		keycap_2.visible = !keycap_2.visible
 
 
 func switch_keycap_icons(is_button):

@@ -20,7 +20,7 @@ var velocity_y = 0
 var acceleration = 1
 
 # gamepad controls
-var is_using_gamepad = true
+var is_using_gamepad = false
 var left_stick_turn = Vector2(0,0)
 var right_stick_look = Vector2(0,0)
 
