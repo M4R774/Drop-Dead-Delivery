@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4vf68edsbpqg"
-path.s3tc="res://.godot/imported/texture_01.png-04f2dd5bbcc1aa6bb90cbd110a1a6892.s3tc.ctex"
-path.etc2="res://.godot/imported/texture_01.png-04f2dd5bbcc1aa6bb90cbd110a1a6892.etc2.ctex"
+path.s3tc="res://.godot/imported/texture_01.png-99315bc37456999251365e22eea64cc8.s3tc.ctex"
+path.etc2="res://.godot/imported/texture_01.png-99315bc37456999251365e22eea64cc8.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -12,8 +12,8 @@ metadata={
 
 [deps]
 
-source_file="res://Sprites/kenney_prototype-textures/PNG/Orange/texture_01.png"
-dest_files=["res://.godot/imported/texture_01.png-04f2dd5bbcc1aa6bb90cbd110a1a6892.s3tc.ctex", "res://.godot/imported/texture_01.png-04f2dd5bbcc1aa6bb90cbd110a1a6892.etc2.ctex"]
+source_file="res://Sprites/kenney_prototype-textures/PNG/Light/Orange/texture_01.png"
+dest_files=["res://.godot/imported/texture_01.png-99315bc37456999251365e22eea64cc8.s3tc.ctex", "res://.godot/imported/texture_01.png-99315bc37456999251365e22eea64cc8.etc2.ctex"]
 
 [params]
 

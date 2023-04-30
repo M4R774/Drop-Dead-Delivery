@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
-[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="9_s07wd"]
+[ext_resource type="PackedScene" uid="uid://vo28w2hmf6nu" path="res://Scenes/item_bundle.tscn" id="9_675hp"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 
@@ -23,6 +23,8 @@ ammo_box_scene = ExtResource("14_qbaql")
 health_kit_scene = ExtResource("4_7ho7q")
 map_size = 2
 map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27")])
+item_bundle_spawn_location = Vector3(2.88354, 0, -2.13262)
+item_bundle = ExtResource("9_675hp")
 
 [node name="HUD" parent="." instance=ExtResource("1_o5006")]
 
@@ -47,9 +49,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36984, 1, -4.042)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o8jcn")
-
-[node name="item" parent="." instance=ExtResource("9_s07wd")]
-transform = Transform3D(0.839629, 0, -0.54316, 0, 1, 0, 0.54316, 0, 0.839629, 2.35439, 0.450553, -4.22484)
 
 [node name="DeliverableItemSpawner" type="Timer" parent="."]
 wait_time = 20.0

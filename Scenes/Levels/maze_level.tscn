@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbcu4fwcmn5tg"]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Texture2D" uid="uid://d26a5hwnho1po" path="res://Sprites/aim_reticle.jpg" id="1_sv3y3"]
 [ext_resource type="Material" uid="uid://ckpr2drxvos7l" path="res://Materials/level_grid.tres" id="2_tki8b"]
 [ext_resource type="Texture2D" uid="uid://cyuib3yma8vk6" path="res://Sprites/kenney_prototype-textures/PNG/Light/texture_12.png" id="3_x15op"]
-[ext_resource type="Texture2D" uid="uid://b4vf68edsbpqg" path="res://Sprites/kenney_prototype-textures/PNG/Orange/texture_01.png" id="4_y5fg7"]
+[ext_resource type="Texture2D" uid="uid://b4vf68edsbpqg" path="res://Sprites/kenney_prototype-textures/PNG/Light/Orange/texture_01.png" id="4_y5fg7"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6k5vd"]
 albedo_texture = ExtResource("1_sv3y3")

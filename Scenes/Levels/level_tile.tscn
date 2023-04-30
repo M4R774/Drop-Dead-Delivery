@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="2_q8ins"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="3_hkeyl"]
 [ext_resource type="PackedScene" uid="uid://ioybgujxnqw3" path="res://Scenes/health_kit.tscn" id="4_3cmu6"]
-[ext_resource type="PackedScene" uid="uid://4kf6p5qfixrw" path="res://Scenes/item.tscn" id="5_pv30l"]
+[ext_resource type="PackedScene" uid="uid://dwek173su4oy7" path="res://Scenes/small_item.tscn" id="5_11cy3"]
 [ext_resource type="PackedScene" uid="uid://6x8fcpafkvoq" path="res://Scenes/delivery_point.tscn" id="6_ldvrw"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_1ji4g"]
@@ -37,7 +37,7 @@ script = ExtResource("1_hpgt0")
 zombie_scene = ExtResource("2_q8ins")
 ammo_box_scene = ExtResource("3_hkeyl")
 health_kit_scene = ExtResource("4_3cmu6")
-deliverable_item = ExtResource("5_pv30l")
+deliverable_item = ExtResource("5_11cy3")
 
 [node name="level_tile_0" parent="." instance=ExtResource("1_4tgem")]
 
@@ -70,8 +70,6 @@ curve = SubResource("Curve3D_hxtbs")
 [node name="ZombieSpawnLocation" type="PathFollow3D" parent="ZombieSpawnPath"]
 transform = Transform3D(0.0377089, 0, 0.999288, 0, 1, 0, -0.999288, 0, 0.0377089, -16.6105, 0, -17.2688)
 
-[node name="Delivery_point" parent="." instance=ExtResource("6_ldvrw")]
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1.91998, 0, 0.971939, 0, 1.51627, 0, -0.971449, 0, 1.92095, -2.42871, 0.77015, 17.471)
 use_collision = true
@@ -96,5 +94,16 @@ use_collision = true
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(-0.0544172, 3.17148, 0.00574112, 2.6665e-10, 0.0182928, -0.998221, -1.01495, -0.170041, -0.000307813, 5.61857, 0.304847, 8.84988)
 use_collision = true
+
+[node name="Delivery_points" type="Node3D" parent="."]
+
+[node name="Delivery_point" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -8.52705, 1.00811, 8.1007)
+
+[node name="Delivery_point2" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 14.3361, 1.00811, -5.00964)
+
+[node name="Delivery_point3" parent="Delivery_points" instance=ExtResource("6_ldvrw")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.0445, 1.00811, -11.0852)
 
 [editable path="level_tile_0"]

@@ -6,6 +6,7 @@ extends NavigationRegion3D
 @export var ammo_box_scene: PackedScene
 @export var health_kit_scene: PackedScene
 @export var deliverable_item: PackedScene
+@onready var delivery_points = [$Delivery_points/Delivery_point, $Delivery_points/Delivery_point3, $Delivery_points/Delivery_point2]
 
 
 func spawn_zombie():
@@ -49,3 +50,8 @@ func spawn_deliverable_item():
 	item.position.y = 1
 	add_child(item)
 	print("added loot box")
+
+
+func activate_delivery_point():
+	var current_point = delivery_points.pick_random()
+	current_point.activate_delivery_point()

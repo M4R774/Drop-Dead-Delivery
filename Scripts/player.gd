@@ -192,7 +192,7 @@ func update_shooting():
 			for body in collided_bodies:
 				if global_position.distance_to(body.global_position) <= melee_range:
 					body.die()
-					add_score(10)
+					add_score(1)
 
 
 func instantiate_projectile():

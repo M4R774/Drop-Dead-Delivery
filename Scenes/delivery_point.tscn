@@ -15,7 +15,9 @@ albedo_texture = ExtResource("1_dd1r3")
 
 [node name="Delivery_point" type="Area3D"]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.00811, 0)
+visible = false
 script = ExtResource("1_geewr")
+can_deliver_to = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_vwngp")
@@ -31,5 +33,10 @@ stream = ExtResource("3_aaw5b")
 [node name="Remover" type="Timer" parent="."]
 one_shot = true
 
+[node name="Deliver" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Remover" to="." method="_on_remover_timeout"]
+[connection signal="timeout" from="Deliver" to="." method="_on_deliver_timeout"]
