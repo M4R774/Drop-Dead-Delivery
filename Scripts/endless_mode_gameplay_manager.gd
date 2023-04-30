@@ -14,10 +14,25 @@ var map_tiles = []
 # round variables
 @export var item_bundle_spawn_location: Vector3
 @export var item_bundle: PackedScene
-var current_delivery_points = []
+var active_delivery_map_tiles = []
+
+
+func get_active_delivery_point():
+	if active_delivery_map_tiles.size() > 0:
+		return active_delivery_map_tiles[0].active_delivery_point
+	else: 
+		return null
+
+
+func get_active_delivery_points():
+	var active_delivery_points = []
+	for level_tile in active_delivery_map_tiles:
+		active_delivery_points.append(level_tile.active_delivery_point)
+	return active_delivery_points
 
 
 func _ready():
+	$HUD.set_player_for_compass($Player)
 	generate_map()
 	for i in range(6):
 		spawn_zombie()
@@ -26,6 +41,7 @@ func _ready():
 	$ZombieSpawnTimer.start()
 	$DeliverableItemSpawner.start()
 	spawn_item_bundle()
+
 	#create_delivery_order()
 
 
@@ -42,19 +58,21 @@ func generate_map():
 # this activates a delivery point in each tile
 # makes a list of them that needs to be visited in order
 func create_delivery_order():
-	var delivery_locations = [] + map_tiles
-	delivery_locations.remove_at(3) # we don't want to have a delivery point in the spawn tile. this needs to change accordign to map size
-	delivery_locations.shuffle()
-	current_delivery_points = [] + delivery_locations
-	#print(current_delivery_points)
-	for location in delivery_locations:
-		location.activate_delivery_point()
+	var delivery_map_tiles = [] + map_tiles
+	delivery_map_tiles.remove_at(3) # we don't want to have a delivery point in the spawn tile. this needs to change accordign to map size
+	delivery_map_tiles.shuffle()
+	active_delivery_map_tiles = [] + delivery_map_tiles
+	for location in delivery_map_tiles:
+		var _active_delivery_location = location.activate_delivery_point()
+	$HUD.set_compass_target(get_active_delivery_point())
 
 
-func remove_delivery_point(point):
-	current_delivery_points.erase(point)
-	if current_delivery_points.size() == 0: # next round
+func remove_delivery_map_tile(map_tile):
+	active_delivery_map_tiles.erase(map_tile)
+	if active_delivery_map_tiles.size() == 0: # next round
 		spawn_item_bundle()
+	else: 
+		$HUD.set_compass_target(get_active_delivery_point())
 
 
 func spawn_zombie():
@@ -71,8 +89,9 @@ func spawn_small_deliverable_item():
 
 func spawn_item_bundle():
 	var bundle = item_bundle.instantiate()
-	bundle.global_position = item_bundle_spawn_location
 	add_child(bundle)
+	bundle.global_position = item_bundle_spawn_location
+	$HUD.set_compass_target(bundle)
 
 
 func _on_zombie_spawn_timer_timeout():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cfe4g377ukyhm"]
+[gd_scene load_steps=13 format=3 uid="uid://cfe4g377ukyhm"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_2o21q"]
 [ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="1_kvxj0"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" path="res://Scripts/score.gd" id="6_i5ybc"]
 [ext_resource type="Script" path="res://Scripts/ammo_hud.gd" id="7_vv6mr"]
 [ext_resource type="Script" path="res://Scripts/health_hud.gd" id="8_k0cc7"]
+[ext_resource type="Texture2D" uid="uid://btfdb5xw41gno" path="res://Sprites/arrow.png" id="10_q7u20"]
+[ext_resource type="Script" path="res://Scripts/compass.gd" id="11_xmu3v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tu3wt"]
 bg_color = Color(0.25098, 0.184314, 0.168627, 1)
@@ -117,3 +119,22 @@ grow_vertical = 0
 theme = ExtResource("3_ugxd5")
 text = " Health: 100 %"
 script = ExtResource("8_k0cc7")
+
+[node name="Compass" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -195.0
+offset_right = 128.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = -1.5708
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(128, 128)
+texture = ExtResource("10_q7u20")
+script = ExtResource("11_xmu3v")
