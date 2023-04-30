@@ -6,7 +6,7 @@ func _ready():
 
 
 func _pressed():
-	$"../../../LoadingScreen".visible = true
+	$"../../../../../LoadingScreen".visible = true
 	call_deferred("to_gameplay")
 
 func to_gameplay():
