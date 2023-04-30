@@ -51,9 +51,6 @@ raycast = NodePath("RayCast")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -0.957168, 0)
 
 [node name="Skeleton3D" parent="player/player_rig" index="0"]
-bones/1/rotation = Quaternion(-0.0644758, 0.00362514, -0.000688871, 0.997912)
-bones/2/rotation = Quaternion(-0.0762237, -1.80885e-10, -3.33702e-12, 0.997091)
-bones/5/rotation = Quaternion(0.0262836, 1.25194e-07, -1.41306e-09, 0.999655)
 bones/8/position = Vector3(0.051948, 0.355255, -0.0858192)
 bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
 bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
@@ -61,18 +58,9 @@ bones/10/rotation = Quaternion(-0.0773399, 0.0852253, -0.159011, 0.980546)
 bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
 bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
 bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
-bones/18/position = Vector3(0.217635, -0.0733226, 0.124063)
-bones/18/rotation = Quaternion(0.923253, -0.0218979, -0.031643, 0.382259)
-bones/19/rotation = Quaternion(0.319701, -0.0788165, -0.065587, 0.941954)
-bones/21/rotation = Quaternion(0.15462, -0.766933, 0.60024, 0.16619)
-bones/23/position = Vector3(-0.217635, -0.014492, 0.0719663)
-bones/23/rotation = Quaternion(0.998021, 0.00624565, 0.0379709, -0.0497284)
-bones/24/rotation = Quaternion(0.180332, 0.0817699, 0.0439044, 0.979217)
-bones/25/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
-bones/26/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.0346144, -0.38189, 0.000103629, 0.0139937, 0.00116443, -0.383198, 0.381633, 0.0345949, 0.0140417, -0.326438, 1.49735, 0.136386)
+transform = Transform3D(0.031797, -0.382134, 0, 0.0149439, 0.00124349, -0.383162, 0.381842, 0.0317726, 0.0149956, -0.329943, 1.49847, 0.133941)
 bone_idx = 15
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]

@@ -29,7 +29,6 @@ map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)
 speed = 5
 ammo = 0
-health_percentage = 1000
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, -6.50845e-16, 1.74394e-16, 7.85077e-17, 0.369601, 0.929191, -6.69215e-16, -0.929191, 0.369601, 2.08165e-12, 7, 1)

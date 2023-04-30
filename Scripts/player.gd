@@ -38,6 +38,9 @@ var projectile_prefab
 var is_rolling = false
 var roll_factor = 1
 
+# animation
+var animation_player
+
 @export var health_percentage = 100
 
 
@@ -47,6 +50,7 @@ func _ready():
 	init_mac()
 	if camera == null:
 		camera = get_viewport().get_camera_3d()
+	animation_player = $player.get_node("AnimationPlayer")
 
 
 func _physics_process(delta):
@@ -88,9 +92,9 @@ func _input(event):
 
 
 func update_position(delta):
-	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * speed * roll_factor
-	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up")) * speed * roll_factor
-
+	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
+	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
+	direction = direction.normalized() * speed * roll_factor
 	
 	if is_on_floor():
 		# jump
@@ -100,8 +104,9 @@ func update_position(delta):
 			velocity_y = 0
 		# roll
 		if Input.is_action_just_pressed("roll") and !is_rolling and $Roll_cooldown.time_left == 0:
+			#animation_player.play("roll")
 			is_rolling = true
-			roll_factor = 2
+			roll_factor = 1.25
 			var tween = create_tween()
 			tween.set_ease(Tween.EASE_IN_OUT)
 			tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
@@ -111,13 +116,15 @@ func update_position(delta):
 		# acceleration variable is meaningless when we are already using speed
 		if direction.length() > 0:
 			velocity = Vector3((velocity.x + (direction.x - velocity.x) * acceleration), velocity.y, (velocity.z + (direction.z - velocity.z) * acceleration))
+			animation_player.play("player_walk")
 		else:
 			velocity = Vector3((velocity.x + (0 - velocity.x) * friction), velocity.y, (velocity.z + (0 - velocity.z) * friction))
+			animation_player.play("hold_gun")
 	else:
 		velocity_y -= gravity * delta
 		velocity.x = velocity.x + (direction.x - velocity.x) * acceleration
 		velocity.z = velocity.z + (direction.z - velocity.z) * acceleration
-		velocity = velocity.normalized()
+	
 
 	velocity.y = velocity_y
 	play_sound_if_moving()
@@ -167,6 +174,7 @@ func update_shooting():
 	# add melee with raycast range 0.1?
 	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
 		if ammo > 0:
+			#animation_player.play("shoot")
 			ammo -= 1
 			emit_signal("player_ammo_updated", ammo)
 			shotgunSound.play()
@@ -176,7 +184,7 @@ func update_shooting():
 		else:
 			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
-		#raycast.position = meleeRaycastPos
+		#animation_player.play("melee")
 		meleeSound.play()
 		$Melee_cooldown.start()
 		var collided_bodies = raycast.get_colliding_bodies()

@@ -4,6 +4,8 @@ extends CharacterBody3D
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 
+@onready var animation_player = $ghoul.get_node("AnimationPlayer")
+
 var SPEED = 3.0
 var health = 5
 var dead: bool = false
@@ -59,7 +61,6 @@ func _on_hands_body_entered(body:Node3D):
 
 
 func _on_walk_animation_offset_timeout():
-	var animation_player = $ghoul.get_node("AnimationPlayer")
 	animation_player.play("ghoul_walk")
 	animation_player.speed_scale = randf_range(0.75, 1.25)
 
@@ -67,3 +68,4 @@ func _on_walk_animation_offset_timeout():
 # Enemy only hits after a short delay, giving the player a chance to kill the enemy first
 func _on_melee_hit_delay_timeout():
 	current_target.add_health(-10)
+	#animation_player.play("ghoul_melee")
