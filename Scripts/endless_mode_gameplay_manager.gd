@@ -57,6 +57,7 @@ func generate_map():
 			#new_tile.position = Vector3(j * 39, 0, i * 39)
 			add_child(new_tile)
 			new_tile.rotation.y = deg_to_rad(90 * rng.randi_range(0, 3))
+	map_tiles[x_offset + y_offset*2].global_rotation = Vector3(0, deg_to_rad(270), 0)
 
 
 # this activates a delivery point in each tile

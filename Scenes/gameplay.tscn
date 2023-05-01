@@ -54,7 +54,7 @@ wait_time = 5.0
 wait_time = 10.0
 
 [node name="Ammo Box" parent="." instance=ExtResource("14_qbaql")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.36984, 1, -4.042)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.684477, 1, -5.0567)
 
 [node name="post_van" parent="." instance=ExtResource("10_sxxvc")]
 transform = Transform3D(0.438811, 0, -1.19285, 0, 1.271, 0, 1.19285, 0, 0.438811, 5.08755, 0, -3.16071)

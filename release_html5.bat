@@ -10,4 +10,4 @@ Rem      archive, not inside Builds folder
 cd Builds/HTML5
 tar.exe -caf ../html5_executable.zip *
 cd ..
-butler push html5_executable.zip martta/ludum-dare-53:html5
+butler push html5_executable.zip martta/drop-dead-delivery:html5
