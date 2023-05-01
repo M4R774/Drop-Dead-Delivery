@@ -89,8 +89,9 @@ layout_mode = 2
 size_flags_vertical = 6
 theme = ExtResource("3")
 text = "# HOW TO PLAY
-	- WASD: move
+	- WASD: Move
 	- Alt: Roll
+	- Space: Jump
 	- Mouse 1: Fire
 	- Mouse 2: Melee
   
