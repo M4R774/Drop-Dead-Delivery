@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=32 format=3 uid="uid://b76y018lotvep"]
+[gd_scene load_steps=33 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
 [ext_resource type="PackedScene" uid="uid://b50w6cvvgm504" path="res://3D/player.glb" id="2_0mtul"]
@@ -664,7 +663,7 @@ nodes/BlendWalk/position = Vector2(140, 80)
 nodes/OneShot/node = SubResource("AnimationNodeOneShot_ha4f5")
 nodes/OneShot/position = Vector2(440, 120)
 nodes/output/position = Vector2(600, 80)
-node_connections = [&"output", 0, &"OneShot", &"OneShot", 0, &"BlendWalk", &"OneShot", 1, &"Animation 2", &"BlendWalk", 0, &"Animation", &"BlendWalk", 1, &"Animation 3"]
+node_connections = [&"output", 0, &"OneShot", &"BlendWalk", 0, &"Animation", &"BlendWalk", 1, &"Animation 3", &"OneShot", 0, &"BlendWalk", &"OneShot", 1, &"Animation 2"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
 
@@ -689,9 +688,10 @@ animation_tree = NodePath("player/AnimationTree")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.00583, 0)
 
 [node name="Skeleton3D" parent="player/player_rig" index="0"]
-bones/1/rotation = Quaternion(-0.0644439, -0.0311256, 0.00591466, 0.997418)
-bones/2/rotation = Quaternion(-0.0230083, 1.41644e-09, -7.03308e-11, 0.999735)
-bones/5/rotation = Quaternion(-0.0350841, 1.24508e-07, 1.12424e-08, 0.999384)
+bones/1/rotation = Quaternion(-0.0644724, -0.0106364, 0.00202119, 0.997861)
+bones/2/rotation = Quaternion(-0.0728599, -3.29466e-10, 2.85951e-11, 0.997342)
+bones/3/rotation = Quaternion(0.00162714, 0, 0, 0.999999)
+bones/5/rotation = Quaternion(0.0223999, 1.25169e-07, 1.09958e-08, 0.999749)
 bones/8/position = Vector3(0.051948, 0.355255, -0.0858192)
 bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
 bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
@@ -699,25 +699,27 @@ bones/10/rotation = Quaternion(-0.0773399, 0.0852253, -0.159011, 0.980546)
 bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
 bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
 bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
-bones/19/position = Vector3(0.217635, -0.0271782, 0.100092)
-bones/19/rotation = Quaternion(0.995571, -0.00486876, -0.0381719, -0.0857786)
-bones/20/rotation = Quaternion(0.175469, -0.0818406, -0.0431418, 0.980128)
+bones/14/rotation = Quaternion(-0.0106536, -0.00767979, -0.0114099, 0.999849)
+bones/19/position = Vector3(0.217635, -0.0704006, 0.122545)
+bones/19/rotation = Quaternion(0.934117, -0.0209559, -0.0322745, 0.354886)
+bones/20/rotation = Quaternion(0.310775, -0.0790615, -0.0642085, 0.945011)
 bones/22/rotation = Quaternion(-0.15462, 0.766933, -0.60024, -0.16619)
-bones/24/position = Vector3(-0.217635, -0.0916846, 0.116016)
-bones/24/rotation = Quaternion(0.909256, 0.0229959, 0.0308542, 0.414455)
-bones/25/rotation = Quaternion(0.372273, 0.0772084, 0.0736745, 0.921968)
+bones/24/position = Vector3(-0.217635, -0.0193801, 0.0747557)
+bones/24/rotation = Quaternion(0.999052, 0.00735965, 0.0377708, -0.020356)
+bones/25/rotation = Quaternion(0.19273, 0.0815802, 0.0458467, 0.976779)
 bones/26/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
 bones/27/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.335577, -0.00603819, -0.062957, -1.83068e-09, 0.870704, -0.108847, 0.0212959, 0.0951487, 0.992063, 0.0122725, 1.52774, -0.533002)
+transform = Transform3D(0.336173, -0.000175139, -0.0216513, 4.77795e-10, 0.87587, -0.00923465, 0.00728061, 0.0080868, 0.999723, 0.00428055, 1.5056, -0.53734)
 bone_idx = 15
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D/Backpack" index="0"]
+visible = false
 material_override = ExtResource("3_vbigf")
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D" index="1"]
-transform = Transform3D(0.0075905, -0.383376, 0.0016973, -0.0267073, -0.00222225, -0.382517, 0.382448, 0.00745368, -0.0267458, -0.359258, 1.44959, 0.111868)
+transform = Transform3D(0.0235191, -0.382733, -0.00024806, 0.0114171, 0.000950032, -0.383284, 0.382563, 0.0235012, 0.0114539, -0.340126, 1.49433, 0.126932)
 bone_idx = 16
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]
@@ -815,8 +817,9 @@ one_shot = true
 [node name="DyingAnimationDuration2" type="Timer" parent="."]
 one_shot = true
 
-[node name="Inventory" type="Node3D" parent="."]
+[node name="Inventory" type="Node3D" parent="." node_paths=PackedStringArray("backpack_mesh")]
 script = ExtResource("8_2deog")
+backpack_mesh = NodePath("../player/player_rig/Skeleton3D/Backpack/Backpack")
 
 [node name="blip" type="AudioStreamPlayer3D" parent="Inventory"]
 stream = ExtResource("15_k42co")
