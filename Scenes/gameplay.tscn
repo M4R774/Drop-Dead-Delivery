@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://64lrjbh76pmx"]
+[gd_scene load_steps=14 format=3 uid="uid://64lrjbh76pmx"]
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
 [ext_resource type="PackedScene" uid="uid://ioybgujxnqw3" path="res://Scenes/health_kit.tscn" id="4_7ho7q"]
+[ext_resource type="PackedScene" uid="uid://d4exug65ilv07" path="res://Scenes/Levels/level_tile_park.tscn" id="6_c180w"]
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
@@ -25,7 +26,7 @@ zombie_scene = ExtResource("10_inqas")
 ammo_box_scene = ExtResource("14_qbaql")
 health_kit_scene = ExtResource("4_7ho7q")
 map_size = 2
-map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27")])
+map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27"), ExtResource("6_c180w")])
 item_bundle_spawn_location = Vector3(2.88354, 0, -2.13262)
 item_bundle = ExtResource("9_675hp")
 
