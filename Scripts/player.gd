@@ -17,7 +17,9 @@ signal player_health_updated
 var direction = Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var velocity_y = 0
-var acceleration = 1
+var is_rolling = false
+var rolling_axis = Vector3.ZERO
+var rolling_direction = Vector3.FORWARD
 
 # gamepad controls
 var is_using_gamepad = false
@@ -36,10 +38,6 @@ var projectile_prefab
 
 # melee
 @export var push_force = 5
-
-# rolling
-var is_rolling = false
-var roll_factor = 1
 
 # animation
 var animation_player
@@ -61,87 +59,94 @@ func _physics_process(delta):
 		get_tree().paused = true
 	if out_of_bounds():
 		die()
-
-	# player movement and rotation
-	update_position(delta)
-	if is_using_gamepad:
-		update_gamepad_rotation(delta)
-	else:
-		update_rotation()
-	# player actions
+	update_movement(delta)
 	update_shooting()
 
 
-func out_of_bounds():
-	return self.position.y < -10
+func update_movement(delta):
+	if Input.is_action_just_pressed("roll") and rolling_is_possible():
+		$Rolling_duration.start()
+		is_rolling = true
+		rolling_axis = calculate_rolling_axis()
+		rolling_direction = get_horizontal_velocity()
 
-
-func die():
-	if !damageSound.is_playing():
-		damageSound.play()
-	emit_signal("player_died")
-	get_tree().paused = true
-
-
-# checking if player is using kb and mouse or gamepad
-# this should only be run for player 1, as player 2 is always on gamepad
-# player 1 might be on kb and player 2 on gamepad on the same device
-# this needs to be resolved, perhaps with a is_multiplayer boolean or smt
-func _input(event):
-	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
-		if !is_using_gamepad:
-			get_parent().change_delivery_prompt_icons(true)
-		is_using_gamepad = true
+	if is_rolling:
+		roll(delta)
 	else:
+		set_horizontal_velocity()
 		if is_using_gamepad:
-			get_parent().change_delivery_prompt_icons(false)
-		is_using_gamepad = false
+			update_gamepad_rotation(delta)
+		else:
+			update_rotation()
+
+	set_vertical_velocity(delta)
+	move_and_slide()
 
 
-func update_position(delta):
+func rolling_is_possible():
+	if $Roll_cooldown.time_left == 0 and !is_rolling:
+		return true
+	else: 
+		return false
+
+
+# +z left, -z right
+# y aim
+# x backward/forward
+func roll(delta):
+	if $Rolling_duration.time_left == 0:
+		reset_rolling()
+		return
+	var _roll_time = $Rolling_duration.wait_time
+	
+	self.rotate(rolling_axis, delta * 1/_roll_time * 6.2831853071)
+	velocity = rolling_direction * speed * 1.5
+
+
+func get_horizontal_velocity():
+	var horizontal_velocity = velocity
+	horizontal_velocity.y = 0
+	if horizontal_velocity == Vector3.ZERO:
+		horizontal_velocity = -basis.z
+	return horizontal_velocity.normalized()
+
+
+func calculate_rolling_axis():
+	var horizontal_velocity = get_horizontal_velocity()
+	return horizontal_velocity.rotated(Vector3.UP, deg_to_rad(90))
+
+
+func reset_rolling():
+	self.rotation = Vector3(0,rotation.y,0)
+	is_rolling = false
+	$Roll_cooldown.start()
+
+
+func set_horizontal_velocity():
 	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
 	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
-	direction = direction.normalized() * speed * roll_factor
-	
+	direction = direction.normalized() * speed
+	velocity = direction
+	animate_player()
+	play_sound_if_moving()
+
+
+func set_vertical_velocity(delta):
 	if is_on_floor():
-		# jump
 		if Input.is_action_just_pressed("jump"):
 			velocity_y = jump_velocity 
 		else: 
 			velocity_y = 0
-		# roll
-		if Input.is_action_just_pressed("roll") and !is_rolling and $Roll_cooldown.time_left == 0:
-			#animation_player.play("roll")
-			is_rolling = true
-			roll_factor = 1.25
-			var tween = create_tween()
-			tween.set_ease(Tween.EASE_IN_OUT)
-			tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
-			tween.tween_callback(reset_rolling)
-		
-		# slipperiness
-		# acceleration variable is meaningless when we are already using speed
-		if direction.length() > 0:
-			velocity = Vector3((velocity.x + (direction.x - velocity.x) * acceleration), velocity.y, (velocity.z + (direction.z - velocity.z) * acceleration))
-			animation_player.play("player_walk")
-		else:
-			velocity = Vector3((velocity.x + (0 - velocity.x) * friction), velocity.y, (velocity.z + (0 - velocity.z) * friction))
-			animation_player.play("hold_gun")
 	else:
 		velocity_y -= gravity * delta
-		velocity.x = velocity.x + (direction.x - velocity.x) * acceleration
-		velocity.z = velocity.z + (direction.z - velocity.z) * acceleration
-	
-
 	velocity.y = velocity_y
-	play_sound_if_moving()
-	move_and_slide()
-	
 
-func reset_rolling():
-	is_rolling = false
-	roll_factor = 1                                               
-	$Roll_cooldown.start()
+
+func animate_player():
+	if direction.length() > 0:
+		animation_player.play("player_walk")
+	else:
+		animation_player.play("hold_gun")
 
 
 func play_sound_if_moving():
@@ -234,6 +239,31 @@ func add_health(health_to_add: int):
 	if health_to_add < 0:
 		damageSound.play()
 
+func out_of_bounds():
+	return self.position.y < -10
+
+
+func die():
+	if !damageSound.is_playing():
+		damageSound.play()
+	emit_signal("player_died")
+	get_tree().paused = true
+
+
+# checking if player is using kb and mouse or gamepad
+# this should only be run for player 1, as player 2 is always on gamepad
+# player 1 might be on kb and player 2 on gamepad on the same device
+# this needs to be resolved, perhaps with a is_multiplayer boolean or smt
+func _input(event):
+	if (event is InputEventJoypadButton) or (event is InputEventJoypadMotion):
+		if !is_using_gamepad:
+			get_parent().change_delivery_prompt_icons(true)
+		is_using_gamepad = true
+	else:
+		if is_using_gamepad:
+			get_parent().change_delivery_prompt_icons(false)
+		is_using_gamepad = false
+
 
 func init_mac():
 	# GuliKit Controller map for mac
@@ -243,3 +273,10 @@ func init_mac():
 		dpup:b12,dpleft:b14,dpdown:b13,dpright:b15,leftx:a0,lefty:a1,rightx:a2
 		,righty:a3,lefttrigger:a5,righttrigger:a4,platform:Mac OS X", true)
 
+# Old rolling
+			#animation_player.play("roll")
+			#var tween = create_tween()
+			#tween.set_ease(Tween.EASE_IN_OUT)
+			#tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
+			#tween.tween_callback(reset_rolling)
+		

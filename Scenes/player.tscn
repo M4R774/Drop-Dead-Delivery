@@ -116,7 +116,10 @@ wait_time = 0.5
 one_shot = true
 
 [node name="Roll_cooldown" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.25
+one_shot = true
+
+[node name="Rolling_duration" type="Timer" parent="."]
 one_shot = true
 
 [node name="Inventory" type="Node3D" parent="."]
