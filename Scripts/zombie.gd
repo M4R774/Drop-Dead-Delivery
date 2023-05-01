@@ -99,6 +99,7 @@ func _on_melee_hit_delay_timeout():
 	for body in bodies_in_melee_range:
 		if body.is_in_group("player"):
 			body.add_health(-10)
+			body.external_force = -get_global_transform().basis.z * 10
 
 
 func _on_melee_cooldown_timeout():

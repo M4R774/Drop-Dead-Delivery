@@ -21,6 +21,7 @@ var is_rolling = false
 var rolling_axis = Vector3.ZERO
 var rolling_direction = Vector3.FORWARD
 var dead: bool = false
+var external_force = Vector3.ZERO
 
 # gamepad controls
 var is_using_gamepad = false
@@ -130,7 +131,8 @@ func set_horizontal_velocity():
 	direction.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left"))
 	direction.z = (Input.get_action_strength("move_down") - Input.get_action_strength("move_up"))
 	direction = direction.normalized() * speed
-	velocity = direction
+	velocity = direction + external_force
+	external_force = external_force * .9
 	animate_player()
 	play_sound_if_moving()
 
