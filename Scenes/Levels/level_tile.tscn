@@ -164,7 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.813924, 0.00999809, 0.18990
 shape = SubResource("ConcavePolygonShape3D_diafu")
 
 [node name="house" parent="." instance=ExtResource("12_g2n6v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0485113, 0.00999905, 0.0647964)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0214891, 0.00999905, -0.0133123)
 
 [node name="SpotLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 3.81243, -4.50139)

@@ -15,6 +15,9 @@ data = PackedVector3Array(-7.5302, -2.4854, 2.5424, 7.5302, -2.4854, 7.6272, 7.5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="plywood/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_54uoq")
 
+[node name="House" parent="." index="2"]
+lod_bias = 25.0
+
 [node name="StaticBody3D" type="StaticBody3D" parent="House" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="House/StaticBody3D" index="0"]

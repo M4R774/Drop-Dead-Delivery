@@ -11,6 +11,9 @@ script = ExtResource("1_d3qyk")
 [node name="ammo_box" parent="." instance=ExtResource("2_1xsn3")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.499779, 0)
 
+[node name="ammo" parent="ammo_box" index="1"]
+lod_bias = 25.0
+
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
@@ -22,3 +25,5 @@ light_color = Color(0.431373, 1, 0.4, 1)
 light_energy = 0.5
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="ammo_box"]
