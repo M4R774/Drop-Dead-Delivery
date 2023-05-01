@@ -31,8 +31,8 @@ item_bundle = ExtResource("9_675hp")
 
 [node name="HUD" parent="." instance=ExtResource("1_o5006")]
 
-[node name="Death screen" parent="HUD" index="1"]
-visible = false
+[node name="Death screen" parent="HUD" index="0"]
+mouse_filter = 1
 
 [node name="Player" parent="." instance=ExtResource("7_wps4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)

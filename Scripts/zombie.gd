@@ -51,10 +51,10 @@ func die():
 	HIGHSCORE_SINGLETON.SCORE += 1
 	dead = true
 	play_random_sound()
-	$Hands.visible = false
+	$Hands.monitoring = false
 	if !$NavigationAgent3D:
 		$NavigationAgent3D.queue_free()
-	$CollisionShape3D.visible = false
+	$CollisionShape3D.disabled = true
 	$DyingAnimationDuration.start()
 	$DyingAnimationDuration2.start()
 
@@ -65,7 +65,7 @@ func add_health(health_to_add: int):
 
 
 func _on_hands_body_entered(body:Node3D):
-	if body.is_in_group("player") and $Melee_cooldown.time_left == 0:
+	if body.is_in_group("player") and $Melee_cooldown.time_left == 0 and not dead:
 		$Melee_cooldown.start()
 		#$MeleeHitDelay.start()
 		body.add_health(-10)
