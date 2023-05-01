@@ -1699,7 +1699,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="DyingAnimationDuration2" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.35
 one_shot = true
 
 [connection signal="timeout" from="BarkDelay" to="Barks" method="_on_bark_delay_timeout"]

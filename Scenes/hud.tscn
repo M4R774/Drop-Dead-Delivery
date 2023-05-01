@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfe4g377ukyhm"]
+[gd_scene load_steps=17 format=3 uid="uid://cfe4g377ukyhm"]
 
 [ext_resource type="Script" path="res://Scripts/hud.gd" id="1_2o21q"]
 [ext_resource type="PackedScene" uid="uid://cxmbo4lmunfpq" path="res://Scenes/fps_counter.tscn" id="1_kvxj0"]
@@ -6,8 +6,12 @@
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="3_ugxd5"]
 [ext_resource type="Script" path="res://Scripts/Menus and highscore/to_highscores.gd" id="4_mawh8"]
 [ext_resource type="PackedScene" uid="uid://cef06r8txsxce" path="res://Scenes/pause_menu.tscn" id="5_imu2b"]
+[ext_resource type="Script" path="res://Scripts/Nagging/shoot.gd" id="5_u2yxh"]
 [ext_resource type="Script" path="res://Scripts/score.gd" id="6_i5ybc"]
+[ext_resource type="Script" path="res://Scripts/Nagging/melee.gd" id="6_khb08"]
+[ext_resource type="Script" path="res://Scripts/Nagging/jump.gd" id="7_2v70y"]
 [ext_resource type="Script" path="res://Scripts/ammo_hud.gd" id="7_vv6mr"]
+[ext_resource type="Script" path="res://Scripts/Nagging/roll.gd" id="8_itp60"]
 [ext_resource type="Script" path="res://Scripts/health_hud.gd" id="8_k0cc7"]
 [ext_resource type="Texture2D" uid="uid://btfdb5xw41gno" path="res://Sprites/arrow.png" id="10_q7u20"]
 [ext_resource type="Script" path="res://Scripts/compass.gd" id="11_xmu3v"]
@@ -31,8 +35,58 @@ script = ExtResource("1_2o21q")
 
 [node name="fps_counter" parent="." instance=ExtResource("1_kvxj0")]
 
+[node name="Nagging" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_right = 374.0
+offset_bottom = 156.0
+theme_override_constants/separation = 5
+
+[node name="Score" type="Label" parent="Nagging"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("3_ugxd5")
+text = " Score: 0"
+script = ExtResource("6_i5ybc")
+
+[node name="Shoot" type="Label" parent="Nagging"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+theme_override_font_sizes/font_size = 18
+text = "  Left Click to Shoot
+"
+vertical_alignment = 1
+script = ExtResource("5_u2yxh")
+
+[node name="Melee" type="Label" parent="Nagging"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+theme_override_font_sizes/font_size = 18
+text = "  Right Click to Melee "
+vertical_alignment = 1
+script = ExtResource("6_khb08")
+
+[node name="Jump" type="Label" parent="Nagging"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+theme_override_font_sizes/font_size = 18
+text = "  Space to Jump"
+vertical_alignment = 1
+script = ExtResource("7_2v70y")
+
+[node name="Roll" type="Label" parent="Nagging"]
+layout_mode = 2
+theme = ExtResource("3_ugxd5")
+theme_override_font_sizes/font_size = 18
+text = "  Left Alt to Roll"
+vertical_alignment = 1
+script = ExtResource("8_itp60")
+
+[node name="Score Centerer" type="Control" parent="Nagging"]
+layout_mode = 2
+
 [node name="Death screen" type="PanelContainer" parent="."]
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,24 +128,6 @@ script = ExtResource("4_mawh8")
 
 [node name="Pause menu" parent="." instance=ExtResource("5_imu2b")]
 layout_mode = 1
-
-[node name="Score Centerer" type="Control" parent="."]
-layout_mode = 2
-anchors_preset = 0
-offset_top = 2.0
-offset_right = 644.0
-offset_bottom = 81.0
-
-[node name="Score" type="Label" parent="Score Centerer"]
-layout_mode = 2
-offset_left = 11.0
-offset_top = -1.0
-offset_right = 502.0
-offset_bottom = 35.0
-size_flags_vertical = 0
-theme = ExtResource("3_ugxd5")
-text = "Score: 0"
-script = ExtResource("6_i5ybc")
 
 [node name="Ammo" type="Label" parent="."]
 layout_mode = 1

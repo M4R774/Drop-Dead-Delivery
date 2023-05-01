@@ -31,6 +31,9 @@ item_bundle = ExtResource("9_675hp")
 
 [node name="HUD" parent="." instance=ExtResource("1_o5006")]
 
+[node name="Death screen" parent="HUD" index="1"]
+visible = false
+
 [node name="Player" parent="." instance=ExtResource("7_wps4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)
 speed = 5
@@ -62,6 +65,28 @@ collision_layer = 3
 [node name="CollisionShape3D" type="CollisionShape3D" parent="post_van/StaticBody3D"]
 transform = Transform3D(3.89988, 0, 0.691419, 0, 2.09103, 0, -1.40066, 0, 1.92513, 1.01358, 1.3988, -0.347167)
 shape = SubResource("BoxShape3D_2wyyq")
+
+[node name="breaklight" type="OmniLight3D" parent="post_van"]
+transform = Transform3D(0.786781, 0, 5.96046e-08, 0, 0.786782, 0, -5.96046e-08, 0, 0.786781, -0.827534, 1.34158, 1.14831)
+light_color = Color(0.976471, 0, 0, 1)
+omni_range = 2.15751
+
+[node name="breaklight2" type="OmniLight3D" parent="post_van"]
+transform = Transform3D(0.786781, 0, 5.96046e-08, 0, 0.786782, 0, -5.96046e-08, 0, 0.786781, 0.78014, 1.34158, 1.21439)
+light_color = Color(0.976471, 0, 0, 1)
+omni_range = 2.15751
+
+[node name="headlight" type="SpotLight3D" parent="post_van"]
+transform = Transform3D(0.777247, 0.108529, 0.0559658, -0.121656, 0.719276, 0.294733, -0.0105083, -0.299816, 0.727341, -0.77315, 1.16694, -3.26472)
+light_energy = 5.0
+spot_range = 15.0
+spot_angle = 24.7506
+
+[node name="headlight2" type="SpotLight3D" parent="post_van"]
+transform = Transform3D(0.769647, 0.145717, 0.0737196, -0.162859, 0.71108, 0.294733, -0.0120401, -0.303575, 0.725756, 0.731371, 1.16694, -3.09003)
+light_energy = 5.0
+spot_range = 15.0
+spot_angle = 24.7506
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o8jcn")
