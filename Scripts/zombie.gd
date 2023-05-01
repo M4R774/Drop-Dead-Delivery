@@ -29,7 +29,7 @@ func _physics_process(delta):
 		var next_location = nav_agent.get_next_path_position()
 		var new_velocity = (next_location - global_position).normalized() * SPEED
 		nav_agent.set_velocity(new_velocity)
-		rotation.y = atan2(-velocity.x, -velocity.z)
+		look_at(next_location)
 	else:
 		if $DyingAnimationDuration2.time_left > 0:
 			var dying_animation_duration = $DyingAnimationDuration2.wait_time

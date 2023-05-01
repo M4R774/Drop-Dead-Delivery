@@ -30,7 +30,7 @@ var right_stick_look = Vector2(0,0)
 # shooting
 @export var raycast : RayCast3D
 var shotgun_range = 10
-var projectile_count = 10
+var projectile_count = 20
 var inaccuracy = .2
 var melee_range = 10
 @export var ammo: int = 10
