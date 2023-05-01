@@ -34,6 +34,7 @@ func get_active_delivery_points():
 
 
 func _ready():
+	#self.rotation.y = deg_to_rad(90 * rng.randi_range(0, 3))
 	$HUD.set_player_for_compass($Player)
 	generate_map()
 	spawn_zombie()
@@ -45,12 +46,15 @@ func _ready():
 
 
 func generate_map():
+	var x_offset = rng.randi_range(0, 1)
+	var y_offset = rng.randi_range(0, 1)
 	for i in range(map_size):
 		for j in range(map_size):
 			var new_tile = map_tile_scenes.pick_random().instantiate()
 			new_tile.player = player
 			map_tiles.append(new_tile)
-			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			new_tile.position = Vector3(j * 39 - (39 * x_offset), 0, i * 39 - (39 * y_offset))
+			#new_tile.position = Vector3(j * 39, 0, i * 39)
 			add_child(new_tile)
 			new_tile.rotation.y = deg_to_rad(90 * rng.randi_range(0, 3))
 
