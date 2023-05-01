@@ -32,7 +32,6 @@ func spawn_loot_box():
 		spawn_probability = 100
 	var loot_box
 	var spawned_item = int(randf_range(0, spawn_probability))
-	print(spawned_item)
 	if spawned_item < 50:
 		loot_box = ammo_box_scene.instantiate()
 		loot_box.ammo = 3

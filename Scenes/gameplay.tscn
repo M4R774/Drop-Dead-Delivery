@@ -38,6 +38,7 @@ ammo = 0
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
 transform = Transform3D(1, -6.50845e-16, 1.74394e-16, 7.85077e-17, 0.369601, 0.929191, -6.69215e-16, -0.929191, 0.369601, 2.08165e-12, 7, 1)
+current = true
 far = 20.0
 script = ExtResource("8_e7b0r")
 player = NodePath("../Player")
@@ -56,6 +57,7 @@ transform = Transform3D(0.438811, 0, -1.19285, 0, 1.271, 0, 1.19285, 0, 0.438811
 
 [node name="StaticBody3D" type="StaticBody3D" parent="post_van"]
 transform = Transform3D(0.345184, 0, 0.938536, 0, 1, 0, -0.938536, 0, 0.345184, 0, 0, 0)
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="post_van/StaticBody3D"]
 transform = Transform3D(3.89988, 0, 0.691419, 0, 2.09103, 0, -1.40066, 0, 1.92513, 1.01358, 1.3988, -0.347167)

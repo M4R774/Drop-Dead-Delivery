@@ -98,7 +98,6 @@ func roll(delta):
 		reset_rolling()
 		return
 	var _roll_time = $Rolling_duration.wait_time
-	
 	self.rotate(rolling_axis, delta * 1/_roll_time * 6.2831853071)
 	velocity = rolling_direction * speed * 1.5
 

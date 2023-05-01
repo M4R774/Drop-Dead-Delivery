@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var target: CharacterBody3D
 
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
-@onready var animation_player = $ghoul.get_node("AnimationPlayer")
+@onready var animation_player: AnimationPlayer = $ghoul.get_node("AnimationPlayer")
 
 var SPEED = 3.0
 var health = 5
@@ -21,7 +21,7 @@ func _ready():
 	$Melee_cooldown.start()
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	if not dead:
 		nav_agent.set_target_position(target.global_position)
 		#if nav_agent.is_target_reachable():
@@ -30,12 +30,15 @@ func _physics_process(_delta):
 		nav_agent.set_velocity(new_velocity)
 		rotation.y = atan2(-velocity.x, -velocity.z)
 	else:
-		pass
-		# TODO: Dying animation
+		if $DyingAnimationDuration2.time_left > 0:
+			var dying_animation_duration = $DyingAnimationDuration2.wait_time
+			self.rotate(basis.x, delta * 1/dying_animation_duration * 6.2831853071 / 4)
+		else:
+			self.global_position += Vector3(0, -delta, 0)
 
 
 func _on_navigation_agent_3d_target_reached():
-	print("target reached")
+	pass
 
 
 func _on_navigation_agent_3d_velocity_computed(safe_velocity):
@@ -44,15 +47,16 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 
 func die():
+	animation_player.stop()
 	HIGHSCORE_SINGLETON.SCORE += 1
 	dead = true
 	play_random_sound()
 	$Hands.visible = false
-	if $CollisionShape3D.visible == not null:
-		$CollisionShape3D.visible = false
-	$NavigationAgent3D.queue_free()
+	if !$NavigationAgent3D:
+		$NavigationAgent3D.queue_free()
+	$CollisionShape3D.visible = false
 	$DyingAnimationDuration.start()
-
+	$DyingAnimationDuration2.start()
 
 func add_health(health_to_add: int):
 	health += health_to_add
