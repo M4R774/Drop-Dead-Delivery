@@ -1668,7 +1668,7 @@ shape = SubResource("CapsuleShape3D_1u61v")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 2.0
-target_desired_distance = 0.5
+target_desired_distance = 3.0
 path_max_distance = 10.01
 avoidance_enabled = true
 radius = 0.8
@@ -1695,7 +1695,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="DyingAnimationDuration" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 5.0
 one_shot = true
 
 [node name="DyingAnimationDuration2" type="Timer" parent="."]

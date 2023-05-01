@@ -122,6 +122,13 @@ one_shot = true
 [node name="Rolling_duration" type="Timer" parent="."]
 one_shot = true
 
+[node name="DyingAnimationDuration" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+
+[node name="DyingAnimationDuration2" type="Timer" parent="."]
+one_shot = true
+
 [node name="Inventory" type="Node3D" parent="."]
 script = ExtResource("8_2deog")
 
@@ -146,6 +153,7 @@ target_position = Vector3(0, -2, 0)
 transform = Transform3D(0.906308, -0.422618, 0, 0.422618, 0.906308, 0, 0, 0, 1, 0, 0, 0)
 target_position = Vector3(0, -2, 0)
 
+[connection signal="timeout" from="DyingAnimationDuration" to="." method="_on_dying_animation_duration_timeout"]
 [connection signal="area_entered" from="Inventory/Area3D" to="Inventory" method="_on_area_3d_area_entered"]
 
 [editable path="player"]

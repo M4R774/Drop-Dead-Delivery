@@ -20,6 +20,7 @@ var velocity_y = 0
 var is_rolling = false
 var rolling_axis = Vector3.ZERO
 var rolling_direction = Vector3.FORWARD
+var dead: bool = false
 
 # gamepad controls
 var is_using_gamepad = false
@@ -55,12 +56,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	if health_percentage <= 0:
-		get_tree().paused = true
-	if out_of_bounds():
-		die()
-	update_movement(delta)
-	update_shooting()
+	if not dead:
+		if out_of_bounds():
+			die()
+		update_movement(delta)
+		update_shooting()
+	else:
+		if $DyingAnimationDuration2.time_left > 0:
+			var dying_animation_duration = $DyingAnimationDuration2.wait_time
+			self.rotate(basis.x, delta * 1/dying_animation_duration * 6.2831853071 / 4)
 
 
 func update_movement(delta):
@@ -230,23 +234,28 @@ func add_health(health_to_add: int):
 	if health_to_add > 0:
 		$HealthSound.play()
 	health_percentage += health_to_add
-	if health_percentage <= 0:
+	if health_percentage <= 0 and not dead:
+		health_percentage = 0
 		die()
 	elif health_percentage > 100:
 		health_percentage = 100
+	elif health_percentage < 0:
+		health_percentage = 0
 	emit_signal("player_health_updated", health_percentage)
 	if health_to_add < 0:
 		damageSound.play()
+
 
 func out_of_bounds():
 	return self.position.y < -10
 
 
 func die():
+	dead = true
+	$DyingAnimationDuration.start()
+	$DyingAnimationDuration2.start()
 	if !damageSound.is_playing():
 		damageSound.play()
-	emit_signal("player_died")
-	get_tree().paused = true
 
 
 # checking if player is using kb and mouse or gamepad
@@ -279,3 +288,6 @@ func init_mac():
 			#tween.tween_property(self, "rotation_degrees", Vector3(-360, rotation_degrees.y, 0), 1)
 			#tween.tween_callback(reset_rolling)
 		
+
+func _on_dying_animation_duration_timeout():
+	emit_signal("player_died")

@@ -51,10 +51,10 @@ func die():
 	HIGHSCORE_SINGLETON.SCORE += 1
 	dead = true
 	play_random_sound()
-	$Hands.monitoring = false
+	$Hands.set_deferred("monitoring", false)
 	if !$NavigationAgent3D:
-		$NavigationAgent3D.queue_free()
-	$CollisionShape3D.disabled = true
+		$NavigationAgent3D.call_deferred("queue_free")
+	$CollisionShape3D.set_deferred("disabled", true)
 	$DyingAnimationDuration.start()
 	$DyingAnimationDuration2.start()
 

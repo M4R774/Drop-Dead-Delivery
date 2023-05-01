@@ -23,7 +23,6 @@ var inventory
 
 
 func _ready():
-	print($Control/TextureProgressBar.size)
 	reset_blinking()
 
 
@@ -34,9 +33,7 @@ func _physics_process(_delta):
 	else:
 		$Control/TextureProgressBar.visible = true
 		$Control/TextureProgressBar.position = get_viewport().get_camera_3d().unproject_position(keycap_1.global_transform.origin)
-		#print($Control/TextureProgressBar.position)
 		$Control/TextureProgressBar.position -= $Control/TextureProgressBar.size / 2
-		#print($Control/TextureProgressBar.position)
 
 
 func activate_delivery_point():
@@ -61,7 +58,6 @@ func _on_body_exited(body):
 
 func _input(event):
 	if event.is_action_pressed("deliver_item") and player_near and can_deliver_to:
-		print("Started delivering")
 		$KeycapBlinker.stop()
 		can_blink = false
 		keycap_1.visible = false
