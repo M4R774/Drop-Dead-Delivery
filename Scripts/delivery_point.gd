@@ -37,6 +37,7 @@ func _physics_process(_delta):
 
 
 func activate_delivery_point():
+	$post_box/Cylinder/StaticBody3D/CollisionShape3D.disabled = false
 	visible = true
 	can_deliver_to = true
 
@@ -86,6 +87,7 @@ func _on_deliver_timeout():
 		inventory.remove_from_inventory(inventory.inventory_items[-1])
 		player.add_score(100)
 		visible = false
+		$post_box/Cylinder/StaticBody3D/CollisionShape3D.disabled = true
 		can_deliver_to = false
 		get_tree().get_current_scene().remove_delivery_map_tile(self.owner)
 	$Control.visible = player_near and can_deliver_to

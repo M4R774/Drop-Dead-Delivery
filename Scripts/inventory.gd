@@ -5,10 +5,12 @@ extends Node3D
 var inventory_items = []
 var small_items = []
 @export var pickup_volume: Area3D
+@export var backpack_mesh: Node3D
 
 
 func _on_area_3d_area_entered(area):
 	if area.is_in_group("item") and inventory_items.size() < capacity:
+		backpack_mesh.visible = true
 		inventory_items.append(area.item_name)
 		area.queue_free()
 		if inventory_items.size() == 3: # all items are onboard
@@ -22,3 +24,5 @@ func _on_area_3d_area_entered(area):
 
 func remove_from_inventory(item_to_remove):
 	inventory_items.erase(item_to_remove)
+	if inventory_items.size() <= 0:
+		backpack_mesh.visible = false

@@ -16,7 +16,10 @@ var map_tiles = []
 @export var item_bundle: PackedScene
 var active_delivery_map_tiles = []
 var zombie_speed = 2.5
+var rng = RandomNumberGenerator.new()
 
+var x_offset = rng.randi_range(0, 1)
+var y_offset = rng.randi_range(0, 1)
 
 func get_active_delivery_point():
 	if active_delivery_map_tiles.size() > 0:
@@ -33,6 +36,7 @@ func get_active_delivery_points():
 
 
 func _ready():
+	#self.rotation.y = deg_to_rad(90 * rng.randi_range(0, 3))
 	$HUD.set_player_for_compass($Player)
 	generate_map()
 	spawn_zombie()
@@ -49,15 +53,17 @@ func generate_map():
 			var new_tile = map_tile_scenes.pick_random().instantiate()
 			new_tile.player = player
 			map_tiles.append(new_tile)
-			new_tile.position = Vector3(j * 39 - 39, 0, i * 39 - 39)
+			new_tile.position = Vector3(j * 39 - (39 * x_offset), 0, i * 39 - (39 * y_offset))
+			#new_tile.position = Vector3(j * 39, 0, i * 39)
 			add_child(new_tile)
+			new_tile.rotation.y = deg_to_rad(90 * rng.randi_range(0, 3))
 
 
 # this activates a delivery point in each tile
 # makes a list of them that needs to be visited in order
 func create_delivery_order():
 	var delivery_map_tiles = [] + map_tiles
-	delivery_map_tiles.remove_at(3) # we don't want to have a delivery point in the spawn tile. this needs to change accordign to map size
+	delivery_map_tiles.remove_at(x_offset + y_offset*2) # we don't want to have a delivery point in the spawn tile. this needs to change accordign to map size
 	delivery_map_tiles.shuffle()
 	active_delivery_map_tiles = [] + delivery_map_tiles
 	for location in delivery_map_tiles:

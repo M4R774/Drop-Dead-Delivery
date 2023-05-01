@@ -113,6 +113,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -12.0445, 1.00811, -11.0852)
 transform = Transform3D(1.21908, 0, 0.825005, 0, 1.472, 0, -0.825005, 0, 1.21908, -9.18273, -0.117149, -5.97024)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tree/tree_trunk" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree/tree_trunk/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_7t16v")
@@ -121,6 +122,7 @@ shape = SubResource("ConcavePolygonShape3D_7t16v")
 transform = Transform3D(-0.0483966, 0, 0.998828, 0, 1, 0, -0.998828, 0, -0.0483966, 10.1761, 0.894956, 10.7997)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tree2/tree_trunk" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tree2/tree_trunk/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_q6e7j")
@@ -132,6 +134,7 @@ transform = Transform3D(0.911626, 0, 0.411021, 0, 1, 0, -0.411021, 0, 0.911626, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.531369, 0, 0.468002)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="rock/rock2" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rock/rock2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_j7x6q")
@@ -140,6 +143,7 @@ shape = SubResource("ConcavePolygonShape3D_j7x6q")
 transform = Transform3D(1.415, 0, 0, 0, 1.415, 0, 0, 0, 1.415, 14.9083, 0.04361, -1.7954)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="rock2/rock2" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="rock2/rock2/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gdua6")

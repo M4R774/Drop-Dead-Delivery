@@ -30,7 +30,7 @@ var right_stick_look = Vector2(0,0)
 # shooting
 @export var raycast : RayCast3D
 var shotgun_range = 10
-var projectile_count = 10
+var projectile_count = 20
 var inaccuracy = .2
 var melee_range = 10
 @export var ammo: int = 10
@@ -252,8 +252,8 @@ func die():
 	dead = true
 	$DyingAnimationDuration.start()
 	$DyingAnimationDuration2.start()
-	if !damageSound.is_playing():
-		damageSound.play()
+	if !$DeathSound.is_playing():
+		$DeathSound.play()
 
 
 # checking if player is using kb and mouse or gamepad

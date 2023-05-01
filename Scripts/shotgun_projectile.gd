@@ -17,7 +17,8 @@ func _physics_process(_delta):
 func _on_area_3d_body_entered(body:Node3D):
 	if body.is_in_group("enemy"):
 		if body.health > 0:
-			body.health -= 2
-			queue_free()
+			body.health -= 1
 		elif not body.dead:
 			body.die()
+		if rng.randf() < 0.5:
+			queue_free()
