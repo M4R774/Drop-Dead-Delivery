@@ -12,7 +12,7 @@ var dead: bool = false
 var sounds=[]
 var rng = RandomNumberGenerator.new()
 var current_target
-
+var player_within_hands = false
 
 func _ready():
 	sounds.append(load("res://Sounds/Perttu/korahdus-1.wav"))
@@ -67,11 +67,11 @@ func add_health(health_to_add: int):
 
 
 func _on_hands_body_entered(body:Node3D):
-	if body.is_in_group("player") and $Melee_cooldown.time_left == 0 and not dead:
-		$Melee_cooldown.start()
-		animation_tree.set("parameters/OneShot/request", true)
-		$MeleeHitDelay.start()
-		
+	if body.is_in_group("player"):
+		player_within_hands = true
+		if body.is_in_group("player") and $Melee_cooldown.time_left == 0 and not dead:
+			attack()
+			player_within_hands = true
 
 
 func _on_walk_animation_offset_timeout():
@@ -88,8 +88,24 @@ func _on_dying_animation_duration_timeout():
 	queue_free()
 
 
+func attack():
+	$Melee_cooldown.start()
+	animation_tree.set("parameters/OneShot/request", true)
+	$MeleeHitDelay.start()
+
+
 func _on_melee_hit_delay_timeout():
 	var bodies_in_melee_range = $Hands.get_overlapping_bodies()
 	for body in bodies_in_melee_range:
 		if body.is_in_group("player"):
 			body.add_health(-10)
+
+
+func _on_melee_cooldown_timeout():
+	if player_within_hands:
+		attack()
+
+
+func _on_hands_body_exited(body):
+	if body.is_in_group("player"):
+		player_within_hands = false
