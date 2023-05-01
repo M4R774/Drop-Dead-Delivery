@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://05cyvmw8hi4c"]
+[gd_scene load_steps=26 format=3 uid="uid://05cyvmw8hi4c"]
 
 [ext_resource type="Script" path="res://Scripts/zombie.gd" id="1_m5o5n"]
 [ext_resource type="Script" path="res://Scripts/zombie_sound.gd" id="2_y14bb"]
@@ -1431,25 +1431,21 @@ _data = {
 "ghoul_walk": SubResource("Animation_qwj71")
 }
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_y7a3f"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nngjd"]
-albedo_color = Color(0.0117647, 0.65098, 0, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1u61v"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jp5tl"]
 size = Vector3(1.07324, 0.454495, 1.44642)
 
-[sub_resource type="BoxMesh" id="BoxMesh_k31jl"]
-
 [node name="Zombie" type="CharacterBody3D" groups=["enemy"]]
 transform = Transform3D(0.0281484, 0, 0.999604, 0, 1, 0, -0.999604, 0, 0.0281484, 0, 0, 0)
 script = ExtResource("1_m5o5n")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="Barks" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
 script = ExtResource("2_y14bb")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 3.72529e-09, 0, 1, 0, -1.86265e-09, 0, 1, 0, 0, 0)
 
 [node name="BarkDelay" type="Timer" parent="."]
 one_shot = true
@@ -1666,18 +1662,9 @@ libraries = {
 "": SubResource("AnimationLibrary_748r0")
 }
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
-mesh = SubResource("CapsuleMesh_y7a3f")
-surface_material_override/0 = SubResource("StandardMaterial3D_nngjd")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_1u61v")
-
-[node name="Reload" type="Timer" parent="."]
-one_shot = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 2.0
@@ -1696,12 +1683,6 @@ transform = Transform3D(0.990332, 0, 5.58794e-09, 0, 1, 0, 0, 0, 0.656683, -0.02
 transform = Transform3D(0.999999, 0, -7.45058e-09, 0, 1, 0, 0, 0, 0.999998, 0.0294707, 1.23292, 1.41318)
 shape = SubResource("BoxShape3D_jp5tl")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="Hands"]
-transform = Transform3D(1, 0, 0, 0, 0.425, 0, 0, 0, 1.256, 0.0193291, 1.23292, 0.686655)
-visible = false
-mesh = SubResource("BoxMesh_k31jl")
-skeleton = NodePath("../..")
-
 [node name="Melee_cooldown" type="Timer" parent="."]
 one_shot = true
 autostart = true
@@ -1713,8 +1694,11 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[connection signal="timeout" from="BarkDelay" to="AudioStreamPlayer3D" method="_on_bark_delay_timeout"]
+[node name="DyingAnimationDuration" type="Timer" parent="."]
+
+[connection signal="timeout" from="BarkDelay" to="Barks" method="_on_bark_delay_timeout"]
 [connection signal="velocity_computed" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_velocity_computed"]
 [connection signal="body_entered" from="Hands" to="." method="_on_hands_body_entered"]
 [connection signal="timeout" from="WalkAnimationOffset" to="." method="_on_walk_animation_offset_timeout"]
 [connection signal="timeout" from="MeleeHitDelay" to="." method="_on_melee_hit_delay_timeout"]
+[connection signal="timeout" from="DyingAnimationDuration" to="." method="_on_dying_animation_duration_timeout"]

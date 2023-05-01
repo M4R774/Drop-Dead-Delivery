@@ -104,8 +104,8 @@ func reset_blinking():
 
 func _on_keycap_blinker_timeout():
 	if can_blink:
-		keycap_1.visible = !keycap_1.visible
-		keycap_2.visible = !keycap_2.visible
+		keycap_1.visible = not keycap_1.visible
+		keycap_2.visible = not keycap_2.visible
 
 
 func switch_keycap_icons(is_button):

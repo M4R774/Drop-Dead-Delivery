@@ -50,7 +50,7 @@ theme_override_constants/separation = 50
 [node name="Title" type="Label" parent="MarginContainer/Root"]
 layout_mode = 2
 theme = ExtResource("3")
-text = "[PELIN NIMI]"
+text = "DROP DEAD DELIVERY"
 horizontal_alignment = 1
 
 [node name="Buttond_and_explanation" type="HBoxContainer" parent="MarginContainer/Root"]
