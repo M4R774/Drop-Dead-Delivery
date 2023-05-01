@@ -10,6 +10,9 @@ extends NavigationRegion3D
 
 var active_delivery_point: DeliveryPoint
 
+func _ready():
+	print(self.scale)
+
 
 func spawn_zombie(zombie_speed):
 	# first check if can spawn
