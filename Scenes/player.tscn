@@ -688,10 +688,10 @@ animation_tree = NodePath("player/AnimationTree")
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1.00583, 0)
 
 [node name="Skeleton3D" parent="player/player_rig" index="0"]
-bones/1/rotation = Quaternion(-0.0644724, -0.0106364, 0.00202119, 0.997861)
-bones/2/rotation = Quaternion(-0.0728599, -3.29466e-10, 2.85951e-11, 0.997342)
+bones/1/rotation = Quaternion(-0.0643381, -0.0642866, 0.0122161, 0.99578)
+bones/2/rotation = Quaternion(-0.0314114, -2.0467e-09, 8.77682e-10, 0.999507)
 bones/3/rotation = Quaternion(0.00162714, 0, 0, 0.999999)
-bones/5/rotation = Quaternion(0.0223999, 1.25169e-07, 1.09958e-08, 0.999749)
+bones/5/rotation = Quaternion(-0.0254068, 1.25447e-07, 1.64416e-08, 0.999677)
 bones/8/position = Vector3(0.051948, 0.355255, -0.0858192)
 bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
 bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
@@ -700,18 +700,18 @@ bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
 bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
 bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
 bones/14/rotation = Quaternion(-0.0106536, -0.00767979, -0.0114099, 0.999849)
-bones/19/position = Vector3(0.217635, -0.0704006, 0.122545)
-bones/19/rotation = Quaternion(0.934117, -0.0209559, -0.0322745, 0.354886)
-bones/20/rotation = Quaternion(0.310775, -0.0790615, -0.0642085, 0.945011)
+bones/19/position = Vector3(0.217635, -0.0344595, 0.103875)
+bones/19/rotation = Quaternion(0.999187, -0.00767407, -0.0377082, -0.0120319)
+bones/20/rotation = Quaternion(0.198531, -0.0814868, -0.0467547, 0.975581)
 bones/22/rotation = Quaternion(-0.15462, 0.766933, -0.60024, -0.16619)
-bones/24/position = Vector3(-0.217635, -0.0193801, 0.0747557)
-bones/24/rotation = Quaternion(0.999052, 0.00735965, 0.0377708, -0.020356)
-bones/25/rotation = Quaternion(0.19273, 0.0815802, 0.0458467, 0.976779)
+bones/24/position = Vector3(-0.217635, -0.079504, 0.109066)
+bones/24/rotation = Quaternion(0.937324, 0.0206598, 0.0324648, 0.346327)
+bones/25/rotation = Quaternion(0.342916, 0.0781416, 0.0691649, 0.933552)
 bones/26/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
 bones/27/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.336173, -0.000175139, -0.0216513, 4.77795e-10, 0.87587, -0.00923465, 0.00728061, 0.0080868, 0.999723, 0.00428055, 1.5056, -0.53734)
+transform = Transform3D(0.333372, -0.0105374, -0.130038, -8.30695e-09, 0.872183, -0.0921199, 0.0439124, 0.0799975, 0.98722, 0.0253947, 1.52404, -0.532284)
 bone_idx = 15
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D/Backpack" index="0"]
@@ -719,7 +719,7 @@ visible = false
 material_override = ExtResource("3_vbigf")
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D" index="1"]
-transform = Transform3D(0.0235191, -0.382733, -0.00024806, 0.0114171, 0.000950032, -0.383284, 0.382563, 0.0235012, 0.0114539, -0.340126, 1.49433, 0.126932)
+transform = Transform3D(-0.0183092, -0.383008, 0.00265953, -0.0202949, -0.00168867, -0.382914, 0.38248, -0.0184241, -0.0201906, -0.389002, 1.45711, 0.0872292)
 bone_idx = 16
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]

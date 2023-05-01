@@ -70,8 +70,8 @@ func _on_hands_body_entered(body:Node3D):
 	if body.is_in_group("player") and $Melee_cooldown.time_left == 0 and not dead:
 		$Melee_cooldown.start()
 		animation_tree.set("parameters/OneShot/request", true)
-		#$MeleeHitDelay.start()
-		body.add_health(-10)
+		$MeleeHitDelay.start()
+		
 
 
 func _on_walk_animation_offset_timeout():
@@ -86,3 +86,10 @@ func play_random_sound():
 
 func _on_dying_animation_duration_timeout():
 	queue_free()
+
+
+func _on_melee_hit_delay_timeout():
+	var bodies_in_melee_range = $Hands.get_overlapping_bodies()
+	for body in bodies_in_melee_range:
+		if body.is_in_group("player"):
+			current_target.add_health(-10)

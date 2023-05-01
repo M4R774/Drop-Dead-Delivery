@@ -25,7 +25,7 @@ zombie_scene = ExtResource("10_inqas")
 ammo_box_scene = ExtResource("14_qbaql")
 health_kit_scene = ExtResource("4_7ho7q")
 map_size = 2
-map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27")])
+map_tile_scenes = Array[PackedScene]([ExtResource("8_r6l27"), null])
 item_bundle_spawn_location = Vector3(2.88354, 0, -2.13262)
 item_bundle = ExtResource("9_675hp")
 
