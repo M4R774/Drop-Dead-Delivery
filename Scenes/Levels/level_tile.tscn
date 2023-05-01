@@ -166,6 +166,10 @@ shape = SubResource("ConcavePolygonShape3D_diafu")
 [node name="house" parent="." instance=ExtResource("12_g2n6v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0485113, 0.00999905, 0.0647964)
 
+[node name="SpotLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.0261, 3.81243, -4.50139)
+omni_range = 10.3759
+
 [editable path="level_tile_0"]
 [editable path="tree2"]
 [editable path="bush"]

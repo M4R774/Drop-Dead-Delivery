@@ -121,6 +121,11 @@ tint_under = Color(1, 0.501961, 0, 1)
 tint_over = Color(1, 1, 1, 0)
 tint_progress = Color(0.694118, 0.658824, 0.678431, 1)
 
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 1.13196, 0)
+light_color = Color(1, 0.572549, 0.337255, 1)
+omni_range = 6.20443
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="timeout" from="Remover" to="." method="_on_remover_timeout"]
