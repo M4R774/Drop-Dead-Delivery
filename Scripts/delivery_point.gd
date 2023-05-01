@@ -12,7 +12,7 @@ class_name DeliveryPoint
 @export var e_key_filled: Texture
 @export var b_button_background: Texture
 @export var b_button_filled: Texture
-var can_blink = true
+var can_blink = false
 
 @export var delivery_id = ""
 @export var can_deliver_to = true
