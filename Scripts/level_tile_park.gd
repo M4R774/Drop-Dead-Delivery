@@ -9,6 +9,7 @@ extends NavigationRegion3D
 @onready var delivery_points = [$Delivery_points/Delivery_point, $Delivery_points/Delivery_point3, $Delivery_points/Delivery_point2]
 
 var active_delivery_point: DeliveryPoint
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	print(self.scale)
@@ -20,12 +21,19 @@ func spawn_zombie(zombie_speed):
 	# then spawn zombie
 	# add player as their target
 	var zombie = zombie_scene.instantiate()
-	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
-	zombie_spawn_location.progress_ratio = randf()
-	zombie.position = zombie_spawn_location.position
+	zombie.position = get_spawning_location()
 	zombie.target = player
 	zombie.SPEED = zombie_speed
 	add_child(zombie)
+
+
+func get_spawning_location():
+	var spawn_area = $Spawn_areas.get_children().pick_random()
+	var spawn_size: Vector3 = spawn_area.shape.size
+	var spawn_location_offset = Vector3(rng.randf_range(-spawn_size.x/2, spawn_size.x/2), 
+										0, 
+										rng.randf_range(-spawn_size.z/2, spawn_size.z/2))
+	return spawn_area.position + spawn_location_offset
 
 
 func spawn_loot_box():
@@ -40,18 +48,14 @@ func spawn_loot_box():
 		loot_box.ammo = 3
 	else:
 		loot_box = health_kit_scene.instantiate()
-	var zombie_spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
-	zombie_spawn_location.progress_ratio = randf()
-	loot_box.position = zombie_spawn_location.position
-	loot_box.position.y = 1
+	loot_box.position = get_spawning_location()
 	add_child(loot_box)
 
 
 func spawn_deliverable_item():
 	var item = deliverable_item.instantiate()
-	var spawn_location = $ZombieSpawnPath/ZombieSpawnLocation
-	spawn_location.progress_ratio = randf()
-	item.position =spawn_location.position
+
+	item.position = get_spawning_location()
 	item.position.y = 1
 	add_child(item)
 

@@ -92,4 +92,4 @@ func _on_melee_hit_delay_timeout():
 	var bodies_in_melee_range = $Hands.get_overlapping_bodies()
 	for body in bodies_in_melee_range:
 		if body.is_in_group("player"):
-			current_target.add_health(-10)
+			body.add_health(-10)
