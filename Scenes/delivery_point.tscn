@@ -24,6 +24,7 @@ data = PackedVector3Array(0, 3.8107, -1, 0.1951, 4.8919, -0.9808, 0, 4.8919, -1,
 
 [node name="Delivery_point" type="Area3D" node_paths=PackedStringArray("keycap_1", "keycap_2")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.00811, 0)
+visible = false
 script = ExtResource("1_geewr")
 keycap_1 = NodePath("Keycap")
 keycap_2 = NodePath("Keycap2")
