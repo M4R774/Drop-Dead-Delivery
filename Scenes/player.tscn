@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=32 format=3 uid="uid://b76y018lotvep"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1m6ih"]
@@ -13,9 +14,10 @@
 [ext_resource type="Script" path="res://Scripts/inventory.gd" id="8_2deog"]
 [ext_resource type="AudioStream" uid="uid://d3mfnbhrfwf6w" path="res://Sounds/Reload.wav" id="9_qw5wn"]
 [ext_resource type="AudioStream" uid="uid://crkpofoexjn8k" path="res://Sounds/step.wav" id="11_g82vp"]
-[ext_resource type="AudioStream" uid="uid://cs6scv2otaylv" path="res://Sounds/Doom_Death.wav" id="12_qondo"]
+[ext_resource type="AudioStream" uid="uid://bv7f8qf3x2nj4" path="res://Sounds/hurt.wav" id="12_y7adn"]
 [ext_resource type="AudioStream" uid="uid://jxb5gbhj3hm1" path="res://Sounds/medshot.wav" id="13_824f4"]
 [ext_resource type="Script" path="res://Scripts/ray_caster.gd" id="13_eay2p"]
+[ext_resource type="AudioStream" uid="uid://b2c858acfprxo" path="res://Sounds/Death.wav" id="14_bejj0"]
 [ext_resource type="AudioStream" uid="uid://bo7mmyp8ce31q" path="res://Sounds/blip.wav" id="15_k42co"]
 
 [sub_resource type="Animation" id="Animation_sodty"]
@@ -765,11 +767,13 @@ stream = ExtResource("11_g82vp")
 volume_db = -10.766
 
 [node name="DamageSound" type="AudioStreamPlayer3D" parent="."]
-stream = ExtResource("12_qondo")
-volume_db = -10.766
+stream = ExtResource("12_y7adn")
 
 [node name="HealthSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("13_824f4")
+
+[node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("14_bejj0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

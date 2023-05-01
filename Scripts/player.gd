@@ -252,8 +252,8 @@ func die():
 	dead = true
 	$DyingAnimationDuration.start()
 	$DyingAnimationDuration2.start()
-	if !damageSound.is_playing():
-		damageSound.play()
+	if !$DeathSound.is_playing():
+		$DeathSound.play()
 
 
 # checking if player is using kb and mouse or gamepad
