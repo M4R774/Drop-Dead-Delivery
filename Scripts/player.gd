@@ -42,6 +42,7 @@ var projectile_prefab
 
 # animation
 var animation_player
+@export var animation_tree: AnimationTree
 
 @export var health_percentage = 100
 
@@ -147,9 +148,9 @@ func set_vertical_velocity(delta):
 
 func animate_player():
 	if direction.length() > 0:
-		animation_player.play("player_walk")
+		animation_tree.set("parameters/BlendWalk/blend_amount", 0.0)
 	else:
-		animation_player.play("hold_gun")
+		animation_tree.set("parameters/BlendWalk/blend_amount", 1.0)
 
 
 func play_sound_if_moving():
@@ -188,7 +189,6 @@ func update_shooting():
 	# add melee with raycast range 0.1?
 	if Input.is_action_just_pressed("shoot") and $Shoot_cooldown.time_left == 0:
 		if ammo > 0:
-			#animation_player.play("shoot")
 			ammo -= 1
 			emit_signal("player_ammo_updated", ammo)
 			shotgunSound.play()
@@ -198,12 +198,10 @@ func update_shooting():
 		else:
 			$EmptyGunSound.play()
 	if Input.is_action_just_pressed("melee") and $Melee_cooldown.time_left == 0:
-		#animation_player.play("melee")
-		
+		animation_tree.set("parameters/OneShot/request", true)
 		meleeSound.play()
 		$Melee_cooldown.start()
 		var collided_bodies = raycast.get_colliding_bodies()
-		#var collided_bodies = $MeleeBox.get_overlapping_bodies()
 		if collided_bodies.size() > 0:
 			for body in collided_bodies:
 				if global_position.distance_to(body.global_position) <= melee_range:

@@ -3,8 +3,8 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgldkntdg081p"
-path.s3tc="res://.godot/imported/package_fargile.png-146b4cc93eec92722b1d565e9b2eb628.s3tc.ctex"
-path.etc2="res://.godot/imported/package_fargile.png-146b4cc93eec92722b1d565e9b2eb628.etc2.ctex"
+path.s3tc="res://.godot/imported/package_fragile.png-4324ead15aa7cb5f9ec2031b87dbd31c.s3tc.ctex"
+path.etc2="res://.godot/imported/package_fragile.png-4324ead15aa7cb5f9ec2031b87dbd31c.etc2.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
@@ -13,8 +13,8 @@ generator_parameters={}
 
 [deps]
 
-source_file="res://3D/package_fargile.png"
-dest_files=["res://.godot/imported/package_fargile.png-146b4cc93eec92722b1d565e9b2eb628.s3tc.ctex", "res://.godot/imported/package_fargile.png-146b4cc93eec92722b1d565e9b2eb628.etc2.ctex"]
+source_file="res://3D/package_fragile.png"
+dest_files=["res://.godot/imported/package_fragile.png-4324ead15aa7cb5f9ec2031b87dbd31c.s3tc.ctex", "res://.godot/imported/package_fragile.png-4324ead15aa7cb5f9ec2031b87dbd31c.etc2.ctex"]
 
 [params]
 
