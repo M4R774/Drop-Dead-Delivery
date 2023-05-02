@@ -54,6 +54,7 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity):
 
 func die():
 	animation_player.stop()
+	animation_tree.active = false
 	HIGHSCORE_SINGLETON.SCORE += 1
 	dead = true
 	play_random_sound()
@@ -63,6 +64,7 @@ func die():
 	$CollisionShape3D.set_deferred("disabled", true)
 	$DyingAnimationDuration.start()
 	$DyingAnimationDuration2.start()
+
 
 func add_health(health_to_add: int):
 	health += health_to_add
@@ -114,3 +116,13 @@ func _on_melee_cooldown_timeout():
 func _on_hands_body_exited(body):
 	if body.is_in_group("player"):
 		player_within_hands = false
+
+
+func _on_animation_lag_check_timeout():
+	$AnimationLagCheck.start(rng.randf_range(0.2, 0.5))
+	if Engine.get_frames_per_second() < 50:
+		animation_player.stop()
+		animation_tree.active = false
+	elif not dead:
+		animation_player.play()
+		animation_tree.active = true

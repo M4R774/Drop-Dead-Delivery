@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://64lrjbh76pmx"]
+[gd_scene load_steps=17 format=3 uid="uid://64lrjbh76pmx"]
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://b3q46ndqxf565" path="res://3D/post_van.glb" id="10_sxxvc"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
+[ext_resource type="PackedScene" uid="uid://k888s5k63ey" path="res://Scenes/shotgun_projectile.tscn" id="14_u5mqf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2wyyq"]
 
@@ -169,6 +170,9 @@ environment = SubResource("Environment_o8jcn")
 [node name="IncreaseDifficulty" type="Timer" parent="."]
 wait_time = 40.0
 autostart = true
+
+[node name="Shotgun_projectile" parent="." instance=ExtResource("14_u5mqf")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.8298, 2.88621, -1.68135)
 
 [connection signal="button_down" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/HP" to="Power up" method="_on_hp_button_down"]
 [connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/HP" to="Power up" method="_on_hp_pressed"]

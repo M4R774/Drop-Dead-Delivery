@@ -294,8 +294,8 @@ func _on_dying_animation_duration_timeout():
 
 
 func increase_light():
-	$OmniLight3D.light_energy = $OmniLight3D.light_energy * 1.2
-	$OmniLight3D.omni_range = $OmniLight3D.omni_range * 1.2
-	$SpotLight3D.spot_range = $SpotLight3D.spot_range * 1.2
-	$SpotLight3D.light_energy = $SpotLight3D.light_energy * 1.2
-	$SpotLight3D.spot_angle = $SpotLight3D.spot_angle * 1.2
+	$OmniLight3D.light_energy = $OmniLight3D.light_energy * 2
+	$OmniLight3D.omni_range = $OmniLight3D.omni_range * 1.4
+	$SpotLight3D.spot_range = $SpotLight3D.spot_range * 1.4
+	$SpotLight3D.light_energy = $SpotLight3D.light_energy * 1.4
+	$SpotLight3D.spot_angle = $SpotLight3D.spot_angle * 1.4
