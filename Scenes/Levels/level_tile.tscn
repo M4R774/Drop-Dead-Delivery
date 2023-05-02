@@ -60,21 +60,25 @@ deliverable_item = ExtResource("5_11cy3")
 [node name="level_tile_0" parent="." instance=ExtResource("1_4tgem")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall003" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall003/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_p3l2c")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/ground003" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/ground003/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fiibd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall_nubs006" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall_nubs006/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_rqhoo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_0/wall_nubs007" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_0/wall_nubs007/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_m2bkc")
@@ -159,6 +163,7 @@ shape = SubResource("ConcavePolygonShape3D_ssv7j")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.813924, 0.00999809, 0.189901)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="court/Court" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="court/Court/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_diafu")

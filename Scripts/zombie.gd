@@ -13,6 +13,9 @@ var sounds=[]
 var rng = RandomNumberGenerator.new()
 var current_target
 var player_within_hands = false
+var frame_count = 0
+var next_location = Vector3.ZERO
+var new_velocity = Vector3.ZERO
 
 func _ready():
 	sounds.append(load("res://Sounds/Perttu/korahdus-1.wav"))
@@ -23,11 +26,12 @@ func _ready():
 
 
 func _physics_process(delta):
+	frame_count += 1
 	if not dead:
-		nav_agent.set_target_position(target.global_position)
-		#if nav_agent.is_target_reachable():
-		var next_location = nav_agent.get_next_path_position()
-		var new_velocity = (next_location - global_position).normalized() * SPEED
+		if frame_count % 3 == 0: # pathfinding only every 3rd frame
+			nav_agent.set_target_position(target.global_position)
+			next_location = nav_agent.get_next_path_position()
+			new_velocity = (next_location - global_position).normalized() * SPEED
 		nav_agent.set_velocity(new_velocity)
 		if (next_location - self.global_position).length() > .1:
 			look_at(next_location)

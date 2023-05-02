@@ -114,16 +114,19 @@ disabled = true
 [node name="level_tile_park" parent="." instance=ExtResource("6_0dnud")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_park/wall001" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_park/wall001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_nsb1g")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_park/ground001" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_park/ground001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_pmef1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="level_tile_park/wall_nubs002" index="0"]
+collision_layer = 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="level_tile_park/wall_nubs002/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_hqep6")
@@ -143,15 +146,21 @@ transform = Transform3D(0.0377089, 0, 0.999288, 0, 1, 0, -0.999288, 0, 0.0377089
 
 [node name="Delivery_point" parent="Delivery_points" instance=ExtResource("7_on52q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -2.68797, 1.00811, 16.5674)
+collision_layer = 3
 
 [node name="Delivery_point2" parent="Delivery_points" instance=ExtResource("7_on52q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 16.8133, 1.00811, -16.8721)
+collision_layer = 3
 
 [node name="Delivery_point3" parent="Delivery_points" instance=ExtResource("7_on52q")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.0090313, 1.00811, -1.86779)
+collision_layer = 3
 
 [node name="tree" parent="." instance=ExtResource("8_jyoj8")]
 transform = Transform3D(1.21908, 0, 0.825005, 0, 1.472, 0, -0.825005, 0, 1.21908, -9.18273, -0.117149, -5.97024)
+
+[node name="tree_trunk" parent="tree" index="0"]
+layers = 3
 
 [node name="StaticBody3D" type="StaticBody3D" parent="tree/tree_trunk" index="0"]
 collision_layer = 3
