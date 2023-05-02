@@ -44,7 +44,6 @@ func _ready():
 	spawn_loot_box()
 	$LootBoxSpawner.start()
 	$ZombieSpawnTimer.start()
-	$DeliverableItemSpawner.start()
 	spawn_item_bundle()
 
 
@@ -98,10 +97,6 @@ func spawn_loot_box():
 	map_tiles.pick_random().spawn_loot_box()
 
 
-func spawn_small_deliverable_item():
-	map_tiles.pick_random().spawn_deliverable_item()
-
-
 func spawn_item_bundle():
 	var bundle = item_bundle.instantiate()
 	add_child(bundle)
@@ -115,10 +110,6 @@ func _on_zombie_spawn_timer_timeout():
 
 func _on_loot_box_spawner_timeout():
 	spawn_loot_box()
-
-
-func _on_deliverable_item_spawner_timeout():
-	spawn_small_deliverable_item()
 
 
 func change_delivery_prompt_icons(is_button):

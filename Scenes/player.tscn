@@ -711,7 +711,7 @@ bones/26/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
 bones/27/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.333281, -0.00961036, -0.132185, 1.01903e-08, 0.872906, -0.0827191, 0.0446005, 0.0718141, 0.987767, 0.0258483, 1.52196, -0.532643)
+transform = Transform3D(0.333281, -0.00961034, -0.132185, 3.9271e-09, 0.872906, -0.082719, 0.0446005, 0.0718141, 0.987767, 0.0258483, 1.52196, -0.532643)
 bone_idx = 15
 
 [node name="Backpack" parent="player/player_rig/Skeleton3D/Backpack" index="0"]
@@ -719,7 +719,7 @@ visible = false
 material_override = ExtResource("3_vbigf")
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D" index="1"]
-transform = Transform3D(-0.0191219, -0.382972, 0.00222181, -0.0166929, -0.00138898, -0.383089, 0.382614, -0.0192004, -0.0166026, -0.389906, 1.46134, 0.08661)
+transform = Transform3D(-0.0191219, -0.382972, 0.0022218, -0.0166929, -0.00138897, -0.383089, 0.382614, -0.0192004, -0.0166026, -0.389906, 1.46134, 0.08661)
 bone_idx = 16
 
 [node name="spas121001" parent="player/player_rig/Skeleton3D/spas121001" index="0"]

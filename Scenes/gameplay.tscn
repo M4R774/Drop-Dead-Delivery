@@ -166,11 +166,8 @@ spot_angle = 24.7506
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_o8jcn")
 
-[node name="DeliverableItemSpawner" type="Timer" parent="."]
-wait_time = 20.0
-
 [node name="IncreaseDifficulty" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 40.0
 autostart = true
 
 [connection signal="button_down" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/HP" to="Power up" method="_on_hp_button_down"]
@@ -184,7 +181,6 @@ autostart = true
 [connection signal="player_health_updated" from="Player" to="HUD/Health" method="_on_player_player_health_updated"]
 [connection signal="timeout" from="ZombieSpawnTimer" to="." method="_on_zombie_spawn_timer_timeout"]
 [connection signal="timeout" from="LootBoxSpawner" to="." method="_on_loot_box_spawner_timeout"]
-[connection signal="timeout" from="DeliverableItemSpawner" to="." method="_on_deliverable_item_spawner_timeout"]
 [connection signal="timeout" from="IncreaseDifficulty" to="." method="_on_increase_difficulty_timeout"]
 
 [editable path="HUD"]
