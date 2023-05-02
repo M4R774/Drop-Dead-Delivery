@@ -17,6 +17,7 @@ var map_tiles = []
 var active_delivery_map_tiles = []
 var zombie_speed = 2.5
 var rng = RandomNumberGenerator.new()
+var first_delivery = true
 
 var x_offset = rng.randi_range(0, 1)
 var y_offset = rng.randi_range(0, 1)
@@ -63,6 +64,9 @@ func generate_map():
 # this activates a delivery point in each tile
 # makes a list of them that needs to be visited in order
 func create_delivery_order():
+	if not first_delivery:
+		$"Power up".open_power_up_menu()
+	first_delivery = false
 	var delivery_map_tiles = [] + map_tiles
 	delivery_map_tiles.remove_at(x_offset + y_offset*2) # we don't want to have a delivery point in the spawn tile. this needs to change accordign to map size
 	delivery_map_tiles.shuffle()

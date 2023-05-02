@@ -31,7 +31,7 @@ var right_stick_look = Vector2(0,0)
 # shooting
 @export var raycast : RayCast3D
 var shotgun_range = 10
-var projectile_count = 20
+var projectile_count = 10
 var inaccuracy = .2
 var melee_range = 10
 @export var ammo: int = 10
@@ -46,7 +46,7 @@ var animation_player
 @export var animation_tree: AnimationTree
 
 @export var health_percentage = 100
-
+var max_health = 100
 
 func _ready():
 	projectile_prefab = preload("res://Scenes/shotgun_projectile.tscn")
@@ -237,8 +237,8 @@ func add_health(health_to_add: int):
 	if health_percentage <= 0 and not dead:
 		health_percentage = 0
 		die()
-	elif health_percentage > 100:
-		health_percentage = 100
+	elif health_percentage > max_health:
+		health_percentage = max_health
 	elif health_percentage < 0:
 		health_percentage = 0
 	emit_signal("player_health_updated", health_percentage)
@@ -291,3 +291,11 @@ func init_mac():
 
 func _on_dying_animation_duration_timeout():
 	emit_signal("player_died")
+
+
+func increase_light():
+	$OmniLight3D.light_energy = $OmniLight3D.light_energy * 1.2
+	$OmniLight3D.omni_range = $OmniLight3D.omni_range * 1.2
+	$SpotLight3D.spot_range = $SpotLight3D.spot_range * 1.2
+	$SpotLight3D.light_energy = $SpotLight3D.light_energy * 1.2
+	$SpotLight3D.spot_angle = $SpotLight3D.spot_angle * 1.2

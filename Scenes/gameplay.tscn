@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://64lrjbh76pmx"]
+[gd_scene load_steps=16 format=3 uid="uid://64lrjbh76pmx"]
 
 [ext_resource type="PackedScene" uid="uid://cfe4g377ukyhm" path="res://Scenes/hud.tscn" id="1_o5006"]
 [ext_resource type="Script" path="res://Scripts/endless_mode_gameplay_manager.gd" id="1_tr1y1"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
 [ext_resource type="PackedScene" uid="uid://vo28w2hmf6nu" path="res://Scenes/item_bundle.tscn" id="9_675hp"]
+[ext_resource type="Script" path="res://Scripts/power_up.gd" id="9_doeoc"]
+[ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="9_rrill"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://b3q46ndqxf565" path="res://3D/post_van.glb" id="10_sxxvc"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
@@ -34,6 +36,78 @@ item_bundle = ExtResource("9_675hp")
 
 [node name="Death screen" parent="HUD" index="1"]
 mouse_filter = 1
+
+[node name="Power up" type="Panel" parent="." node_paths=PackedStringArray("player")]
+process_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_doeoc")
+player = NodePath("../Player")
+
+[node name="MarginContainer" type="MarginContainer" parent="Power up"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="Power up/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Title" type="Label" parent="Power up/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("9_rrill")
+text = "Choose an upgrade!"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Power up/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 100
+
+[node name="HP" type="Button" parent="Power up/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_rrill")
+text = "Heal fully and 
+ +10% max HP"
+
+[node name="Movement-speed" type="Button" parent="Power up/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_rrill")
+text = "+5% Movement
+ speed"
+
+[node name="Ammo" type="Button" parent="Power up/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_rrill")
+text = "+10 Ammo"
+
+[node name="Projectiles" type="Button" parent="Power up/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_rrill")
+text = "+5 projectiles 
+for shotgun
+"
+
+[node name="Flashlight" type="Button" parent="Power up/MarginContainer/HBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_rrill")
+text = "Better
+flaslight"
 
 [node name="Player" parent="." instance=ExtResource("7_wps4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)
@@ -99,6 +173,12 @@ wait_time = 20.0
 wait_time = 30.0
 autostart = true
 
+[connection signal="button_down" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/HP" to="Power up" method="_on_hp_button_down"]
+[connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/HP" to="Power up" method="_on_hp_pressed"]
+[connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/Movement-speed" to="Power up" method="_on_movementspeed_pressed"]
+[connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/Ammo" to="Power up" method="_on_ammo_pressed"]
+[connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/Projectiles" to="Power up" method="_on_projectiles_pressed"]
+[connection signal="pressed" from="Power up/MarginContainer/HBoxContainer2/HBoxContainer/Flashlight" to="Power up" method="_on_flashlight_pressed"]
 [connection signal="player_ammo_updated" from="Player" to="HUD/Ammo" method="_on_player_player_ammo_updated"]
 [connection signal="player_died" from="Player" to="HUD/Death screen" method="_on_player_player_died"]
 [connection signal="player_health_updated" from="Player" to="HUD/Health" method="_on_player_player_health_updated"]
