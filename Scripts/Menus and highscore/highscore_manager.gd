@@ -28,7 +28,6 @@ func _ready():
 
 func update_highscores_table():
 	update_local_highscores_table()
-
 	loading_icon.visible = true
 	var request = HTTPRequest.new()
 	add_child(request)
@@ -39,17 +38,26 @@ func update_highscores_table():
 func update_local_highscores_table():
 	var local_highscores_text_content = ""
 	for player in HIGHSCORE_SINGLETON.LOCAL_HIGHSCORES:
-		local_highscores_text_content += ("%-21s" % player["name"] + str(player["score"]) + "\n")
+		var player_name = remove_naughty_characters(player["name"])
+		local_highscores_text_content += ("%-21s" % player_name + str(player["score"]) + "\n")
 	local_highscores_text.text = local_highscores_text_content
 
 
 func _on_get_highscores_request_completed(_result, response_code, _headers, body):
 	var response_body = body.get_string_from_utf8()
 	if response_code == 200:
-		online_highscores_text.text = response_body
+		var sanitized_string = remove_naughty_characters(response_body)
+		online_highscores_text.text = sanitized_string
 	else:
 		online_highscores_text.text = "High score server is currently unavailable."
 	loading_icon.visible = false
+
+
+func remove_naughty_characters(naughty_string: String):
+	var regex = RegEx.new()
+	regex.compile("[^\\x00-\\x7FöäåÖÄÅ]")
+	var sanitized_string = regex.sub(naughty_string, "", true)
+	return sanitized_string
 
 
 func check_if_players_score_is_high_enough():

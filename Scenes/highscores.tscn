@@ -110,6 +110,8 @@ text = "Fetching higscores from the server...
 "
 fit_content = true
 scroll_active = false
+meta_underlined = false
+hint_underlined = false
 
 [node name="Loading-icon" type="Sprite2D" parent="Scoreboard/VBoxContainer/HBoxContainer/Online"]
 position = Vector2(258, 182)

@@ -11,9 +11,19 @@ func _ready():
 
 
 func text_changed(new_text):
+	new_text = remove_naughty_characters(new_text)
+	self.text = new_text
+	caret_column = len(new_text)
 	HIGHSCORE_SINGLETON.PLAYER_NAME = new_text
 
 
 func enter_pressed(_new_text):
 	HIGHSCORE_SINGLETON.PLAYER_NAME = self.text
 	$"../Submit"._pressed()
+
+
+func remove_naughty_characters(naughty_string: String):
+	var regex = RegEx.new()
+	regex.compile("[^\\x00-\\x7FöäåÖÄÅ]")
+	var sanitized_string = regex.sub(naughty_string, "", true)
+	return sanitized_string
