@@ -58,6 +58,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	scale = Vector3(1,1,1)
 	if not dead:
 		if out_of_bounds():
 			die()
