@@ -5,13 +5,13 @@
 [ext_resource type="PackedScene" uid="uid://ioybgujxnqw3" path="res://Scenes/health_kit.tscn" id="4_7ho7q"]
 [ext_resource type="PackedScene" uid="uid://d4exug65ilv07" path="res://Scenes/Levels/level_tile_park.tscn" id="6_c180w"]
 [ext_resource type="PackedScene" uid="uid://b76y018lotvep" path="res://Scenes/player.tscn" id="7_wps4a"]
-[ext_resource type="Script" path="res://Scripts/camera3D.gd" id="8_e7b0r"]
 [ext_resource type="PackedScene" uid="uid://qejm0te461yf" path="res://Scenes/Levels/level_tile.tscn" id="8_r6l27"]
 [ext_resource type="PackedScene" uid="uid://vo28w2hmf6nu" path="res://Scenes/item_bundle.tscn" id="9_675hp"]
 [ext_resource type="Script" path="res://Scripts/power_up.gd" id="9_doeoc"]
 [ext_resource type="Theme" uid="uid://c2axe1dqtbw74" path="res://theme.tres" id="9_rrill"]
 [ext_resource type="PackedScene" uid="uid://05cyvmw8hi4c" path="res://Scenes/zombie.tscn" id="10_inqas"]
 [ext_resource type="PackedScene" uid="uid://b3q46ndqxf565" path="res://3D/post_van.glb" id="10_sxxvc"]
+[ext_resource type="PackedScene" uid="uid://b2pey18bnm46i" path="res://Scenes/camera_3d.tscn" id="12_5u58l"]
 [ext_resource type="PackedScene" uid="uid://w5m47vn4ccfq" path="res://Scenes/ammo_box.tscn" id="14_qbaql"]
 [ext_resource type="PackedScene" uid="uid://k888s5k63ey" path="res://Scenes/shotgun_projectile.tscn" id="14_u5mqf"]
 
@@ -110,16 +110,13 @@ theme = ExtResource("9_rrill")
 text = "Better
 flaslight"
 
-[node name="Player" parent="." instance=ExtResource("7_wps4a")]
+[node name="Player" parent="." node_paths=PackedStringArray("camera") instance=ExtResource("7_wps4a")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0514164, 0.931931, 0.455667)
 speed = 5
+camera = NodePath("")
 ammo = 0
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("player")]
-transform = Transform3D(1, -6.50845e-16, 1.74394e-16, 7.85077e-17, 0.369601, 0.929191, -6.69215e-16, -0.929191, 0.369601, 2.08165e-12, 7, 1)
-current = true
-far = 20.0
-script = ExtResource("8_e7b0r")
+[node name="Camera3D" parent="." node_paths=PackedStringArray("player") instance=ExtResource("12_5u58l")]
 player = NodePath("../Player")
 
 [node name="ZombieSpawnTimer" type="Timer" parent="."]

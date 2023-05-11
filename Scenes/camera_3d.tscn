@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2pey18bnm46i"]
+
+[ext_resource type="Script" path="res://Scripts/camera3D.gd" id="1_1hynj"]
+
+[node name="Camera3D" type="Camera3D" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, -6.50845e-16, 1.74394e-16, 7.85077e-17, 0.369601, 0.929191, -6.69215e-16, -0.929191, 0.369601, 2.08165e-12, 7, 1)
+current = true
+far = 20.0
+script = ExtResource("1_1hynj")
+player = NodePath("")
+camera_offset = Vector3(0, 7, 3)

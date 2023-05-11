@@ -22,6 +22,10 @@ var first_delivery = true
 var x_offset = rng.randi_range(0, 1)
 var y_offset = rng.randi_range(0, 1)
 
+# debug
+var debug_round_index = -1
+var debug_time_elapsed = 0
+
 func get_active_delivery_point():
 	if active_delivery_map_tiles.size() > 0:
 		return active_delivery_map_tiles[0].active_delivery_point
@@ -73,6 +77,11 @@ func create_delivery_order():
 	for location in delivery_map_tiles:
 		var _active_delivery_location = location.activate_delivery_point()
 	$HUD.set_compass_target(get_active_delivery_point())
+	
+	# debug checking how long rounds take
+	debug_round_index += 1
+	print("round ", debug_round_index, " took ", (Time.get_ticks_msec() - debug_time_elapsed) / 1000, " seconds.")
+	debug_time_elapsed = Time.get_ticks_msec()
 
 
 func increase_difficulty():
@@ -82,7 +91,7 @@ func increase_difficulty():
 
 
 func remove_delivery_map_tile(map_tile):
-	active_delivery_map_tiles.erase(map_tile)
+	active_delivery_map_tiles.erase(map_tile.owner)
 	if active_delivery_map_tiles.size() == 0: # next round
 		spawn_item_bundle()
 	else: 

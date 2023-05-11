@@ -89,7 +89,7 @@ func _on_deliver_timeout():
 		visible = false
 		$post_box/Cylinder/StaticBody3D/CollisionShape3D.set_deferred("disabled", true)
 		can_deliver_to = false
-		get_tree().get_current_scene().remove_delivery_map_tile(self.owner)
+		get_tree().get_current_scene().remove_delivery_map_tile(self)
 	$Control.visible = player_near and can_deliver_to
 	
 
