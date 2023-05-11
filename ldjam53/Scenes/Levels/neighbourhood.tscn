@@ -367,10 +367,10 @@ speed = 5
 ammo = 0
 
 [node name="Skeleton3D" parent="Player/player/player_rig" index="0"]
-bones/1/rotation = Quaternion(-0.0644012, 0.0473717, -0.00900185, 0.996759)
-bones/2/rotation = Quaternion(-0.0564804, 1.42525e-09, -3.09781e-10, 0.998404)
+bones/1/rotation = Quaternion(-0.0644618, 0.0207632, -0.00394554, 0.997696)
+bones/2/rotation = Quaternion(-0.0252224, -4.25059e-10, 1.76718e-10, 0.999682)
 bones/3/rotation = Quaternion(0.00162714, 0, 0, 0.999999)
-bones/5/rotation = Quaternion(0.0034957, 1.25054e-07, -1.50213e-09, 0.999994)
+bones/5/rotation = Quaternion(-0.0325349, 1.25977e-07, 3.02034e-09, 0.999471)
 bones/8/rotation = Quaternion(-0.439483, 0.271208, -0.516996, 0.682654)
 bones/9/rotation = Quaternion(0.248455, -0.161212, -0.415691, 0.859931)
 bones/10/rotation = Quaternion(-0.0773399, 0.0852253, -0.159011, 0.980546)
@@ -378,21 +378,21 @@ bones/12/position = Vector3(0.00838196, 0.400059, -0.0267645)
 bones/12/rotation = Quaternion(-0.507448, -0.482009, 0.396159, 0.594325)
 bones/13/rotation = Quaternion(0.669603, -0.116433, 0.183161, 0.710301)
 bones/14/rotation = Quaternion(-0.0106536, -0.00767979, -0.0114099, 0.999849)
-bones/19/position = Vector3(0.217635, -0.0561867, 0.115161)
-bones/19/rotation = Quaternion(0.976065, -0.0159959, -0.034999, 0.21405)
-bones/20/rotation = Quaternion(0.266847, -0.080153, -0.0574042, 0.958683)
+bones/19/position = Vector3(0.217635, -0.0290968, 0.101089)
+bones/19/rotation = Quaternion(0.997039, -0.00560332, -0.038071, -0.0665809)
+bones/20/rotation = Quaternion(0.18155, -0.0817519, -0.0440953, 0.978985)
 bones/22/rotation = Quaternion(-0.15462, 0.766933, -0.60024, -0.16619)
-bones/24/position = Vector3(-0.217635, -0.0431579, 0.0883245)
-bones/24/rotation = Quaternion(0.991274, 0.0128081, 0.0362871, 0.126074)
-bones/25/rotation = Quaternion(0.252831, 0.080462, 0.0552258, 0.962576)
+bones/24/position = Vector3(-0.217635, -0.088475, 0.114185)
+bones/24/rotation = Quaternion(0.917057, 0.0223984, 0.0312907, 0.396895)
+bones/25/rotation = Quaternion(0.364588, 0.0774615, 0.0724956, 0.925105)
 bones/26/rotation = Quaternion(-0.0433279, 0.108301, -0.00324668, 0.993168)
 bones/27/rotation = Quaternion(0.158047, 0.754268, -0.616079, 0.162935)
 
 [node name="Backpack" parent="Player/player/player_rig/Skeleton3D" index="0"]
-transform = Transform3D(0.334688, 0.00354794, 0.0962415, 4.8239e-10, 0.875133, -0.0420505, -0.0323901, 0.036661, 0.994469, -0.0189656, 1.51292, -0.535876)
+transform = Transform3D(0.335952, 0.00386605, 0.0420288, -5.85973e-09, 0.871117, -0.104443, -0.01421, 0.0914006, 0.993642, -0.00820618, 1.52676, -0.533815)
 
 [node name="spas121001" parent="Player/player/player_rig/Skeleton3D" index="1"]
-transform = Transform3D(0.0684587, -0.377295, -0.000108831, -0.00112596, -9.36586e-05, -0.383453, 0.377293, 0.0684587, -0.00112456, -0.282755, 1.47961, 0.163628)
+transform = Transform3D(0.0478829, -0.380452, -0.00106094, -0.0250185, -0.00208172, -0.382632, 0.37963, 0.0478494, -0.0250825, -0.309648, 1.45157, 0.146977)
 
 [node name="OmniLight3D" parent="Player" index="11"]
 visible = false
