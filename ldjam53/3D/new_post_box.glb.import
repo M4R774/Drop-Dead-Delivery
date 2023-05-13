@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk7c6im2ohnuj"
-path="res://.godot/imported/post_box.glb-f3ff748d7b81629aa5bee4464c34c397.scn"
+uid="uid://bj8sc05gwc1yk"
+path="res://.godot/imported/new_post_box.glb-9c0dd17cc62d90e9e28505ed518f42a2.scn"
 
 [deps]
 
-source_file="res://3D/post_box.glb"
-dest_files=["res://.godot/imported/post_box.glb-f3ff748d7b81629aa5bee4464c34c397.scn"]
+source_file="res://3D/new_post_box.glb"
+dest_files=["res://.godot/imported/new_post_box.glb-9c0dd17cc62d90e9e28505ed518f42a2.scn"]
 
 [params]
 
@@ -29,4 +29,4 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={}
-gltf/embedded_image_handling=0
+gltf/embedded_image_handling=1

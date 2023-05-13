@@ -38,6 +38,7 @@ func _physics_process(_delta):
 
 func activate_delivery_point():
 	$post_box/Cylinder/StaticBody3D/CollisionShape3D.set_deferred("disabled", false)
+	$new_post_box/post_box/StaticBody3D/CollisionShape3D.set_deferred("disabled", false)
 	visible = true
 	can_deliver_to = true
 
@@ -88,6 +89,7 @@ func _on_deliver_timeout():
 		player.add_score(100)
 		visible = false
 		$post_box/Cylinder/StaticBody3D/CollisionShape3D.set_deferred("disabled", true)
+		$new_post_box/post_box/StaticBody3D/CollisionShape3D.set_deferred("disabled", true)
 		can_deliver_to = false
 		get_tree().get_current_scene().remove_delivery_map_tile(self)
 	$Control.visible = player_near and can_deliver_to
