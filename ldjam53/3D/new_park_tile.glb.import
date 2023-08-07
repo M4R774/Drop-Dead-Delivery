@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bk7c6im2ohnuj"
-path="res://.godot/imported/post_box.glb-f3ff748d7b81629aa5bee4464c34c397.scn"
+uid="uid://b37koeuu4rui2"
+path="res://.godot/imported/new_park_tile.glb-94db707e647fa363e890564b5fc7987d.scn"
 
 [deps]
 
-source_file="res://3D/post_box.glb"
-dest_files=["res://.godot/imported/post_box.glb-f3ff748d7b81629aa5bee4464c34c397.scn"]
+source_file="res://3D/new_park_tile.glb"
+dest_files=["res://.godot/imported/new_park_tile.glb-94db707e647fa363e890564b5fc7987d.scn"]
 
 [params]
 
